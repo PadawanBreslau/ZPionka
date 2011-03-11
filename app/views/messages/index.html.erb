@@ -1,0 +1,15 @@
+<h3>Unread private messages</h3>
+
+<% unless @messages == nil%>
+<% @messages.each do |message| %>
+<% if message.was_read %>	
+<% @message_title = message.title  %>
+<% else %>
+<% @message_title = "<b>" + message.title + "</b>" %>
+	
+<% end%>
+ <%= link_to message.title, message %> 
+<br/>	
+	
+<% end %>
+<% end %>

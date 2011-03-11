@@ -1,0 +1,18 @@
+<% @info = Info.find(:all, :order => "created_at DESC") %>
+<% @info.each do |info| %>
+
+<%= info.title %><br/>
+<%= info.short_content %><br/>
+
+<%= link_to "Read info", info %>
+
+
+<% if admin_in? || signed_in? && current_user.id == @info.user_id %>
+| <%= link_to "Edit info", edit_info_path(info)%> |
+<%= link_to "Delete info", info, :method => :delete, :confirm => "Are you sure?",
+:title => "Delete #{info.title}" %>
+
+<% end %>
+
+
+<% end %>

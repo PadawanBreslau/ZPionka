@@ -1,0 +1,23 @@
+<% form_for @message do |f| %>
+<%= render 'shared/privmess_error_messages' %>
+
+<table>
+<tr>
+<td><%= f.label :Title %></td>
+<td><%= f.text_field :title %></td>
+</tr>
+
+<tr>
+<td><%= f.label :Message %></td>
+<td><%= text_area :message, :message	  %></td>
+</tr>
+
+  <%= f.hidden_field :user1_id, :value => current_user.id %>
+  
+  <%= f.hidden_field :user2_id, :value => params[:user2_id]  %>
+
+<tr><td>
+<%= f.submit "Save comment" %></td>
+</tr>
+</table>
+<% end %>

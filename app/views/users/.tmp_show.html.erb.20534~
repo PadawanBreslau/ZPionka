@@ -1,0 +1,20 @@
+<table class="user_profile">
+<tr>
+	
+<td class="sidebar round">
+	<h3><%= @user.login %></h3>
+ <%= @user.name %> <%= @user.surname %><br />
+ <strong>Ranking: </strong><%= @user.rating%><br />
+<strong>URL</strong> <%= link_to users_path(@user), @user %><br />
+
+</td>
+	
+	
+	
+	
+	
+	
+	
+	
+	</tr>	
+</table>

@@ -1,0 +1,2 @@
+module TourchatsHelper
+end

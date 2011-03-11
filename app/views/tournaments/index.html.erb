@@ -1,0 +1,6 @@
+<% @tournaments.each do |tournament| %>
+	<div class="tournament_stripe">
+		<%= tournament.name %> |
+		 <%= tournament.start_date.strftime("%d.%m.%y") %>-<%= tournament.finish_date.strftime("%d.%m.%y") %>
+	</div>
+<% end %>

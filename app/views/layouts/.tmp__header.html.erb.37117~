@@ -1,0 +1,28 @@
+<header>
+<% logo = image_tag("logo.png", :alt => "Mistrzostwa Polski Informatykow", :class => "round") %>
+<%= link_to logo, root_path %>
+
+<%= render 'layouts/login_panel' %>
+<nav class="round">
+<ul>
+<li><%= link_to "Home", root_path %></li> 
+<li><%= link_to "Historia", show_history_path %></li>
+<li><%= link_to "Sponsorzy", show_supporter_path %></li>
+<li><%= link_to "Wyniki", result_path %></li>
+<li><%= link_to "Regulamin", regulations_path %></li>
+<li><%= link_to "Listy startowe", startlist_path %></li>
+<% unless signed_in? %>
+<li><%= link_to "Zgloszenie", signup_path %></li>
+<li><%= link_to "Zaloguj", signin_path %></li>
+<% end %>
+
+<% if admin_in? %>
+
+<li><%= link_to "CMS", cms_path %></li>
+
+<% end %>
+</ul>
+</nav>
+
+
+</header>

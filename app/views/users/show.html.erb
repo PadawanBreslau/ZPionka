@@ -1,0 +1,29 @@
+<table>
+<tr>	
+<td>
+	<h3><%= @user.login %></h3>
+ <%= @user.name %> <%= @user.surname %><br />
+ <strong>Ranking: </strong><%= @user.rating%><br />
+<strong>URL</strong> <%= link_to users_path(@user), @user %><br />
+
+<% if current_user != @user %>
+<%= link_to "Send private message", new_message_path(:user2_id => @user.id) %>
+<% else %>
+
+<%= link_to "Read unread messqges", unread_messages_path %>
+
+<% end %>
+
+
+
+</td>
+	
+	
+	
+	
+	
+	
+	
+	
+	</tr>	
+</table>

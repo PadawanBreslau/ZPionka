@@ -1,0 +1,6 @@
+<% @users = User.find(:all, :order => "login") %>
+<% @users.each do |user| %>
+<ul> 
+<li><%= link_to user.login, user %>
+</ul>
+<% end %>

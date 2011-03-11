@@ -1,0 +1,23 @@
+<header>
+<% logo = image_tag("logo.png", :alt => "ZPionka", :class => "round") %>
+<%= link_to logo, root_path %>
+
+<nav class="round">
+<ul>
+<li><%= link_to "Home", root_path %></li> 
+<li><%= link_to "Sign up", new_user_path %></li> 
+<li><%= link_to "Sign in", new_session_path %></li> 
+<% if signed_in? %>
+<li><%= link_to "Sign out", signout_path %></li> 
+<% end %>
+
+<% if admin_in? %>
+<li><%= link_to "CMS", signout_path %></li> 
+<% end %>
+
+
+</ul>
+</nav>
+
+
+</header>

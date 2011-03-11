@@ -1,0 +1,41 @@
+<% form_for @tournament do |f| %>
+<%= render 'shared/tournament_error_messages' %>
+
+<table>
+<tr>
+<td><%= f.label :Tournament_name %></td>
+<td><%= f.text_field :name %></td>
+</tr>
+
+<tr>
+<td><%= f.label :Tournament_place %></td>
+<td><%= f.text_field :place %></td>
+</tr>
+
+
+<tr>
+<td><%= f.label :Start_date %></td>
+<td><%= date_select :tournament, :start_date, :order => [ :day, :month, :year]	  %></td>
+</tr>
+
+<tr>
+<td><%= f.label :Finish_date %></td>
+<td><%= date_select :tournament, :finish_date, :order => [ :day, :month, :year]	  %></td>
+</tr>
+
+<tr>
+<td><%= f.label :Prize_fund %></td>
+<td><%= f.text_field :prizes %></td>
+</tr>
+
+<tr>
+<td><%= f.label :Time_control %></td>
+<td><%= f.text_field :time_control %></td>
+</tr>
+
+
+<tr><td>
+<%= f.submit "Save comment" %></td>
+</tr>
+</table>
+<% end %>

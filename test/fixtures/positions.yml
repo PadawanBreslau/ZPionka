@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  game_id: 1
+  var1: MyString
+  var2: MyString
+  var3: MyString
+  move: MyString
+  move_eval: 1.5
+  move_number: 1
+  white_on_move: false
+
+two:
+  game_id: 1
+  var1: MyString
+  var2: MyString
+  var3: MyString
+  move: MyString
+  move_eval: 1.5
+  move_number: 1
+  white_on_move: false

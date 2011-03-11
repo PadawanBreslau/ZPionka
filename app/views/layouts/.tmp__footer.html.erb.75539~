@@ -1,0 +1,8 @@
+<footer>
+<nav class="round">
+<ul>
+<li><%= link_to "Kontakt", contact_path %></li>
+<li><%= link_to "zPionka", "http://zpionka.pl/" %></li>
+</ul>
+</nav>
+</footer>

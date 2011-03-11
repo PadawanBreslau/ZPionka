@@ -1,0 +1,14 @@
+<%= @message.created_at.strftime("%d.%m.%y %H:%M") %>
+<% @user1 = User.find(@message.user1_id) %>
+<%= link_to @user1.login , @user1%>
+<br/>
+<%= @message.message %>
+<br/>
+<%= link_to "Delete message", @message, :method => :delete, :confirm => "Are you sure?"%> |
+<%= link_to "Respond back", new_message_path(:user2_id => @user1.id) %>
+
+
+
+
+<% @message.was_read = true %>
+<% @message.save %>

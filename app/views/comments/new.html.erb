@@ -1,0 +1,19 @@
+<% form_for @comment do |f| %>
+<%= render 'shared/comment_error_messages' %>
+
+<table>
+
+<tr>
+<td><%= f.label :Contnet %></td>
+<td><%= text_area :comment, :content	  %></td>
+</tr>
+
+  <%= f.hidden_field :info_id, :value => @info_id %>
+  
+  <%= f.hidden_field :user_id, :value => @user_id  %>
+
+<tr><td>
+<%= f.submit "Save message" %></td>
+</tr>
+</table>
+<% end %>

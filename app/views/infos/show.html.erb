@@ -1,0 +1,26 @@
+<%= @info.title %><br />
+<% unless @info.lead==nil %>
+<%= @info.lead %><br />
+<% end%>
+<%= @info.short_content %><br />
+
+<%= @info.content %><br />
+<hr/>
+
+<% @comments = @info.show_comments(@info.id) %>
+<% @comments.each do |comment| %>
+<b>
+<%= comment.find_user(comment.user_id) %></b>
+<% if comment.user_id == current_user.id %>
+
+<%= link_to "Edit", edit_comment_path(comment,:info_id => @info.id) %>
+<%= link_to "Delete", comment, :method => :delete, :confirm => "Are you sure?" %>
+	
+<% end %>	
+<br/><%= comment.content %>
+<hr/>
+
+<% end %>
+
+
+<%= link_to "Add comment", new_comment_path(:info_id => @info.id) %>

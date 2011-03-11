@@ -1,0 +1,20 @@
+
+<% unless @tourchats == nil %>
+<% @tourchats.each do |tourchat|%>
+<% @user = User.find(tourchat.user_id) %>
+<div class="chat_stripe">
+<%= @user.login %>: <%= tourchat.content %>
+</div>
+<%end%>
+
+<div class="add_chat_stripe">
+<% form_for @tourchat do |f| %>
+<table><tr>
+<td><%= f.text_field :content %></td><td><%= f.submit "Save comment" %></td>
+</tr></table>
+<%end%>
+
+</div>	
+
+
+<% end %>

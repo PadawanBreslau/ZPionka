@@ -1,0 +1,32 @@
+<b>Edit form</b>
+<%= form_for(@info) do |f| %>
+<%= render 'shared/info_error_messages' %>
+
+<table>
+<tr>
+<td><%= f.label :Title %></td>
+<td><%= f.text_field :title %></td>
+</tr>
+
+<tr>
+<td><%= f.label :Lead %></td>
+<td><%= f.text_field :lead %></td>
+</tr>
+
+
+<tr>
+<td><%= f.label :Short_summary %></td>
+<td><%= text_area :info , :short_content	  %></td>
+</tr>
+
+
+<tr>
+<td><%= f.label :Content %></td>
+<td><%= text_area :info , :content	  %></td>
+</tr>
+
+<tr><td>
+<%= f.submit "Save changes" %></td>
+</tr>
+</table>
+<% end %>
