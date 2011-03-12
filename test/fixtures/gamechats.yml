@@ -2,10 +2,10 @@
 
 one:
   user_id: 1
-  partia_id: 1
+  game_id: 1
   comment: MyString
 
 two:
   user_id: 1
-  partia_id: 1
+  game_id: 1
   comment: MyString

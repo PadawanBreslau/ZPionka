@@ -6,7 +6,7 @@ one:
   start_date: 2011-03-07
   finish_date: 2011-03-07
   prizes: 1
-  time_controll: 1
+  time_control: 1
   isFinished: false
 
 two:
@@ -15,5 +15,5 @@ two:
   start_date: 2011-03-07
   finish_date: 2011-03-07
   prizes: 1
-  time_controll: 1
+  time_control: 1
   isFinished: false
