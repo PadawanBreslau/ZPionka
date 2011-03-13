@@ -1,6 +1,6 @@
 class Comment < ActiveRecord::Base
 	
-	validates :content, :presence => true, :length => { :within => 1..200 }
+	validates :content, :presence => true
 	
 	belongs_to :user
 	belongs_to :info

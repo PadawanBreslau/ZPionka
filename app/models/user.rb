@@ -3,12 +3,12 @@ class User < ActiveRecord::Base
 attr_accessor  :password,  :password_confirmation
 email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-validates :name, :presence => true, :length => { :maximum => 30, :minimum => 4 }
-validates :surname, :presence => true, :length => { :maximum => 50, :minimum => 3 }
+validates :name, :presence => true
+validates :surname, :presence => true
 validates :email, :presence => true, :format => { :with => email_regex }
-validates_numericality_of :rating, :on => :create, :greater_than_or_equal_to => 1000, :less_than_or_equal_to => 2800
-validates_numericality_of :age, :on => :create, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 120
-validates :password, :presence => true, :confirmation => true, :length => { :within => 6..40 }
+validates_numericality_of :rating
+validates_numericality_of :age
+validates :password, :presence => true, :confirmation => true
 
 before_save :encrypt_password
 
@@ -17,6 +17,11 @@ has_many :comments
 has_many :infos
 has_many :gamechats
 has_many :observes
+
+  def full_name  
+     name = self.name + ' '  
+     name += self.surname  
+   end 
 
 
 def has_password?(submitted_password)

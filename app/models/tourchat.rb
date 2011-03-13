@@ -2,5 +2,5 @@ class Tourchat < ActiveRecord::Base\
 	
 	validates :user_id, :numericality => true 
 	validates :tournament_id, :numericality => true 
-	validates :content, :presence => true , :length => {:within =>2..120}
+	validates :content, :presence => true
 end
