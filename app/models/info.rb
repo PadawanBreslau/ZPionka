@@ -1,7 +1,7 @@
 class Info < ActiveRecord::Base
 	
 		validates :title, :presence => true
-		validates :lead
+		validates :lead, :presence => true
 		validates :short_content, :presence => true
 		validates :content, :presence => true
 		
