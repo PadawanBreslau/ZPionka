@@ -25,6 +25,8 @@
 <td><%= text_area :info , :content	  %></td>
 </tr>
 
+<%= f.hidden_field :user_id, :value => @user.id %>
+
 <tr><td>
 <%= f.submit "Save" %></td>
 </tr>

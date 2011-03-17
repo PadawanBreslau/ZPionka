@@ -14,6 +14,20 @@ class TournamentsController < ApplicationController
     render 'new'
   end
   end
+  
+  def add_to_observed_and_redirect
+  	@obstour = Observedtournament.new(:user_id => current_user.id, :tournament_id => params[:id])
+  	@obstour.save
+	redirect_to tournaments_path
+  end
+  
+  def remove_from_observed_and_redirect
+  	@obstour = Observedtournament.find(:first, :conditions => {:user_id => current_user.id, :tournament_id => params[:id]})
+  	unless @obstour.nil?
+  		@obstour.delete
+  	end
+  	redirect_to tournaments_path
+  end	
 
   def show
   @tournament = Tournament.find(params[:id])

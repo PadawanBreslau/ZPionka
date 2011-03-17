@@ -1,6 +1,23 @@
 <% @tournaments.each do |tournament| %>
-	<div class="tournament_stripe">
-		<%= tournament.name %> |
-		 <%= tournament.start_date.strftime("%d.%m.%y") %>-<%= tournament.finish_date.strftime("%d.%m.%y") %>
+	<div id="tournament_stripe">
+	<span class="tournament_stripe">	
+		<% @tournament_stripe = tournament.name + " | " + tournament.start_date.strftime("%d.%m.%y") + "-" + tournament.finish_date.strftime("%d.%m.%y") %> 
+		<%= link_to @tournament_stripe , tournament  %></span> 
+		<%= link_to "[+]", :controller => "tournaments", :action => "add_to_observed_and_redirect", :id =>   
+tournament.id %>
+		<%= link_to "[-]", :controller => "tournaments", :action => "remove_from_observed_and_redirect", :id =>   
+tournament.id %>
+		<br/>
+	 
+	<% unless  tournament_observed(tournament.id) %> 
+		<% for i in 1...tournament.rounds_number+1 %>
+		<span class="round_stripe">
+			<%= "Round " + i.to_s %><br/>
+		</span>
+		<% end %>
+	<% end %>
+	
+		
+	
 	</div>
 <% end %>

@@ -1,4 +1,10 @@
 ZPionka::Application.routes.draw do
+  get "allowances/new"
+
+  get "allowances/edit"
+
+  get "allowances/destroy"
+
   get "observes/new"
 
   get "observes/create"
@@ -183,11 +189,13 @@ resources :sessions, :only => [:new, :create, :destroy]
 match '/signout', :to => "sessions#destroy"
 match '/userlist', :to => "users#index" 
 match '/infolist', :to => "infos#index" 
+match '/add_to_observed_and_redirect', :to => "tournaments#add_to_observed_and_redirect"
+match '/remove_from_observed_and_redirect', :to => "tournaments#remove_from_observed_and_redirect"
 match 'unread_messages', :to => "messages#index"
 
 
 
- root :to => "pages#home"
+ root :to => "tournaments#index"
 
 
 end

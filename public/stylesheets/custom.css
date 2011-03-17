@@ -41,20 +41,19 @@ color: #069;
 }
 
 DIV#top_panel{
-	display:inline;
-	background-color: yellow;
+	
 	margin-top: 5px;
 	margin-bottom: 10px;
 	height: 60px;
-	width: 100%;
 }
 
 DIV#logo
 {
+	float:left;
 	display:inline-block;
 	padding-right:1px;
 	padding-left:1px;
-	background-color: blue;
+	background-color:#FFE4C4;
 	width: 19%;
 	height: 60px;
 }
@@ -62,30 +61,33 @@ DIV#logo
 DIV#banner
 {
 	display:inline-block;
-	position:static;
+
 	padding-right:1px;
 	padding-left:1px;
-	background-color: green;
-	width: 60%;
+	background-color:#FFE4C4;
+	width: 70%;
 	height: 60px;
 }
 
 DIV#login_panel
 {
+	float:right;
 	display:inline-block;
+
 	padding-right:1px;
 	padding-left:1px;
-	background-color: blue;
-	width: 19%;
+	background-color:#FFE4C4;
+	width: 10%;
 	height: 60px;
 }
 
 DIV#left_panel{
+	float:left;
 	display:inline-block;
-	background-color: orange;
+	background-color:#FFE4C4;
 	margin-top: 5px;
-	width: 24%;
-	height: 450px;
+	width: 16%;
+	#height: 450px;
 }
 
 
@@ -94,9 +96,9 @@ DIV#nav_panel
 	display:block;
 	padding-right:1px;
 	padding-left:1px;
-	background-color: red;
+	background-color:#FFE4C4;
 	width: 100%;
-	height: 200px;
+	#height: 200px;
 }
 
 DIV#chat_panel
@@ -104,9 +106,9 @@ DIV#chat_panel
 	display:block;
 	padding-right:1px;
 	padding-left:1px;
-	background-color: cyan;
+	background-color:#FFE4C4;
 	width: 100%;
-	height: 250px;
+	#height: 250px;
 }
 
 DIV#board_panel
@@ -114,9 +116,9 @@ DIV#board_panel
 	display:inline-block;
 	padding-right:1px;
 	padding-left:1px;
-	background-color: black;
-	width: 50%;
-	height: 450px;
+	background-color:#FFE4C4;
+	width: 60%;
+	#height: 450px;
 }
 
 DIV#board
@@ -124,9 +126,9 @@ DIV#board
 	display:block;
 	padding-right:1px;
 	padding-left:1px;
-	background-color: gray;
+	background-color:#CCCCCC;
 	width: 100%;
-	height: 350px;
+#	height: 350px;
 }
 
 DIV#variations
@@ -134,50 +136,77 @@ DIV#variations
 	display:block;
 	padding-right:1px;
 	padding-left:1px;
-	background-color: brown;
+	background-color:#FFE4C4;
 	width: 100%;
-	height: 100px;
+#	height: 100px;
 }
 
 DIV#right_panel
 {
+	float:right;
 	display:inline-block;
 	padding-right:1px;
 	padding-left:1px;
-	background-color: orange;
+	background-color:#FFE4C4;
 	width: 24%;
-	height: 450px;
+#	height: 450px;
 }
 
 DIV#game_info_panel
 {
 	padding-right:1px;
 	padding-left:1px;
-	background-color: purple;
+	background-color:#FFE4C4;
 	width: 100%;
-	height: 150px;
+#	height: 150px;
 }
 
 DIV#game_notation_panel
 {
 	padding-right:1px;
 	padding-left:1px;
-	background-color: blue;
+	background-color:#FFE4C4;
 	width: 100%;
-	height: 300px;
+#	height: 300px;	
 }
 
 DIV#footer
 {
+
 	background-color: yellow;
 	width: 100%;
 	height: 30px;	
 
 }
 
+DIV#tournament_stripe{
+	display:block;
+	background-color: #221122;
+	font-color: white;
+	font-weight: bold;
+	font-family: "Georgia";
+	#font-variant:small-caps;
+	padding-bottom: 3px;
+}
 
 
 
+p.tournament_stripe{
+	color: white;
+	padding-left:5px;
+}
+
+.tournament_stripe a{
+	color: white;
+	padding-left:50px;
+}
+
+
+span.round_stripe {
+	color: white;
+	padding-left:25px;
+# wezsze 
+}
 
 
 comment{
@@ -185,49 +214,28 @@ font-variant: small-caps;
 padding-left:15px;
 }
 
-nav {
-float: right;
-background-color: white;
-padding: 0 0.7em;
-white-space: nowrap;
-font-size: 100%;
-font-variant: small-caps;
-font-style: bold;
-}
 
-nav ul {
-margin: 0;
-padding: 0;
-}
+ul#navigation{
+	list-style: none;
+} 
 
-nav ul li {
-list-style-type: none;
-display: inline-block;
-padding: 0.3em 0;
-}
-nav ul li a {
-padding: 0 5px;
-font-weight: bold;
-}
-nav ul li a:visited {
-color: #09c;
-}
-nav ul li a:hover {
-text-decoration: underline;
+
+ul#navigation li {
+	border-bottom: 1px solid #fff;
+	width: 90%;
 }
 
 
-a.signup_button {
-margin-left: auto;
-margin-right: auto;
-display: block;
-text-align: center;
-width: 190px;
-color: #fff;
-background: #006400;
-font-size: 150%;
-font-weight: bold;
-padding: 20px;
+ul a:link, ul a:visited {
+	width: 50px;
+	color: #000;
+	padding: 5px;
+
+}
+
+ul a:hover {
+	border-style: inset;
+	padding: 5px 3px 3px 7px;
 }
 
 .round {

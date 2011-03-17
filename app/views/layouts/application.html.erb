@@ -14,18 +14,21 @@
 
 <div id="top_panel">
 <div id="logo">
-	logo
+	<%= render 'layouts/logo' %>
 </div>
 <div id="banner">
-	baner
+	<%= render 'layouts/banner' %>
 	</div>
 <div id="login_panel">	
-	login
+	<%= render 'layouts/header' %>
 	</div>
-</div>
+	</div>
+
+
 
 <div id="left_panel">
 	<div id="nav_panel">
+			<%= render 'layouts/navigation' %>
 	</div>
 	
 	<div id="chat_panel">
@@ -34,6 +37,8 @@
 	
 <div id="board_panel">
 		<div id="board">
+
+	<%= yield %>
 			</div>
 		<div id="variations">
 			</div>

@@ -31,6 +31,7 @@ end
 
   def edit
       @title = "Edit user"
+      @user = User.find(params[:id])
   end
 
   def destroy
