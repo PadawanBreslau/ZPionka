@@ -208,6 +208,12 @@ span.round_stripe {
 # wezsze 
 }
 
+span.breadcrumbs{
+	font-size:80%;
+	font-family: "Georgia";
+	font-variant: small-caps;
+}
+
 
 comment{
 font-variant: small-caps;
