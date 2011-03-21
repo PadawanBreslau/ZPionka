@@ -16,6 +16,13 @@ class TournamentsController < ApplicationController
   end
   
   def add_to_observed_and_redirect
+  	
+  	unless signed_in?
+    	cookies.permanent.signed[:watched_tournament] =  params[:id]
+    	redirect_to tournaments_path
+    	return
+    end		
+  	
   	@obstour = Observedtournament.new(:user_id => current_user.id, :tournament_id => params[:id])
   	@obstour.save
 	redirect_to tournaments_path
@@ -31,13 +38,28 @@ class TournamentsController < ApplicationController
   
   def add_to_observed_games
   	
-  	# TODO
-  	
+  	Observe.new(:user_id => current_user.id, :game_id => params[:id]).save
   	redirect_to tournaments_path
   end
+  
+  def remove_from_observed_games
+  	@observation = Observe.find(:first, :conditions => {:user_id => current_user.id, :game_id => params[:id]})
+  	@observation.delete
+  	
+  	redirect_to tournaments_path
+  end	
+  	
 
   
     def add_to_observed_round_and_redirect
+    
+    unless signed_in?
+    	cookies.permanent.signed[:watched_round] =  params[:round_id]
+    	redirect_to tournaments_path
+    	return
+    end		
+    
+    	
     @already_observed_round = Observedround.find_by_tournament_id(params[:id])
   	@obsround = Observedround.new(:user_id => current_user.id, :tournament_id => params[:id], :round_id => params[:round_id] )
   	@obsround.save

@@ -9,7 +9,15 @@ end
  end
  
  def get_all_games(tournament_id,user_id)
+ 	
+ 	if user_id == 0
+ 		rounds_info = cookies.signed[:watched_round]
+ 		
+		Game.find_all_by_round_id(rounds_info)
+ 	
+		else
  	@observation = Observedround.where(:user_id => user_id, :tournament_id => tournament_id).first
+ 	end
  	
  	unless @observation.nil?
  		Game.find_all_by_round_id(@observation.round_id)

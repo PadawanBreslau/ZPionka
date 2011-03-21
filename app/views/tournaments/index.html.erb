@@ -26,11 +26,12 @@ tournament.id, :round_id => round.id %>
 	</td>
 	<td valign="top">
 		<% @eye = image_tag("pictograms/eye.gif", :alt => "Observe", :class => "round") %>
+		<% @closed_eye = image_tag("pictograms/closed-eye.gif", :alt => "Observe", :class => "round") %>
 		
 		<% unless signed_in? %>
-		<% @games = get_all_games(tournament.id,1) %>
+			<% @games = get_all_games(tournament.id,0) %>
 		<% else %>
-		<% @games = get_all_games(tournament.id, current_user.id) %>
+			<% @games = get_all_games(tournament.id, current_user.id) %>
 		<% end%>
 			
 			<% unless @games.nil? %>
@@ -39,8 +40,10 @@ tournament.id, :round_id => round.id %>
 					<span class="game_stripe">
 						<%= link_to prepare_game_string(game), game %> &nbsp&nbsp&nbsp
 						
-						<% unless already_observed(game)%>
-						<%= link_to @eye,  :controller => "tournaments", :action => "add_to_observed_games", :id => game.id, :confirm => "Are you sure you want to observe this game?" %>
+						<% if signed_in? && already_observed(game)%>
+						<%= link_to @eye,  :controller => "tournaments", :action => "remove_from_observed_games", :id => game.id , :confirm => "Are you sure you want to remove game from yourlist?" %>
+						<% elsif signed_in? && !already_observed(game) %>
+						<%= link_to @closed_eye,  :controller => "tournaments", :action => "add_to_observed_games", :id => game.id, :confirm => "Are you sure you want to observe this game?" %>
 						<% end %>
 					</span>
 					
