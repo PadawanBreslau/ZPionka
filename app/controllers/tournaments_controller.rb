@@ -28,6 +28,33 @@ class TournamentsController < ApplicationController
   	end
   	redirect_to tournaments_path
   end	
+  
+  def add_to_observed_games
+  	
+  	# TODO
+  	
+  	redirect_to tournaments_path
+  end
+
+  
+    def add_to_observed_round_and_redirect
+    @already_observed_round = Observedround.find_by_tournament_id(params[:id])
+  	@obsround = Observedround.new(:user_id => current_user.id, :tournament_id => params[:id], :round_id => params[:round_id] )
+  	@obsround.save
+  	unless @already_observed_round.nil? 
+  		@already_observed_round.delete
+  	end 
+	redirect_to tournaments_path
+  end
+  
+  def remove_from_observed_round_and_redirect
+  	@obstour = Observedtournament.find(:first, :conditions => {:user_id => current_user.id, :tournament_id => params[:id]})
+  	unless @obstour.nil?
+  		@obstour.delete
+  	end
+  	redirect_to tournaments_path
+  end	
+  
 
   def show
   @tournament = Tournament.find(params[:id])

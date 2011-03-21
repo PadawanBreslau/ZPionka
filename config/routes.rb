@@ -183,6 +183,7 @@ resources :comments
 resources :messages  
 resources :users
 resources :infos
+resources :games
 resources :sessions, :only => [:new, :create, :destroy]
 
 
@@ -191,6 +192,10 @@ match '/userlist', :to => "users#index"
 match '/infolist', :to => "infos#index" 
 match '/add_to_observed_and_redirect', :to => "tournaments#add_to_observed_and_redirect"
 match '/remove_from_observed_and_redirect', :to => "tournaments#remove_from_observed_and_redirect"
+match '/add_to_observed_round_and_redirect', :to => "tournaments#add_to_observed_round_and_redirect"
+match '/remove_from_observed_round_and_redirect', :to => "tournaments#remove_from_observed_round_and_redirect"
+match '/add_to_observed_games', :to => "tournaments#add_to_observed_games"
+
 match 'unread_messages', :to => "messages#index"
 
 

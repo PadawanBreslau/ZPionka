@@ -1,7 +1,7 @@
 class Player < ActiveRecord::Base
-	validates :name, presence => true
-	validates :surname, presence => true
-	validates :rating, :numericality => true, :on => :create
+	validates :name, :presence => true
+	validates :surname, :presence => true
+	validates :rating, :numericality => true
 	
 	has_many :games
 	has_many :tourplaces

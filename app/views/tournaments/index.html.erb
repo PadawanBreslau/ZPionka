@@ -8,13 +8,50 @@ tournament.id %>
 		<%= link_to "[-]", :controller => "tournaments", :action => "remove_from_observed_and_redirect", :id =>   
 tournament.id %>
 		<br/>
-	 
-	<% unless  tournament_observed(tournament.id) %> 
-		<% for i in 1...tournament.rounds_number+1 %>
+
+	<% unless  tournament_not_observed(tournament.id) %> 
+		<table><tr><td width="80px">
+		<% @rounds = get_all_rounds(tournament.id) %>
+	
+		<% @rounds.each do |round| %>
 		<span class="round_stripe">
-			<%= "Round " + i.to_s %><br/>
+			
+			<% @round_number = "Round " + round.round_number.to_s %>
+			<%= link_to @round_number, :controller => "tournaments", :action => "add_to_observed_round_and_redirect", :id =>  
+tournament.id, :round_id => round.id %>
+			
+				<br/>
 		</span>
 		<% end %>
+	</td>
+	<td valign="top">
+		<% @eye = image_tag("pictograms/eye.gif", :alt => "Observe", :class => "round") %>
+		
+		<% unless signed_in? %>
+		<% @games = get_all_games(tournament.id,1) %>
+		<% else %>
+		<% @games = get_all_games(tournament.id, current_user.id) %>
+		<% end%>
+			
+			<% unless @games.nil? %>
+		
+				<% @games.each do |game| %>
+					<span class="game_stripe">
+						<%= link_to prepare_game_string(game), game %> &nbsp&nbsp&nbsp
+						
+						<% unless already_observed(game)%>
+						<%= link_to @eye,  :controller => "tournaments", :action => "add_to_observed_games", :id => game.id, :confirm => "Are you sure you want to observe this game?" %>
+						<% end %>
+					</span>
+					
+					
+					<br/>
+				<% end %>
+		
+			<% end %>
+	</td>
+	
+</tr></table>
 	<% end %>
 	
 		
