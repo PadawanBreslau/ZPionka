@@ -24,6 +24,12 @@ end
 def show
   @user = User.find(params[:id])
   @title = @user.login 
+  
+ # @observes = User.find(@user.id, :include => :observe)
+  
+ 
+
+  
 end
 
   def update

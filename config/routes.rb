@@ -173,6 +173,7 @@ ZPionka::Application.routes.draw do
   get "user/update"
   get "user/edit"
   get "user/destroy"
+  get "info/index_user"
   get "session/new"
   get "page/home"
   
@@ -197,7 +198,8 @@ match '/remove_from_observed_round_and_redirect', :to => "tournaments#remove_fro
 match '/add_to_observed_games', :to => "tournaments#add_to_observed_games"
 match '/remove_from_observed_games', :to => "tournaments#remove_from_observed_games"
 
-match 'unread_messages', :to => "messages#index"
+match '/unread_messages', :to => "messages#index"
+match '/index_user', :to => "infos#index_user"
 
 
 

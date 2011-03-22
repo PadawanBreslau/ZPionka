@@ -1,8 +1,10 @@
-<% @info = Info.find(:all, :order => "created_at DESC") %>
+
+
+<% @info = Info.find(:all, :order => "created_at DESC", :conditions => {:user_id => params[:id]}) %>
 <% @info.each do |info| %>
 
-<%= info.title %><br/>
-<%= info.short_content %><br/>
+<strong><%= info.title %></strong><br/>
+<%= info.short_content %><br/><br/>
 
 <%= link_to "Read info", info %>
 

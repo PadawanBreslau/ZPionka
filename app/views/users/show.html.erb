@@ -1,32 +1,45 @@
 <table>
 <tr>	
-<td>
-	<h3><%= @user.login %></h3>
- <%= @user.name %> <%= @user.surname %><br />
- <strong>Ranking: </strong><%= @user.rating%><br />
+
+
+<td>	
+<h3><%= @user.login %></h3>
+<%= @user.name %> <%= @user.surname %><br />
+<strong>Ranking: </strong><%= @user.rating%><br />
 <strong>URL</strong> <%= link_to users_path(@user), @user %><br />
 
 <% if current_user != @user %>
-<%= link_to "Send private message", new_message_path(:user2_id => @user.id) %>
+	<%= link_to "Send private message", new_message_path(:user2_id => @user.id) %>
 <% else %>
-
-<%= link_to "Read unread messqges", unread_messages_path %>
-
+	<%= link_to "Read unread messqges", unread_messages_path %>
 <% end %>
-
-
-
 </td>
+
 <td>
-<% @infos = Info.find_all_by_user_id(@user.id, :limit => 5) %>
+	<h4> Latest Written articles </h4>
+<% @infos = Info.find_all_by_user_id(@user.id, :limit => 3) %>
 <% @infos.each do |info| %>
 	
-<%= link_to info.title, info %>	
-	
+<strong><%= link_to info.title, info %>	</strong>
+<%= info.created_at.strftime("%d.%m.%Y")%> <br/>
+<%= info.lead %> <hr/>
 	
 <% end %>	
+
+<%= link_to "Show all articles", index_user_path(:id => @user.id) %>
+
+</td>
+</tr>
+<tr>
+<td>
+	<h4>Observed games</h4>
 	
-	</td>
+	
+</td>
+<td>
+	<h4>Comments</h4>
+</td>
+		
 	
 	
 	</tr>	

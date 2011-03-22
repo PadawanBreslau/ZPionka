@@ -5,12 +5,18 @@
 		<%= link_to @tournament_stripe , tournament  %></span> 
 		<%= link_to "[+]", :controller => "tournaments", :action => "add_to_observed_and_redirect", :id =>   
 tournament.id %>
-		<%= link_to "[-]", :controller => "tournaments", :action => "remove_from_observed_and_redirect", :id =>   
-tournament.id %>
-		<br/>
 
-	<% unless  tournament_not_observed(tournament.id) %> 
-		<table><tr><td width="80px">
+		<% if signed_in? %>
+			<%= link_to "[-]", :controller => "tournaments", :action => "remove_from_observed_and_redirect", :id =>   
+tournament.id %>
+
+		<% end %>
+		<br/>
+	
+		
+
+	<% if  !tournament_not_observed(tournament.id) || (!signed_in? && cookies.signed[:watched_tournament] == tournament.id.to_s) %> 
+	<table><tr><td width="80px">
 		<% @rounds = get_all_rounds(tournament.id) %>
 	
 		<% @rounds.each do |round| %>
@@ -28,12 +34,16 @@ tournament.id, :round_id => round.id %>
 		<% @eye = image_tag("pictograms/eye.gif", :alt => "Observe", :class => "round") %>
 		<% @closed_eye = image_tag("pictograms/closed-eye.gif", :alt => "Observe", :class => "round") %>
 		
+				<%= ":" %>
+		<%= cookies.signed[:watched_round] %>
+		
 		<% unless signed_in? %>
 			<% @games = get_all_games(tournament.id,0) %>
 		<% else %>
 			<% @games = get_all_games(tournament.id, current_user.id) %>
 		<% end%>
 			
+
 			<% unless @games.nil? %>
 		
 				<% @games.each do |game| %>

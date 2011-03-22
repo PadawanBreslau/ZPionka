@@ -19,6 +19,9 @@ class InfosController < ApplicationController
   def show
   @info = Info.find(params[:id])
   @title = @info.title
+  
+  
+  
   end
 
   def index
@@ -47,6 +50,10 @@ class InfosController < ApplicationController
   def edit
     @title = "Edit info"
     @info = Info.find(params[:id])
+  end
+  
+  def index_user
+  	@title = "User info list"
   end
   
 end
