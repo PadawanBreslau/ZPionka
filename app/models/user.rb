@@ -17,6 +17,7 @@ has_many :comments
 has_many :infos
 has_many :gamechats
 has_many :observes
+has_many :games, :through => :observes
 
   def full_name  
      name = self.name + ' '  

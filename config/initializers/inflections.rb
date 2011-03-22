@@ -8,4 +8,7 @@
 #   inflect.irregular 'person', 'people'
 #   inflect.uncountable %w( fish sheep )
 inflect.singular(/(n)ews$/i, '\1ews')
+
+inflect.irregular "observe", "observes" 
+
  end

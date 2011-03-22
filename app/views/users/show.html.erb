@@ -33,11 +33,18 @@
 <tr>
 <td>
 	<h4>Observed games</h4>
-	
+<% @games.each do |game| %>
+<%= link_to prepare_game_string(game), game %>
+<% end %>
 	
 </td>
 <td>
 	<h4>Comments</h4>
+
+<% @comments.each do |comment| %>	
+<%= link_to comment.info.title, comment.info %>
+<% end %>
+
 </td>
 		
 	
