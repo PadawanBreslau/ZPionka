@@ -101,15 +101,26 @@ DIV#nav_panel
 	#height: 200px;
 }
 
-DIV#chat_panel
+DIV#display_chat_panel
 {
 	display:block;
 	padding-right:1px;
 	padding-left:1px;
+	padding-top:5px;
 	background-color:#DDE4C4;
 	width: 100%;
-	#height: 250px;
+	height: 250px;
+	overflow:auto;
 }
+
+DIV#add_chat_panel
+{
+	position: block;
+	background-color: red;
+	top: 200px;
+	
+}
+	
 
 DIV#board_panel
 {
@@ -215,16 +226,31 @@ span.game_stripe{
 	font-family: "Georgia";
 	font-variant: small-caps;
 	
-
-	
 }
 
 span.breadcrumbs{
 	font-size:80%;
 	font-family: "Georgia";
 	font-variant: small-caps;
+
 }
 
+span.chat_stripe{
+	font-size:80%;
+	font-family: "Georgia";
+	padding-left:7px;
+	padding-right:7px;
+	
+}
+
+span.read_message{
+	font-size:80%;
+	font-family: "Georgia";
+	}
+
+span.unread_message{
+	font-weight: bold;
+}
 
 comment{
 font-variant: small-caps;

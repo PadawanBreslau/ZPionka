@@ -1,0 +1,21 @@
+
+<% route = ActionController::Routing::Routes.recognize_path request.env['PATH_INFO'] %>
+<%  controller_name = route[:controller].split('/')[-1] %>
+<% unless route[:id].nil? %>
+<%  id_name = route[:id].split('/')[-1] %>
+<% end %>
+
+<% if controller_name == "tournaments" %>
+
+<% @chat = Tourchat.find_all_by_tournament_id(id_name) %>
+<% @chat.each do |chat| %>
+<% user_login = User.find(chat.user_id).login %>	
+<% display_stripe = "<strong>" + user_login + "</strong>: " +	chat.content %>
+
+<span class="chat_stripe">	<%= display_stripe.html_safe  %></span><br/>
+<% end %>	
+
+
+
+	
+<% end %>	

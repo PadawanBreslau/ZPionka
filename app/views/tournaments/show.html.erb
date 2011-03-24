@@ -1,1 +1,32 @@
-<%= @tournament.name %> | <%= @tournament.start_date.strftime("%d.%m.%y") %>-<%= @tournament.finish_date.strftime("%d.%m.%y") %>
+<strong><%= @tournament.name %> | <%= @tournament.start_date.strftime("%d.%m.%y") %>-<%= @tournament.finish_date.strftime("%d.%m.%y") %></strong><br/><br/>
+<table>
+<tr>	
+<td>
+<% max_round_number = 0 %>	
+	
+<% @rounds.each do |round| %>
+
+<% @round_stripe = "Round " + round.round_number.to_s %>	
+<%= link_to @round_stripe, round %><br/>
+
+<% if round.round_number > max_round_number %>
+<% max_round_number = round.round_number %>	
+<% end %>	
+	
+<% end %>	
+ </td>
+ 
+ <td>
+ <%	@results = tournament_results(max_round_number) %>
+ <% counter = 1 %>
+ <% unless @results.nil? %>
+ <% @results.each do |result| %>
+ <% player = Player.find(result[0]) %>
+ <%= counter.to_s + ". " %><%= player.name + " " + player.surname + ": " %>
+ <%= result[1] %> 
+ <br/><% counter+=1 %>
+ <% end %>
+  <% end %>
+ </td>	
+</tr>
+</table>

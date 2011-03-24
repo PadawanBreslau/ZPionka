@@ -11,7 +11,7 @@
 <% if current_user != @user %>
 	<%= link_to "Send private message", new_message_path(:user2_id => @user.id) %>
 <% else %>
-	<%= link_to "Read unread messqges", unread_messages_path %>
+	<%= link_to "Read messqges", unread_messages_path %>
 <% end %>
 </td>
 
@@ -34,7 +34,7 @@
 <td>
 	<h4>Observed games</h4>
 <% @games.each do |game| %>
-<%= link_to prepare_game_string(game), game %>
+<%= link_to prepare_game_string(game), game %><br/>
 <% end %>
 	
 </td>
@@ -42,7 +42,7 @@
 	<h4>Comments</h4>
 
 <% @comments.each do |comment| %>	
-<%= link_to comment.info.title, comment.info %>
+<%= link_to comment.info.title, comment.info %><br/>
 <% end %>
 
 </td>

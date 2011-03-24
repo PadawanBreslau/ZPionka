@@ -15,6 +15,8 @@ class TournamentsController < ApplicationController
   end
   end
   
+    
+  
   def add_to_observed_and_redirect
   	
   	unless signed_in?
@@ -81,6 +83,8 @@ class TournamentsController < ApplicationController
   def show
   @tournament = Tournament.find(params[:id])
   @title = @tournament.name
+  
+  @rounds = @tournament.rounds
   end
 
   def index
@@ -110,5 +114,7 @@ class TournamentsController < ApplicationController
     @title = "Edit tournament"
     @tournament = Tournament.find(params[:id])
   end
+  
+	
 
 end

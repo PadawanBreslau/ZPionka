@@ -1,0 +1,21 @@
+<% route = ActionController::Routing::Routes.recognize_path request.env['PATH_INFO'] %>
+<%  controller_name = route[:controller].split('/')[-1] %>
+<% unless route[:id].nil? %>
+<%  id_name = route[:id].split('/')[-1] %>
+<% end %>
+
+<% if signed_in? && controller_name == "tournaments" && !route[:id].nil?  %>
+	
+
+		<% form_for @tourchat do |f| %>
+		<%= f.text_field :content, :size => 18 %>
+		
+		<%= f.hidden_field :user_id, :value => current_user.id %>
+		<%= f.hidden_field :tournament_id, :value => id_name %>
+		
+		<%= image_submit_tag ("add_chat_message.gif")%>
+		<% end %>	
+	
+	
+	
+<% end %>	

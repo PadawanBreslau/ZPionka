@@ -7,8 +7,7 @@ class TourchatsController < ApplicationController
   def create
   @tourchat = Tourchat.new(params[:tourchat])
   if @tourchat.save
-    flash[:success] = "Succesfull adding tourchat"
-    redirect_to @tourchat
+    redirect_to :back
   else
     @title = "Add new tourchat"
     render 'new'
@@ -17,7 +16,7 @@ class TourchatsController < ApplicationController
 
   def show
   @tourchat = Tourchat.find(params[:id])
-  @title = @tourchat.name
+
   end
 
   def index

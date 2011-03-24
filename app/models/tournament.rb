@@ -4,5 +4,6 @@ class Tournament < ActiveRecord::Base
 	validates :finish_date, :presence => true
 	
 	has_many :rounds
+	has_many :games, :through => :rounds
 	
 end

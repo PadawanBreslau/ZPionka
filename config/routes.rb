@@ -180,6 +180,7 @@ ZPionka::Application.routes.draw do
   
 resources :tourchats
 resources :tournaments
+resources :rounds
 resources :comments  
 resources :messages  
 resources :users

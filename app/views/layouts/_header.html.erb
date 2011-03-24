@@ -10,7 +10,7 @@
 
 <% if signed_in? %>
 
-
+<%= link_to "My profile", current_user %>
 	
 <%= link_to mail, messages_path %>
 <%= link_to gear, edit_user_path(current_user) %>

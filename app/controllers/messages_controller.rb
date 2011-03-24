@@ -18,6 +18,8 @@ end
 def index
  @title = "message list" 
  @messages = Message.find_all_by_user2_id(current_user.id)
+ @messages_sent = Message.find_all_by_user1_id(current_user.id)
+ 
 end
 
 def show
