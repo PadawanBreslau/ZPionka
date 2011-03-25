@@ -7,9 +7,15 @@
 		<tr>	
 		<% @sender = User.find(message.user1_id)	%>
 		<% if message.was_read %>	
-			<% @message_title = "<td><span class='read_message'>" + message.title + "</td><td>  " + @sender.login + " " + "</td></span>"  %>
+			<%= "<td><span class='read_message'>".html_safe %>
+			<%=  link_to message.title, message %>   
+			<%= "</span></td><td>".html_safe + message.created_at.strftime("%d.%m.%Y")%>
+			<%=  "</td><td> ".html_safe + @sender.login + " " + "</td>".html_safe %>
 		<% else %>
-			<% @message_title = "<td><span class='unread_message'>" + message.title + "</td><td>  " + @sender.login + " " + "</td></span>" %>
+			<%= "<td><span class='unread_message'>".html_safe %>
+			<%=  link_to message.title, message %> 
+			<%= "</span></td><td>".html_safe + message.created_at.strftime("%d.%m.%Y")%>  
+			<%=  "</td><td> ".html_safe + @sender.login + " " + "</td>".html_safe %>
 		<% end%>
  	<%= link_to @message_title.html_safe, message %> 
 	</tr>
@@ -28,14 +34,14 @@
 		<% if message.was_read %>	
 			<%= "<td><span class='read_message'>".html_safe %>
 			<%=  link_to message.title, message %>   
-			<%= "</td><td>".html_safe + message.created_at.strftime("%d.%m.%Y")%>
-			<%=  "</td><td> ".html_safe + @receiver.login + " " + "</td></span>".html_safe %>
+			<%= "</span></td><td>".html_safe + message.created_at.strftime("%d.%m.%Y")%>
+			<%=  "</td><td> ".html_safe + @receiver.login + " " + "</td>".html_safe %>
 			
 		<% else %>
 			<%= "<td><span class='unread_message'>".html_safe %>
 			<%=  link_to message.title, message %> 
-			<%= "</td><td>".html_safe + message.created_at.strftime("%d.%m.%Y")%>  
-			<%=  "</td><td> ".html_safe + @receiver.login + " " + "</td></span>".html_safe %>
+			<%= "</span></td><td>".html_safe + message.created_at.strftime("%d.%m.%Y")%>  
+			<%=  "</td><td> ".html_safe + @receiver.login + " " + "</td>".html_safe %>
 		<% end%>
 		
 	</tr>	

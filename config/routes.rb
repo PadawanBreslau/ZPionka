@@ -1,4 +1,6 @@
 ZPionka::Application.routes.draw do
+  get "pgn/add_pgn"
+
   get "allowances/new"
 
   get "allowances/edit"
@@ -201,6 +203,8 @@ match '/remove_from_observed_games', :to => "tournaments#remove_from_observed_ga
 
 match '/unread_messages', :to => "messages#index"
 match '/index_user', :to => "infos#index_user"
+match '/add_pgn', :to => "pgn#add_pgn"
+match '/parse_pgn', :to =>"pgn#parse_pgn"
 
 
 

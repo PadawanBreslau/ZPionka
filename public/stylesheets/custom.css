@@ -200,6 +200,14 @@ DIV#tournament_stripe{
 	padding-bottom: 3px;
 }
 
+DIV#cms{
+background-color: #eee;
+position:absolute;
+right:20px;
+top:20px;
+
+padding:10px;
+}
 
 
 p.tournament_stripe{
@@ -244,11 +252,12 @@ span.chat_stripe{
 }
 
 span.read_message{
-	font-size:80%;
+	font-size:120%;
 	font-family: "Georgia";
 	}
 
 span.unread_message{
+	font-size:150%;
 	font-weight: bold;
 }
 

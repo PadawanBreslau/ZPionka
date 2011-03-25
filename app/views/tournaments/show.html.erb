@@ -23,7 +23,7 @@
  <% @results.each do |result| %>
  <% player = Player.find(result[0]) %>
  <%= counter.to_s + ". " %><%= player.name + " " + player.surname + ": " %>
- <%= result[1] %> 
+ <%= result[1] %>&nbsp <%= result[2]%> 
  <br/><% counter+=1 %>
  <% end %>
   <% end %>

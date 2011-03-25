@@ -8,4 +8,6 @@ class Game < ActiveRecord::Base
 	has_many :positions
 	has_many :observes
 	has_many :users, :through => :observes
+	
+
 end

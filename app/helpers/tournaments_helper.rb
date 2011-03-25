@@ -36,9 +36,44 @@ module TournamentsHelper
 		end    	
 		
 	end	
+	
+	players = count_bucholtz(players)
 		
  	players.sort_by{|a| -a[1]}
   	
+  end	
+  
+  def count_bucholtz(players)
+  	players.each do |player|
+	  	player_bucholtz = 0
+  		#@opponents = find_player_opponents(player[0])
+  		
+  		@opponents.each do |opponent|
+  			players.each do |player2|
+  				if player2[0] == opponent
+					player_bucholtz += (player2[1])  				
+  				end	
+  			end
+  		end	
+	  	
+	  	player[2] = player_bucholtz
+  	end	
+  	
+  	players
+  end	
+  
+  def find_player_opponents(player_id)
+  	@games = @tournament.games
+  	opponents = Array.new
+  	
+  	@games.each do |game|
+  		if game.player1_id != player_id  
+  			opponents.insert(game.player2_id)
+  		elsif game.player2_id != player_id
+  			opponents.insert(game.player1_id)
+  		end	
+  	end	
+  	opponents
   end	
   
   def find_player_with_id(player1, players, add)
@@ -52,8 +87,8 @@ module TournamentsHelper
   def all_players(games)
   	players = Array.new
   	games.each do |game|
-  		p1 = [Player.find(game.player1_id).id,0]
-  		p2 = [Player.find(game.player2_id).id,0]
+  		p1 = [Player.find(game.player1_id).id,0,0]
+  		p2 = [Player.find(game.player2_id).id,0,0]
   		
   		players.insert(0,p1)
   		players.insert(0,p2)
