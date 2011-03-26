@@ -51,11 +51,7 @@
 </div>
 
 <div id="right_panel">	
-	<div id="game_info_panel">
-	</div>
-	
-	<div id="game_notation_panel">
-	</div>
+	<%= render 'layouts/right_panel'%>
 </div>
 
 <div id="footer">
@@ -67,8 +63,10 @@
 <%= debug(params) if Rails.env.development? %>
 
 </div>
+<% if admin_in? %>
 <div id="cms">
 	<%= render 'layouts/cms' %>
 </div>
+<% end %>
 </body>
 </html>

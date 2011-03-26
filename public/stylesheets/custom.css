@@ -163,6 +163,14 @@ DIV#right_panel
 #	height: 450px;
 }
 
+DIV#zpawn_add
+{
+	position: block;
+	background-color: red;
+	top: 200px;
+	
+}
+
 DIV#game_info_panel
 {
 	padding-right:1px;

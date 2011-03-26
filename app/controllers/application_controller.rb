@@ -10,6 +10,7 @@ protected
 
 def load_layout_variables 
 	@tourchat = Tourchat.new
+	@zpawn = Zpawn.new
 
 end
 

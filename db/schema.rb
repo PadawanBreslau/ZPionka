@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110320220423) do
+ActiveRecord::Schema.define(:version => 20110326181841) do
 
   create_table "allowances", :force => true do |t|
     t.integer  "user_id"
@@ -24,6 +24,11 @@ ActiveRecord::Schema.define(:version => 20110320220423) do
     t.integer  "user_id"
     t.integer  "info_id"
     t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "data_files", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -167,6 +172,14 @@ ActiveRecord::Schema.define(:version => 20110320220423) do
     t.string   "salt"
     t.string   "login"
     t.integer  "allowance",          :default => 1
+  end
+
+  create_table "zpawns", :force => true do |t|
+    t.integer  "tournament_id"
+    t.string   "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
 end

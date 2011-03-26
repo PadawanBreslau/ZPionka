@@ -1,4 +1,18 @@
 ZPionka::Application.routes.draw do
+  get "zpawn/new"
+
+  get "zpawn/create"
+
+  get "zpawn/edit"
+
+  get "zpawn/update"
+
+  get "zpawn/index"
+
+  get "zpawn/destroy"
+  
+  get "zpawn/show"
+
   get "pgn/add_pgn"
 
   get "allowances/new"
@@ -179,7 +193,7 @@ ZPionka::Application.routes.draw do
   get "session/new"
   get "page/home"
   
-  
+resources :zpawns
 resources :tourchats
 resources :tournaments
 resources :rounds
