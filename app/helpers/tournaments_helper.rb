@@ -38,6 +38,7 @@ module TournamentsHelper
 	end	
 	
 	players = count_bucholtz(players)
+	players = count_avg_rating(players)
 		
  	players.sort_by{|a| -a[1]}
   	
@@ -46,19 +47,47 @@ module TournamentsHelper
   def count_bucholtz(players)
   	players.each do |player|
 	  	player_bucholtz = 0
-  		#@opponents = find_player_opponents(player[0])
+	  	max_bucholtz = 0
+	  	min_bucholtz = 0
+	  	
+  		@opponents = find_player_opponents(player[0])
   		
   		@opponents.each do |opponent|
   			players.each do |player2|
   				if player2[0] == opponent
-					player_bucholtz += (player2[1])  				
+  					add_bucholtz = player2[1]
+					player_bucholtz += add_bucholtz
+					
+					if min_bucholtz ==0
+						min_bucholtz = max_bucholtz = add_bucholtz
+					elsif  add_bucholtz < min_bucholtz
+						min_bucholtz = add_bucholt
+					elsif  add_bucholtz > max_bucholtz
+						max_bucholtz = add_bucholt
+					end				
   				end	
   			end
   		end	
 	  	
 	  	player[2] = player_bucholtz
+	  	player[3] = player_bucholtz - (max_bucholtz+min_bucholtz)
   	end	
   	
+  	players
+  end	
+  
+  def count_avg_rating(players)
+  	 players.each do |player|
+  	  	
+	  	@opponents = find_player_opponents(player[0])
+	  	rounds = @opponents.size
+	  	@opponents.each do |opponent|
+	  		@rating_sum = 0
+	  		rating = Player.find(opponent).rating
+	  		@rating_sum += rating
+        end
+        player[4] = @rating_sum/rounds
+  	end
   	players
   end	
   
@@ -67,10 +96,10 @@ module TournamentsHelper
   	opponents = Array.new
   	
   	@games.each do |game|
-  		if game.player1_id != player_id  
-  			opponents.insert(game.player2_id)
-  		elsif game.player2_id != player_id
-  			opponents.insert(game.player1_id)
+  		if game.player1_id == player_id  
+  			opponents.insert(0,game.player2_id)
+  		elsif game.player2_id == player_id
+  			opponents.insert(0,game.player1_id)
   		end	
   	end	
   	opponents
