@@ -193,6 +193,7 @@ ZPionka::Application.routes.draw do
   get "session/new"
   get "page/home"
   
+resources :players
 resources :zpawns
 resources :tourchats
 resources :tournaments
@@ -214,6 +215,7 @@ match '/add_to_observed_round_and_redirect', :to => "tournaments#add_to_observed
 match '/remove_from_observed_round_and_redirect', :to => "tournaments#remove_from_observed_round_and_redirect"
 match '/add_to_observed_games', :to => "tournaments#add_to_observed_games"
 match '/remove_from_observed_games', :to => "tournaments#remove_from_observed_games"
+match '/list_all_games', :to => "players#list_all_games"
 
 match '/unread_messages', :to => "messages#index"
 match '/index_user', :to => "infos#index_user"

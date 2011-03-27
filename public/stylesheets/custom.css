@@ -1,5 +1,5 @@
 .container {
-width: 70%;
+width: 75%;
 word-wrap: break-word;
 }
 
@@ -158,9 +158,11 @@ DIV#right_panel
 	display:inline-block;
 	padding-right:1px;
 	padding-left:1px;
+	margin-left:2px;
 	background-color:#DDE4C4;
 	width: 24%;
-#	height: 450px;
+	overflow:auto;
+	height: 350px;
 }
 
 DIV#zpawn_add

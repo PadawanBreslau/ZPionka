@@ -1,2 +1,12 @@
-<h1>Tourchats#edit</h1>
-<p>Find me in app/views/tourchats/edit.html.erb</p>
+<% form_for @tourchat do |f| %>
+	<table>
+<tr>
+<td><%= f.text_field :content %></td>
+</tr>
+
+<tr><td>
+<%= f.submit "Change comment" %></td>
+</tr>
+</table>
+	
+	<%end%>

@@ -12,9 +12,14 @@ class RoundsController < ApplicationController
   end
 
   def show
+  	@round = Round.find(params[:id])
+  	@games = @round.games
+  	
   end
-
+  
   def index
+  	@tournament = Tournament.find(:all,:limit => 10)
+
   end
 
   def destroy

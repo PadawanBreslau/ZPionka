@@ -29,7 +29,7 @@ class TourchatsController < ApplicationController
   @tourchat = Tourchat.find(params[:id])
   if @tourchat.update_attributes(params[:tourchat])
     flash[:success] = "Tourchat succesfully updated."
-    redirect_to @tourchat
+    redirect_to Tournament.find(@tourchat.tournament_id)
   else
     @title = "Edit tourchat"
     render 'edit'
@@ -38,9 +38,10 @@ class TourchatsController < ApplicationController
   end
 
   def destroy
-    Tourchat.find(params[:Tourchat]).destroy
+  	@tournament = Tournament.find(Tourchat.find(params[:id]).tournament_id)
+    Tourchat.find(params[:id]).destroy
     flash[:success] = "Tourchat destroyed."
-    redirect_to tourchat_path
+    redirect_to @tournament
   end
 
   def edit

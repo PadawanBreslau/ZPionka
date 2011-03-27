@@ -1,7 +1,17 @@
-require 'test_helper'
+require "test_helper"
+
 
 class CommentControllerTest < ActionController::TestCase
-  test "should get new" do
+  
+test "shoold create a comment" do
+	  assert_difference('Comment.count') do
+    	comment :create, :comment => { :title => 'Some title'}
+  	end
+ 
+  assert_redirected_to Info.find(@comment.info_id)
+  end	
+	
+test "should get new" do
     get :new
     assert_response :success
   end

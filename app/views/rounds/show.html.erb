@@ -1,2 +1,25 @@
-<h1>Rounds#show</h1>
-<p>Find me in app/views/rounds/show.html.erb</p>
+<% @eye = image_tag("pictograms/eye.gif", :alt => "Observe", :class => "round") %>
+<% @closed_eye = image_tag("pictograms/closed-eye.gif", :alt => "Observe", :class => "round") %>	
+<% @goto = image_tag("pictograms/goto_icon.gif", :alt => "Go", :class => "round") %>	
+
+	<table>
+<tr><td>Player white</td><td>Player black</td><td>Result</td><td>Moves</td><td>Link</td><td>Observation</td></tr>
+<% @games.each do |game| %>
+<tr>
+<td width="30%"><%= player(game,"white") %></td>
+<td width="30%"><%= player(game,"black") %></td>
+<td width="10%"><%= make_result(game.result) %></td>
+<td width="10%"></td>
+<td width="10%"><%= link_to @goto ,game %> </td>
+
+	<td width="10%">					
+		<% if signed_in? && already_observed(game)%>
+		<%= link_to @eye,  :controller => "tournaments", :action => "remove_from_observed_games", :id => game.id , :confirm => "Are you sure you want to remove game from yourlist?" %>
+		<% elsif signed_in? && !already_observed(game) %>
+		<%= link_to @closed_eye,  :controller => "tournaments", :action => "add_to_observed_games", :id => game.id, :confirm => "Are you sure you want to observe this game?" %>
+		<% end %>
+		</td>
+			
+</tr>
+<% end %>	
+</table>

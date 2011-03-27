@@ -1,26 +1,27 @@
-
-<h3>ZPawn </h3>
-
 <% route = ActionController::Routing::Routes.recognize_path request.env['PATH_INFO'] %>
 <%  controller_name = route[:controller].split('/')[-1] %>
 <% unless route[:id].nil? %>
 <%  id_name = route[:id].split('/')[-1] %>
 <% end %>
 
+
 <% @edit_icon = image_tag("pictograms/edit_icon.gif", :alt => "+", :class => "round") %>
 <% @delete_icon = image_tag("pictograms/delete_icon.gif", :alt => "-", :class => "round") %>
 
 <% if controller_name == "tournaments" %>
+<h3>ZPawn </h3>
 
 <% @zpawns = Zpawn.find_all_by_tournament_id(id_name) %>
 <% @zpawns.each do |zpawn| %>
 	
-	
+<% if admin_in? %>	
 	<%= link_to @edit_icon, edit_zpawn_path(zpawn) %>
 	<%= link_to @delete_icon, zpawn, :method => :delete, :confirm => "Are you sure?" %>
+<% end %>
+	
     <i><%= zpawn.updated_at.strftime("%H:%M") %></i>&nbsp
 	<strong><%= @login = User.find(zpawn.user_id).login + ": " %></strong>
-	<%= zpawn.content %> <br/>
+	<%= zpawn.content.html_safe %> <br/>
 <% end %>	
 <% end %>
 
@@ -29,10 +30,9 @@
 		<div id="zpawn_add">
 
 		<% if !route[:id].nil?  %>
-	
 
 		<% form_for @zpawn do |f| %>
-		<%= f.text_field :content, :size => 18 %>
+		<%= f.text_field :content, :size => 28 %>
 		
 		<%= f.hidden_field :user_id, :value => current_user.id %>
 		<%= f.hidden_field :tournament_id, :value => id_name %>
@@ -40,13 +40,7 @@
 		<%= image_submit_tag ("add_chat_message.gif")%>
 		<% end %>	
 	
-	
-	
-
+<% end %>	
 		</div>
-<% end %>
-	
-
-
 	
 <% end %>	

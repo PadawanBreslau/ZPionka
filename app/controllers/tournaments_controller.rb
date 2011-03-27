@@ -35,20 +35,20 @@ class TournamentsController < ApplicationController
   	unless @obstour.nil?
   		@obstour.delete
   	end
-  	redirect_to tournaments_path
+  	redirect_to :back
   end	
   
   def add_to_observed_games
   	
   	Observe.new(:user_id => current_user.id, :game_id => params[:id]).save
-  	redirect_to tournaments_path
+  	redirect_to :back
   end
   
   def remove_from_observed_games
   	@observation = Observe.find(:first, :conditions => {:user_id => current_user.id, :game_id => params[:id]})
   	@observation.delete
   	
-  	redirect_to tournaments_path
+  	redirect_to :back
   end	
   	
 
@@ -57,7 +57,7 @@ class TournamentsController < ApplicationController
     
     unless signed_in?
     	cookies.permanent.signed[:watched_round] =  params[:round_id]
-    	redirect_to tournaments_path
+    	redirect_to :back
     	return
     end		
     
@@ -68,7 +68,7 @@ class TournamentsController < ApplicationController
   	unless @already_observed_round.nil? 
   		@already_observed_round.delete
   	end 
-	redirect_to tournaments_path
+	redirect_to :back
   end
   
   def remove_from_observed_round_and_redirect
@@ -76,7 +76,7 @@ class TournamentsController < ApplicationController
   	unless @obstour.nil?
   		@obstour.delete
   	end
-  	redirect_to tournaments_path
+  	redirect_to :back
   end	
   
 

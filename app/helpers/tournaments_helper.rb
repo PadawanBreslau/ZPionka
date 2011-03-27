@@ -163,9 +163,6 @@ end
 def already_observed(game)
 	!Observe.where(:user_id => current_user.id, :game_id => game.id).first.nil?
 end	
-	
-
-private
 
 def make_result(result)
 	if result == "1"
@@ -175,7 +172,7 @@ def make_result(result)
 	elsif result == "3" 
 		"0-1"
 	else 
-		"Unknown"
+		" - "
 	end
 end	
 

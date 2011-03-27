@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include InfoHelper
   include TournamentsHelper
+  include RoundsHelper
+  include GamesHelper
+  include PlayersHelper
   
   before_filter :load_layout_variables
 

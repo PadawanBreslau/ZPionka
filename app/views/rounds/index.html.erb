@@ -1,2 +1,13 @@
-<h1>Rounds#index</h1>
-<p>Find me in app/views/rounds/index.html.erb</p>
+<h4>Rounds from latest tournaments</h4>
+
+<% @tournament.each do |tournament| %>
+
+	<strong><%= tournament.name %></strong><br/>	
+	<% @rounds = tournament.rounds %>	
+
+	<% @rounds.each do |round| %>
+		<%= link_to ("[" + round.round_number.to_s + "]"), round %>	
+		
+	<% end %>
+	<br/>
+<% end %>
