@@ -8,8 +8,11 @@ class UsersController < ApplicationController
   @user = User.new(params[:user])
   if @user.save
     flash[:success] = "Udane dodanie"
-    redirect_to @user
+	UserMailer.welcome_email(@user).deliver
+	redirect_to @user
     sign_in @user
+    
+    
   else
     @title = "Rejestracja"
     render 'new'
@@ -27,9 +30,7 @@ def show
   
   @games = @user.games
   @comments = @user.comments
- 
 
-  
 end
 
   def update

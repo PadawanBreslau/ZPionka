@@ -1,8 +1,11 @@
 class Allowance < ActiveRecord::Base
 
- validates :user_id, :presence => true, :numericality => true
+ #validates :user_id, :presence => true, :numericality => true
  
  has_one :user
+ 
+
+ 
   
 def self.isAdmin?(user_id) 
 	@user = find_by_user_id(user_id)
@@ -13,3 +16,8 @@ def self.isAdmin?(user_id)
 end  
   
 end
+
+
+private
+
+

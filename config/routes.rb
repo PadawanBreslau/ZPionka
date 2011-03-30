@@ -193,6 +193,7 @@ ZPionka::Application.routes.draw do
   get "session/new"
   get "page/home"
   
+resources :allowances
 resources :players
 resources :zpawns
 resources :tourchats
@@ -221,7 +222,9 @@ match '/unread_messages', :to => "messages#index"
 match '/index_user', :to => "infos#index_user"
 match '/add_pgn', :to => "pgn#add_pgn"
 match '/parse_pgn', :to =>"pgn#parse_pgn"
-
+match '/change_allowance', :to => "allowances#new"
+match '/user_list', :to => "users#index"
+match '/change_and_create', :to =>"allowances#change_and_create"
 
 
  root :to => "tournaments#index"

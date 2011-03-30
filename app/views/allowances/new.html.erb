@@ -1,2 +1,19 @@
-<h1>Allowances#new</h1>
-<p>Find me in app/views/allowances/new.html.erb</p>
+<% form_for @allowance do |f| %>
+	
+<table>
+
+<tr>
+<td><%= f.label :User_login %>
+<%= f.text_field :user_login %></td>
+</tr>
+<tr>
+<td><%= f.label :Permission_Level %>
+<%= f.select :description, ["Superadmin","Admin","Moderator","Article Writer","User"]	%></td>
+</tr>
+
+
+<tr><td>
+<%= f.submit "Save allowances" %></td>
+</tr>
+</table>
+<% end %>

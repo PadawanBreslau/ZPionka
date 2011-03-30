@@ -1,13 +1,9 @@
 <h4>Rounds from latest tournaments</h4>
-
 <% @tournament.each do |tournament| %>
-
 	<strong><%= tournament.name %></strong><br/>	
 	<% @rounds = tournament.rounds %>	
-
 	<% @rounds.each do |round| %>
-		<%= link_to ("[" + round.round_number.to_s + "]"), round %>	
-		
+		<%= link_to ("[" + round.round_number.to_s + "]"), round %>			
 	<% end %>
 	<br/>
 <% end %>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+  	Dear <%= @user.name %> <%= @user.surname %>!
+    <h3>Welcome to <%= @url %>, <%= @user.login %></h3>
+    <p>
+      You have successfully signed up to <%= @url %>
+      
+      <table>
+      	<tr><td width="150"> Username </td> <td><%= @user.login %></td></tr>
+      	<tr><td width="150"> Name </td> <td><%= @user.name %></td></tr>
+      	<tr><td width="150"> Surname </td> <td><%= @user.surname %></td></tr>
+      	<tr><td width="150"> Age </td> <td><%= @user.age %></td></tr>
+      	<tr><td width="150"> Rating </td> <td><%= @user.rating %></td></tr>
+      	
+      </table>
+    </p>
+    <p>
+      To return to the site, just follow this link: <%= @url %>
+    </p>
+    <p>If you have any question - write to zz.pawn@gmail.com</p>
+  </body>
+</html>
