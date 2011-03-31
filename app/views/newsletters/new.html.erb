@@ -1,0 +1,21 @@
+<b>Newsletter form</b>
+<%= form_for(@newsletter) do |f| %>
+
+
+<table>
+<tr>
+<td><%= f.label :Title %></td>
+<td><%= f.text_field :title %></td>
+</tr>
+
+<tr>
+<td><%= f.label :Content %></td>
+<td><%= text_area :info , :content	  %></td>
+</tr>
+
+
+<tr><td>
+<%= f.submit "Save" %></td>
+</tr>
+</table>
+<% end %>

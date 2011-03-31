@@ -1,4 +1,18 @@
 ZPionka::Application.routes.draw do
+  get "newsletters/new"
+
+  get "newsletters/create"
+
+  get "newsletters/edit"
+
+  get "newsletters/update"
+
+  get "newsletters/show"
+
+  get "newsletters/index"
+
+  get "newsletters/send"
+
   get "zpawn/new"
 
   get "zpawn/create"
@@ -193,6 +207,8 @@ ZPionka::Application.routes.draw do
   get "session/new"
   get "page/home"
   
+ 
+resources :newsletters 
 resources :allowances
 resources :players
 resources :zpawns

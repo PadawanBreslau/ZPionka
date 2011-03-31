@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110330200851) do
+ActiveRecord::Schema.define(:version => 20110331002838) do
 
   create_table "allowances", :force => true do |t|
     t.integer  "user_id"
@@ -68,6 +68,14 @@ ActiveRecord::Schema.define(:version => 20110330200851) do
     t.string   "title"
     t.text     "message"
     t.boolean  "was_read"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "newsletters", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -173,6 +181,7 @@ ActiveRecord::Schema.define(:version => 20110330200851) do
     t.string   "salt"
     t.string   "login"
     t.integer  "allowance",          :default => 1
+    t.boolean  "newsletter",         :default => true
   end
 
   create_table "zpawns", :force => true do |t|
