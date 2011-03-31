@@ -6,7 +6,16 @@ gem 'rails', '3.0.3'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development, :test do
-	gem 'sqlite3-ruby', :require => 'sqlite3'
+	if defined?(JRUBY_VERSION)
+		gem 'jdbc-sqlite3'
+		gem 'activerecord-jdbc-adapter'
+		gem 'activerecord-jdbcsqlite3-adapter'
+		gem 'jruby-openssl'
+		gem 'jruby-rack'
+		gem 'warbler'
+	else
+		gem 'sqlite3-ruby', :require => 'sqlite3'
+	end
 end
 
 gem 'will_paginate', '3.0.pre2'

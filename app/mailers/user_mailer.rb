@@ -8,12 +8,12 @@ class UserMailer < ActionMailer::Base
          :subject => "You've succesfully registered on www.zpionka.pl")
   end
   
-  def send_newsleter(newsletter,user)
+  def send_newsletter(newsletter,user)
     @user = user
     @newsletter = newsletter
     @url  = "http://zpionka.pl"
     mail(:to => user.email,
-         :subject => "You've succesfully registered on www.zpionka.pl")
+         :subject => "Newsletter: " + @newsletter.title )
   end	
   
   

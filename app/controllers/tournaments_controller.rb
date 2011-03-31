@@ -1,4 +1,22 @@
 class TournamentsController < ApplicationController
+
+	include Java	
+	require  'lib\chesspresso.jar'
+
+	
+
+
+  def index
+     @title = "Tournament list" 
+     @tournaments = Tournament.paginate(:page => params[:page])
+     
+     @pgn_reader =  ChesspressoPgnPGNReader
+
+     
+    
+  end
+	
+	
   def new
   	@title = "Add new tournament"
   	@tournament = Tournament.new
@@ -87,10 +105,6 @@ class TournamentsController < ApplicationController
   @rounds = @tournament.rounds
   end
 
-  def index
-     @title = "Tournament list" 
-     @tournaments = Tournament.paginate(:page => params[:page])
-  end
 
   def update
   @tournament = Tournament.find(params[:id])

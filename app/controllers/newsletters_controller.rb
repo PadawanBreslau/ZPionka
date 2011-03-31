@@ -52,11 +52,10 @@ class NewslettersController < ApplicationController
     @newsletter = Newsletter.find(params[:id])
   end
 
-private 
   def send_message newsletter
   @users = User.find(:all, :conditions => ["Users.newsletter=?", true])	
   	@users.each do |user|	
-  		UserMailer.send_newsletter(newsletter,user)
+  		UserMailer.send_newsletter(newsletter,user).deliver
   	end
   end
 
