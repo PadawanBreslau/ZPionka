@@ -22,7 +22,7 @@ class GamesController < ApplicationController
   	 if File.file? @file 
   		 myfile = File.open @file.path, "r" do |f1|
   			 while line = f1.gets 
-  			 	@pgn_string += line
+  			 	@pgn_string += line.to_s
 			 end
 		 end
   	 end 
