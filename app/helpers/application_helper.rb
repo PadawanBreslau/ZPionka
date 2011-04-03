@@ -39,6 +39,4 @@ end
     (route ? "#{route[:controller]} #{route[:action]}" : path).titleize
   end
 
-
-
 end

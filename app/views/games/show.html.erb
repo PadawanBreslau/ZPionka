@@ -1,19 +1,30 @@
 
 
 <div id="wrapper">
-<div>
-    <a id="board-back" href="#">Back</a>
-    <a id="board-next" href="#">Next</a>
-    <a id="board-flip" href="#">Flip</a>
+<div id="game_header">	
+<h3 id="game_header_name"><%= @ggame.get_white.to_s + @ggame.get_white_elo_str.to_s %></h3>
+<h3 id="game_header_name"><%= @ggame.get_black.to_s + @ggame.get_black_elo_str.to_s %></h3>
 </div>
+<div id="result">
+	<h2><%=  @ggame.get_result_str.to_s %>
+</div>
+
   <div id="board3"></div>
+  <div id="game_movement">
+    <a id="board-back" href="#"><%= image_tag("pictograms/strzalka_back.gif", :alt => "Back", :class => "round") %></a>
+    <a id="board-next" href="#"><%= image_tag("pictograms/strzalka_next.gif", :alt => "Next", :class => "round") %></a>
+    <a id="board-flip" href="#"><%= image_tag("pictograms/flip.jpg", :alt => "Next", :class => "round") %> </a>
+</div>
   <p id="board-annot">
-  	<%= @ggame.get_long_info_string %></h3>
   </p>
-  <p id="pgn-fischer-spassky">   
-	<%= @pgn_string %>
+  <div id="pgn-jchess">   
+	<%= @pgn_string %> </div>
 
   </p>
-
 	
 </div>
+
+
+<%= @game.pgn_file %>
+<% insert_PGN_game_file_into_database @game.pgn_file, params[:id] %>
+<%= @hgame.class %>

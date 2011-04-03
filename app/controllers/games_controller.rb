@@ -13,20 +13,29 @@ class GamesController < ApplicationController
 
   def index
   end
+  
+  def read_pgn_file file
+  	@pgn_string = ""
+  	 if File.file? file 
+  	 myfile = File.open file.path, "r" do |f1|
+  		while line = f1.gets 
+  			 @pgn_string += line.to_s
+		end
+	end
+	@pgn_string
+  end 
+  		
+  end
 
   def show
   	@game = Game.find(params[:id])
   	@file = File.new @game.pgn_file.to_s
-  	@pgn_string = ""
+  	@pgn_string = read_pgn_file @file
   	
-  	 if File.file? @file 
-  		 myfile = File.open @file.path, "r" do |f1|
-  			 while line = f1.gets 
-  			 	@pgn_string += line.to_s
-			 end
-		 end
-  	 end 
+  	@game_pgn = PGNReader.new @game.pgn_file
+  	@ggame = @game_pgn.parse_game
   	
+  
   	
   	unless @game.pgn_file.nil?
   		@game_pgn = PGNReader.new @game.pgn_file

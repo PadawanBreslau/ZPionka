@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110401112022) do
+ActiveRecord::Schema.define(:version => 20110403163814) do
 
   create_table "allowances", :force => true do |t|
     t.integer  "user_id"
@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(:version => 20110401112022) do
     t.boolean  "white_on_move"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "fen"
   end
 
   create_table "rounds", :force => true do |t|

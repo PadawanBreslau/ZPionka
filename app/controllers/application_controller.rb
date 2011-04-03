@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   include RoundsHelper
   include GamesHelper
   include PlayersHelper
+  include PgnHelper
   
   before_filter :load_layout_variables
 
