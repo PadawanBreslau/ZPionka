@@ -26,7 +26,7 @@
 <% end %>
 
 	
-<% if admin_in? %>
+<% if admin_in? && controller_name == "tournaments" %>
 		<div id="zpawn_add">
 
 		<% if !route[:id].nil?  %>

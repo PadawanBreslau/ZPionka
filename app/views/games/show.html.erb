@@ -1,2 +1,20 @@
-<h1>Games#show</h1>
-<p>Find me in app/views/games/show.html.erb</p>
+<h3><%= @ggame.get_long_info_string %></h3>
+
+<div id="wrapper">
+
+  
+  <h1>Chess Board Demo 3: PGN</h1>
+  <div>
+    <a id="board3-back" href="#">Back</a>
+    <a id="board3-next" href="#">Next</a>
+    <a id="board3-flip" href="#">Flip</a>
+  </div>
+  <div id="board3"></div>
+  <p id="board3-annot"></p>
+  <p id="pgn-fischer-spassky">   
+	<%= @pgn_string %>
+
+  </p>
+
+	
+</div>

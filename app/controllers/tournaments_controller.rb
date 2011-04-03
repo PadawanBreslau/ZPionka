@@ -1,19 +1,10 @@
 class TournamentsController < ApplicationController
-
-	include Java	
-	require  'lib\chesspresso.jar'
-
 	
-
 
   def index
      @title = "Tournament list" 
      @tournaments = Tournament.paginate(:page => params[:page])
-     
-     @pgn_reader =  ChesspressoPgnPGNReader
-
-     
-    
+   #  @pgn = PGNReader.new 'public/pgn/partie.pgn'
   end
 	
 	

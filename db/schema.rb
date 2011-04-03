@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110331002838) do
+ActiveRecord::Schema.define(:version => 20110401112022) do
 
   create_table "allowances", :force => true do |t|
     t.integer  "user_id"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20110331002838) do
     t.date     "round_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "pgn_file"
   end
 
   create_table "infos", :force => true do |t|
@@ -131,6 +132,7 @@ ActiveRecord::Schema.define(:version => 20110331002838) do
     t.boolean  "isFinished"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "pgn_file"
   end
 
   create_table "tourchats", :force => true do |t|
@@ -152,6 +154,7 @@ ActiveRecord::Schema.define(:version => 20110331002838) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "rounds_number", :default => 9
+    t.string   "pgn_file"
   end
 
   create_table "tourplaces", :force => true do |t|

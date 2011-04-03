@@ -1,6 +1,6 @@
 # Load the rails application
 require File.expand_path('../application', __FILE__)
-require 'jdbc_adapter'
+#require 'jdbc_adapter'
 
 
 # Initialize the rails application
