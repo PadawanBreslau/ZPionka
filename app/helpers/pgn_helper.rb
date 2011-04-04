@@ -64,15 +64,16 @@ def insert_PGN_tournament_file_into_database file
 			round_id = round.id
 		end	
 		
-		create_game(game,round_id)
+		insert_game_file_into_database(game,round_id)
    		
 	 end
 	 
 	 tournament.start_date = tournament_start
 	 tournament.finish_date = tournament_finish
 	 
+	 if Tournament.find(:first, :conditions => {:name => tournament.name, :site => tournament.site}).nil?
 	 tournament.save!
-	 
+    end
 end
    
    def create_game(game, round_id)
@@ -101,6 +102,7 @@ end
     			g.save	
     		end
    end	
+   
    
    def create_round(game,file,tournament_id)
    	    r = Round.new
@@ -131,10 +133,14 @@ end
     			round_id = r_last.id
     		end	
     		 
-    		create_game(game, round_id)
+    		 insert_game_file_into_database(game, round_id)
+    		
+    		
     		
 		end
     end	
+    
+    
     
     def insert_PGN_game_file_into_database file, id
 		 	
@@ -144,6 +150,8 @@ end
   		insert_game_file_into_database game, id 	
   	end
     
+  	
+  	
 	#Inserting into database new game
 	def insert_game_file_into_database game, id
 		 	
