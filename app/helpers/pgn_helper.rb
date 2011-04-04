@@ -34,13 +34,13 @@ module PgnHelper
    end	
   
    
-def insert_PGN_tournament_file file
+def insert_PGN_tournament_file_into_database file
    	pgn_reader = PGNReader.new file
    	tournament = Tournament.new
    	
    	game = pgn_reader.parse_game
    	tournament.place = game.event
-    tournament.name = game_site
+    tournament.name = game.site
     tournament_start = game.date
    	tournament_finish = game.date
    	round_number = game.round
@@ -51,7 +51,7 @@ def insert_PGN_tournament_file file
    		
    		if game.date < tournament_start
    			tournament_start = game.date
-   		elsif game.date > tournament.finish
+   		elsif game.date > tournament_finish
    			tournament_finish = game.date
    		end
    		
@@ -67,6 +67,12 @@ def insert_PGN_tournament_file file
 		create_game(game,round_id)
    		
 	 end
+	 
+	 tournament.start_date = tournament_start
+	 tournament.finish_date = tournament_finish
+	 
+	 tournament.save!
+	 
 end
    
    def create_game(game, round_id)
@@ -103,7 +109,7 @@ end
     	r.round_date = game.date
     	r.pgn_file = file
     			
-    			if Rounds.find(:first, :conditions => {:tournament_id => r.tournament_id, :round_number => r.round_number}).nil?
+    			if Round.find(:first, :conditions => {:tournament_id => r.tournament_id, :round_number => r.round_number}).nil?
     				r.save
     			end
    	

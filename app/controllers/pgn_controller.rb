@@ -6,15 +6,7 @@ class PgnController < ApplicationController
   
   
   def parse_pgn
-	
-  	if params[:upload].blank? 	
-		redirect_to root_path
-	end
-	
-	#File.new(params[:upload])
-	
-	post = DataFile.save_file(params[:upload])
- 	
+	 	
   end
   
   def add_tournament_pgn
