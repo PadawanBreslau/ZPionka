@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110403163814) do
+ActiveRecord::Schema.define(:version => 20110404171936) do
 
   create_table "allowances", :force => true do |t|
     t.integer  "user_id"
@@ -168,6 +168,11 @@ ActiveRecord::Schema.define(:version => 20110403163814) do
     t.float    "prog"
     t.integer  "rating_performance"
     t.float    "k_coeff"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "uploads", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end

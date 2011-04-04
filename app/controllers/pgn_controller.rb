@@ -1,6 +1,7 @@
 class PgnController < ApplicationController
   def add_pgn
   	@pgn = String.new
+  	@upload = Upload.new
   end
   
   

@@ -8,6 +8,8 @@ ZPionka::Application.initialize!
 
 require 'will_paginate'
 
+#config.gem 'paperclip'
+
 ActionMailer::Base.smtp_settings =
 {
     :tls => true,

@@ -1,0 +1,542 @@
+[Event "Ch URS (match-tournament)"]
+[Site "Moscow/Leningrad (Russia)"]
+[Date "1941.??.??"]
+[Round "?"]
+[White "Smyslov Vassily (RUS)"]
+[Black "Boleslavsky Isaac (RUS)"]
+[Result "1-0"]
+[ECO "?"]
+[WhiteElo "2494"]
+[BlackElo "2560"]
+[Annotator ""]
+[Source ""]
+[Remark "12 Ch"]
+[SetUp "1"]
+[FEN "Qnkqr2r/2p2p2/1pPbp3/1P3p2/3P3p/PpN3P1/5PBP/1R2R1K1 b - - 0 31"]
+
+31...Qg5 {Pozycja bialych jest oczywiscie wygrana. Ale mozna zakonczyc szybciutko}
+{%08DA} 32.Nd5 {!} {Odbiera krolowi pole ucieczki przez e7. Mata nie da sie teraz uniknac}
+ 1-0
+
+[Event "Ch Moscow"]
+[Site "Moscow (Russia)"]
+[Date "1942.??.??"]
+[Round "?"]
+[White "Alatortsev Vladimir A (RUS)"]
+[Black "Smyslov Vassily (RUS)"]
+[Result "0-1"]
+[ECO "?"]
+[WhiteElo "0"]
+[BlackElo "2494"]
+[Annotator ""]
+[Source ""]
+[Remark ""]
+[SetUp "1"]
+[FEN "2r1r1k1/5pbp/p5p1/3Pn3/1Q2P3/N1B5/PP4qP/1K1R3R w - - 0 25"]
+
+25.Qd4 {Czarne maja piona mniej, ale pozycja bialych nie wydaje sie zbyt pewna. Co uczynil Smyslow?}
+{%08DA} Rxc3 {!} 26.Qxc3 Nc4 27.Qb4 a5 {!} {Po tym posunieciu biale nie maja co zrobic z hetmanem}
+28.Qb3 Nxa3+ {Wygrywalo rowniez 28...Qxe4} 29.bxa3 Qxe4+ 30.Qd3
+Rb8+ 31.Kc1 Rc8+ 32.Kb1 Qe5 0-1
+
+[Event "Ch Moscow"]
+[Site "Moscow (Russia)"]
+[Date "1942.??.??"]
+[Round "?"]
+[White "Smyslov Vassily (RUS)"]
+[Black "Zamokhotsky"]
+[Result "1-0"]
+[ECO "?"]
+[WhiteElo "2494"]
+[BlackElo "0"]
+[Annotator ""]
+[Source ""]
+[Remark ""]
+[SetUp "1"]
+[FEN "r2qbrk1/p5pp/n1p1p3/1pPpPpn1/1P5P/P2BP3/1BQ1NPP1/R3K2R b KQ - 0 16"]
+
+16...Nf7 {%08DA} 17.g4 {!} fxg4 18.Bxh7+ Kh8 19.Nf4 {z duzymi zdobyczami materialnymi^013^010
+}
+ 1-0
+
+[Event "Ch URS"]
+[Site "Moscow (Russia)"]
+[Date "1944.??.??"]
+[Round "5"]
+[White "Tolush Alexander (RUS)"]
+[Black "Smyslov Vassily (RUS)"]
+[Result "0-1"]
+[ECO "?"]
+[WhiteElo "0"]
+[BlackElo "2494"]
+[Annotator ""]
+[Source ""]
+[Remark "13 Ch"]
+[SetUp "1"]
+[FEN "r2r2k1/1p2qppb/2p1p2p/p3P1n1/PbNN4/1Pn2QP1/1BP2P1P/R2R1BK1 w - - 0 21"]
+
+21.Qg4 {Czarne moga wziac jakosc. A moze maja cos wiecej?} {%08DA}
+Rxd4 {!} 22.Rxd4 Bf5 {I okazazuje sie, ze hetman nie ma pola ucieczki}
+23.Bxc3 ( 23.Qf4 Ne2+ {!} 24.Bxe2 Nh3+ ) Bxc3 {Nawet lepsze niz oczywiste 23...Bxg4}
+24.Qe2 Bxd4 {I czarne maja figure przewagi} 25.Rd1 0-1
+
+[Event "Ch Moscow"]
+[Site "Moscow (Russia)"]
+[Date "1945.??.??"]
+[Round "17"]
+[White "Smyslov Vassily (RUS)"]
+[Black "Kamyshov M (RUS)"]
+[Result "1-0"]
+[ECO "C40"]
+[WhiteElo "2494"]
+[BlackElo "0"]
+[Annotator ""]
+[Source ""]
+[Remark "I(XII)"]
+
+1.e4 e5 2.Nf3 f5 3.Nxe5 Qf6 4.Nc4 fxe4 5.Nc3 Qg6 6.d3 Bb4 7.Bd2
+Bxc3 8.Bxc3 d5 9.Ne5 Qf5 10.dxe4 Qxe4+ 11.Be2 Nf6 12.O-O c6 13.Bh5+
+Kf8 14.Re1 Qh4 15.Bg6 Na6 16.Qe2 Bh3 17.Nf3 1-0
+
+[Event "Ch URS"]
+[Site "Moscow (Russia)"]
+[Date "1945.??.??"]
+[Round "15"]
+[White "Smyslov Vassily (RUS)"]
+[Black "Romanovsky Peter A (RUS)"]
+[Result "1-0"]
+[ECO "E22"]
+[WhiteElo "2494"]
+[BlackElo "0"]
+[Annotator ""]
+[Source ""]
+[Remark "14 Ch"]
+
+1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.Qb3 Nc6 5.e3 d5 6.a3 Be7 7.cxd5
+exd5 8.Nge2 O-O 9.g3 Na5 10.Qa4 c6 11.Bg2 Bf5 12.O-O b5 13.Qd1
+Qd7 14.Nf4 Bd6 15.Nce2 Rfe8 16.b3 Nb7 17.Re1 a5 18.a4 b4 19.Bb2
+Qe7 20.Nd3 Nd7 21.Nef4 Qf6 22.f3 g5 23.Nh3 Qg6 24.Nhf2 Nf6 25.Rc1
+Rac8 26.Ne5 Bxe5 27.dxe5 Nd7 28.g4 Be6 29.f4 f5 30.exf6 Bf7 31.f5 1-0
+
+[Event "It"]
+[Site "Groningen (Netherlands)"]
+[Date "1946.??.??"]
+[Round "14"]
+[White "Smyslov Vassily (RUS)"]
+[Black "Kottnauer Cenek (ENG)"]
+[Result "1-0"]
+[ECO "?"]
+[WhiteElo "2494"]
+[BlackElo "2370"]
+[Annotator ""]
+[Source ""]
+[Remark "VIII-IX"]
+[SetUp "1"]
+[FEN "1q2kb1r/1r3ppp/2Qppn2/8/N7/8/1PP2PPP/R1BR2K1 b k - 0 17"]
+
+17...Nd7 {Wydaje sie, ze pozycja czarnych jest stabilna. Wydaje sie}
+{%08DA} 18.Nc5 {!} dxc5 19.Bf4 {!} Bd6 ( 19...Qxf4 20.Qc8+ Ke7
+21.Qxb7 Kf6 22.Rxd7 Kg6 23.g3 Qf5 24.Ra7 $18 ) 20.Bxd6 Rb6 21.Qxd7+ 1-0
+
+[Event "Ch Moscow"]
+[Site "Moscow (Russia)"]
+[Date "1946.??.??"]
+[Round "?"]
+[White "Bondarevsky Igor Z (RUS)"]
+[Black "Smyslov Vassily (RUS)"]
+[Result "0-1"]
+[ECO "?"]
+[WhiteElo "0"]
+[BlackElo "2494"]
+[Annotator ""]
+[Source ""]
+[Remark "I-II"]
+[SetUp "1"]
+[FEN "r1bb1rk1/1pp2ppp/p1p5/2n5/4PB2/5N2/PPP2PPP/RN2R1K1 w - - 0 12"]
+
+12.Nc3 f5 {!} {%09} 13.e5 {?} ( 13.Bg5 {!} fxe4 ( 13...Bxg5 14.Nxg5
+h6 15.b4 {=} ) 14.Nxe4 Nxe4 15.Bxd8 Rxd8 16.Rxe4 {z prawdopodobnym remisem}
+) Ne6 {!} 14.Bd2 g5 {!} 15.Ne2 c5 {!} 16.Bc3 b5 {!} {Po serii swietnych posuniec czarne zdobyly przewage. Ostatecznie wygraly w 42 ruchy}
+ 0-1
+
+[Event "Ch Moscow"]
+[Site "Moscow (Russia)"]
+[Date "1946.??.??"]
+[Round "9"]
+[White "Smyslov Vassily (RUS)"]
+[Black "Chistiakov Alexander N (RUS)"]
+[Result "0-1"]
+[ECO "?"]
+[WhiteElo "2494"]
+[BlackElo "0"]
+[Annotator ""]
+[Source ""]
+[Remark "I-II"]
+[SetUp "1"]
+[FEN "6kr/5p2/3p2p1/3P4/pPQ2P2/2P2B1b/5q1p/R6K w - - 0 33"]
+
+33.Qe4 {%08DA} Bf1 {!} 0-1
+
+[Event "Memorial M.Chigorin"]
+[Site "Moscow (Russia)"]
+[Date "1947.??.??"]
+[Round "12"]
+[White "Smyslov Vassily (RUS)"]
+[Black "Plater Kazimierz (POL)"]
+[Result "1-0"]
+[ECO "?"]
+[WhiteElo "2494"]
+[BlackElo "0"]
+[Annotator ""]
+[Source ""]
+[Remark "XI-XII"]
+[SetUp "1"]
+[FEN "r1b3kb/2q1rp1p/1ppNnnpB/2P1P3/1P6/2N3PP/3Q1PB1/3RR1K1 b - - 0 22"]
+
+22...Nd7 {%08DA} 23.Bxc6 {!} 1-0
+
+[Event "Ch World (match-tournament)"]
+[Site "Hague/Moscow (Netherl./Russia)"]
+[Date "1948.??.??"]
+[Round "11"]
+[White "Smyslov Vassily (RUS)"]
+[Black "Reshevsky Samuel H (USA)"]
+[Result "1-0"]
+[ECO "?"]
+[WhiteElo "2494"]
+[BlackElo "2430"]
+[Annotator ""]
+[Source ""]
+[Remark ""]
+[SetUp "1"]
+[FEN "rn5k/1p2qpp1/pB1pB2p/4p3/4P1Q1/2P3P1/PP3P1P/3R2K1 b - - 0 25"]
+
+25...fxe6 {%08DA} 26.Qh4 {!} {Jedno z bardziej znanych posuniec Smyslowa. Biale nie bojac sie o strukture wymieniaja jedyna aktywna figure czarnych}
+Qd7 27.Qd8+ {!} Qxd8 28.Bxd8 Nd7 29.Bc7 Nc5 30.Rxd6 {I po dwudziestu kolejnych posunieciach biale wygraly}
+Rc8 1-0
+
+[Event "Ch URS"]
+[Site "Moscow (Russia)"]
+[Date "1949.??.??"]
+[Round "?"]
+[White "Smyslov Vassily (RUS)"]
+[Black "Flohr Salomon M (CZE)"]
+[Result "1-0"]
+[ECO "?"]
+[WhiteElo "2494"]
+[BlackElo "0"]
+[Annotator ""]
+[Source ""]
+[Remark "17 Ch"]
+[SetUp "1"]
+[FEN "2R5/5k1p/2P1p3/3bKpP1/4p3/5r2/8/1R6 b - - 0 51"]
+
+51...Rc3 {%08DA} 52.g6+ {!} {Elegancki koniec partii!} hxg6
+( 52...Kxg6 53.Rg8+ Kf7 54.Rbg1 {z nieuchronnym matem} ) 53.Rb7# 1-0
+
+[Event "Ch World (match)"]
+[Site "Moscow (Russia)"]
+[Date "1957.??.??"]
+[Round "6"]
+[White "Smyslov Vassily (RUS)"]
+[Black "Botvinnik Mikhail M (RUS)"]
+[Result "1-0"]
+[ECO "?"]
+[WhiteElo "2494"]
+[BlackElo "2630"]
+[Annotator ""]
+[Source ""]
+[Remark ""]
+[SetUp "1"]
+[FEN "1r1r4/pBp2kbp/2P1p1p1/1N2Pp2/1n3P2/4P2P/PP6/2KR3R b - - 0 22"]
+
+22...Nd5 {%08DA} 23.Rxd5 {!} {Po tej tymczasowej ofierze jakosci biale zdobywaja przewage materialna}
+exd5 24.Nxc7 Rdc8 25.Bxc8 Rxc8 26.Nxd5 Rxc6+ 27.Kd2 Ke6 28.Nc3 1-0
+
+[Event "Ch World (match)"]
+[Site "Moscow (Russia)"]
+[Date "1958.??.??"]
+[Round "11"]
+[White "Smyslov Vassily (RUS)"]
+[Black "Botvinnik Mikhail M (RUS)"]
+[Result "1-0"]
+[ECO "D99"]
+[WhiteElo "2494"]
+[BlackElo "2630"]
+[Annotator ""]
+[Source ""]
+[Remark ""]
+
+1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.Nf3 Bg7 5.Qb3 dxc4 6.Qxc4 O-O 7.e4
+Bg4 8.Be3 Nfd7 9.Rd1 {
+We wczesniejszej partii w tym meczu Smyslow wybral dluga roszade. Tym razem
+zrezygnowal z przeniesienia krola na skrzydlo hetmanskie} Nb6
+( 9...Nc6 {!} {?} 10.Be2 Nb6 11.Qc5 Qd6 {i mamy w przyblizeniu rowna pozycja}
+) 10.Qb3 Nc6 11.d5 Ne5 12.Be2 Nxf3+ 13.gxf3 Bh5 14.h4 {!?} {W tej popularnej pozycji probowano wiele posuniec. Miedzy innymi 14.Rg1, 14.a4, 14.f4}
+Qd7 15.a4 {Biale probuja wykorzystac, ze bialopolowy goniec czarnych jest wylaczony z gry na skrzydle hetmanskim}
+a5 {Po partii Botwinnik pewnie zalowal, iz nie zagral}
+( 15...Bxc3+ {!} {?} 16.bxc3 Qxa4 17.Qxa4 Nxa4 18.Kd2 {z niejasna koncowka}
+) 16.Nb5 Nc8 {Grozilo Nxc7} 17.Bd4 Nd6 {Wedlug Kasparowa slaby ruch i ciezko sie z tym nie zgodzic. Lepsze byloby}
+( 17...Bxd4 18.Rxd4 Nb6 {gdzie skoczek atakuje zarowno centrum, jak i piona a4}
+) 18.Bxg7 Kxg7 19.Nd4 {!} {Silne, logiczne posuniecie. Biale utrudniaja czarnym otworzenie centrum poprzed c6 lub e6}
+Kg8 ( 19...c6 {?} {!} 20.Qc3 {!} ) 20.Rg1 {Czarne maja problem z krolem - albo stana na oslabionej glownej diagonali, albo beda nieprzyjemnie stac pod wieza}
+Qh3 {Czarne probuja zludnej aktywnosci. Niewiele lepsze byloby}
+( 20...c6 21.dxc6 bxc6 22.Qc3 {z przewaga bialych} ) 21.Qe3 {%08DA}
+c5 {?} {Przegrywa bez walki. Wieksze wyzwanie czekalo biale po}
+( 21...Qxh4 22.e5 {!} {(Kasparow)} Nc8 23.Qh6 Qh2 24.Rg3 f5 25.Ne6
+Rf7 26.f4 {z wygrana} ) 22.dxc6 bxc6 23.Qg5 {!} c5
+( 23...Kh8 24.Qxe7 Rad8 25.Qf6+ Kg8 26.Nxc6 ) 24.Nc6 {I z uwagi na nieuniknione straty czarne poddaly sie}
+ 1-0
+
+[Event "It \"Central Chess Club\""]
+[Site "Moscow (Russia)"]
+[Date "1961.??.??"]
+[Round "8"]
+[White "Smyslov Vassily (RUS)"]
+[Black "Tolush Alexander (RUS)"]
+[Result "1-0"]
+[ECO "?"]
+[WhiteElo "2494"]
+[BlackElo "0"]
+[Annotator ""]
+[Source ""]
+[Remark ""]
+[SetUp "1"]
+[FEN "r5k1/pQ2bppp/4p3/q7/3r1B2/6P1/P3PP1P/1R3RK1 b - - 0 16"]
+
+16...Qd8 {Pozycja wydaje sie remisowa. A moze?} {%08DA} 17.Bb8
+{!} {I wieza skazana jest na zaglade} 1-0
+
+[Event "It"]
+[Site "Mar del Plata (Argentina)"]
+[Date "1962.??.??"]
+[Round "6"]
+[White "Smyslov Vassily (RUS)"]
+[Black "Guimard Carlos E (ARG)"]
+[Result "1-0"]
+[ECO "?"]
+[WhiteElo "2494"]
+[BlackElo "2325"]
+[Annotator ""]
+[Source ""]
+[Remark ""]
+[SetUp "1"]
+[FEN "6k1/p4ppp/Pp2r3/1QPq4/8/6P1/2P2P1P/1R4K1 b - - 0 27"]
+
+27...h5 {Wyglada na to, ze dzieki motywom taktycznym czarne sie trzymaja. Jednakze...}
+{%08DA} 28.cxb6 {!} {Pionki bialych okaza sie lepsze od hetmana}
+Re1+ 29.Rxe1 Qxb5 30.bxa7 Qc6 31.Rb1 Kh7 32.Rb8 1-0
+
+[Event "It"]
+[Site "Hastings (England)"]
+[Date "1963.??.??"]
+[Round "7"]
+[White "Smyslov Vassily (RUS)"]
+[Black "Alexander Conel H O'D (ENG)"]
+[Result "1-0"]
+[ECO "?"]
+[WhiteElo "2494"]
+[BlackElo "0"]
+[Annotator ""]
+[Source ""]
+[Remark "I(XII)"]
+[SetUp "1"]
+[FEN "r3r3/k1n1pp1p/p4np1/RP1P4/8/4N1P1/5PBP/R5K1 b - - 0 37"]
+
+37...Rab8 {%08DA} 38.d6 {!} exd6 39.Rxa6+ Nxa6 40.Rxa6# {Elegancki finisz}
+ 1-0
+
+[Event "It \"Central Chess Club\""]
+[Site "Moscow (Russia)"]
+[Date "1963.??.??"]
+[Round "1"]
+[White "Smyslov Vassily (RUS)"]
+[Black "Padevsky Nikola (BUL)"]
+[Result "1-0"]
+[ECO "D42"]
+[WhiteElo "2494"]
+[BlackElo "2355"]
+[Annotator ""]
+[Source ""]
+[Remark ""]
+
+1.c4 Nf6 2.Nc3 e6 3.Nf3 d5 4.d4 c5 5.cxd5 Nxd5 6.e3 Nc6 7.Bd3
+Be7 8.O-O cxd4 9.exd4 O-O 10.Re1 Bf6 11.Be4 Nce7 12.Ne5 g6 13.Bh6
+Bg7 14.Qd2 Nf6 15.Rad1 Nxe4 16.Rxe4 Nf5 17.Bxg7 Kxg7 18.d5 exd5
+19.Nxd5 Be6 20.Qc3 Bxd5 21.Nd7+ Kg8 22.Rxd5 Rc8 23.Qd2 Kg7 24.h3
+Rg8 25.g4 Nh4 26.Rf4 Rc4 27.Rxf7+ Kxf7 28.Ne5+ Ke7 29.Qg5+ 1-0
+
+[Event "Memorial J.Capablanca"]
+[Site "Habana (Cuba)"]
+[Date "1965.??.??"]
+[Round "?"]
+[White "Smyslov Vassily (RUS)"]
+[Black "Donner Jan-Hein (NED)"]
+[Result "1-0"]
+[ECO "?"]
+[WhiteElo "2494"]
+[BlackElo "2430"]
+[Annotator ""]
+[Source ""]
+[Remark ""]
+[SetUp "1"]
+[FEN "2b2rk1/1p1nbppp/r3p3/Q7/p2N4/4B1P1/PP2PPBP/2RR2K1 b - - 0 16"]
+
+16...Rxa5 {Bialy stoi duzo aktywniej, ale wydaje sie, ze partia potrwa jeszcze dlugo}
+{%08DA} 17.Rxc8 {!} Rxc8 18.Bxb7 {I z uwagi na wiszaca wieze, wiszacego skoczka oraz grozbe Nc6 czarne poddaly sie}
+ 1-0
+
+[Event "It"]
+[Site "Hastings (England)"]
+[Date "1969.??.??"]
+[Round "5"]
+[White "Smyslov Vassily (RUS)"]
+[Black "Fuller Maxwell L (AUS)"]
+[Result "1-0"]
+[ECO "?"]
+[WhiteElo "2494"]
+[BlackElo "2269"]
+[Annotator ""]
+[Source ""]
+[Remark "I(XII)"]
+[SetUp "1"]
+[FEN "r5k1/1p3pb1/2p4p/2Pnp1p1/1PB1N1q1/4P1P1/5PP1/1Q1R2K1 b - - 0 25"]
+
+25...Nc7 {Biale stoja duzo aktywniej. Smyslow znajduje jednak natychmiastowe rozstrzygniecie.}
+{%08DA} 26.Nf6+ {!} Bxf6 27.Qg6+ Bg7 28.Qxf7+ Kh8 29.Rd7 1-0
+
+[Event "It"]
+[Site "Rostov on Don (Russia)"]
+[Date "1993.??.??"]
+[Round "9"]
+[White "Smyslov Vassily (RUS)"]
+[Black "Oll Lembit (EST)"]
+[Result "1-0"]
+[ECO "?"]
+[WhiteElo "2520"]
+[BlackElo "2595"]
+[Annotator ""]
+[Source ""]
+[Remark "V"]
+[SetUp "1"]
+[FEN "4r3/pp1nr3/2p1k2p/4p1b1/4RP2/1PBN2P1/P1P1K3/3R4 b - - 0 28"]
+
+28...Kf5 {%08DA} 29.g4+ {!!} {Fantastyczna kombinacja. Czarne musza ja przyjac, bo inaczej traca figure}
+Kxe4 30.Nf2+ Kxf4 31.Rg1 {!} {Ciche posuniecie. Czarne nie maja sie jak bronic przed matem}
+ 1-0
+
+[Event "It"]
+[Site "Monte Carlo (Monaco)"]
+[Date "1969.??.??"]
+[Round "?"]
+[White "Smyslov Vassily (RUS)"]
+[Black "Benko Pal C (USA)"]
+[Result "1-0"]
+[ECO "A30"]
+[WhiteElo "2494"]
+[BlackElo "2408"]
+[Annotator ""]
+[Source ""]
+[Remark "III-IV"]
+
+1.c4 c5 2.Nf3 Nf6 3.g3 g6 4.b3 Bg7 5.Bb2 b6 6.Bg2 Bb7 7.O-O O-O
+8.Nc3 d5 9.Nxd5 Nxd5 10.Bxg7 Kxg7 11.cxd5 Qxd5 12.d4 cxd4 13.Qxd4+
+Qxd4 14.Nxd4 Bxg2 15.Kxg2 {
+Minelo zaledwie kilkanascie posuniec, a juz mamy gleboka koncowke. Wielu
+zawodnikow w tym momencie zrezygnowaloby zapewne z dalszej gry, gdyz
+symetryczna struktura wyglada na gwarancje remisu. Tymczasem Smyslow stawia przed czarnymi kolejne problemy}
+{%08DA} Rc8 16.Rac1 Nd7 17.Rfd1 Nc5 {Poczatek problemow czarnych. Lepsze wydaje sie grane pozniej przez van Wely'ego}
+{?} {!} ( 17...Nf6 18.Kf3 Rxc1 19.Rxc1 Rd8 20.Rc4 a6 21.Nc6 Rd2
+22.Ra4 a5 23.Nxe7 Rc2 24.e4 {1/2 Nikolic - van Wely '2005} )
+18.b4 Na4 {Skoczek czarnych dobrowolnie idzie na banicje na bandzie. Gdyby tylko wiedzial...}
+{?} {!} 19.Nb5 Rxc1 20.Rxc1 a5 {
+Na pierwszy rzut oka pozycja jest calkowicie rowna. Ale po chwili widzimy, ze
+czarny skoczek nie ma najmniejszych perspektyw na wlaczenie sie do gry}
+21.a3 Rd8 22.Rc7 Rd5 23.Na7 {!} {Oczywiscie nie na c3 - skoczek bialych ma duze perspektywy, skoczek czarnych nie ma zadnych}
+axb4 24.axb4 e6 25.Nc6 Rd2 {Czarne probuja desperacko zlapac aktywnosc. Inaczej przegralyby po podciagnieciu bialego krola i centranych pionków}
+( 25...Nc3 {?} 26.Ne7 ) 26.Ne5 Rxe2 27.Nxf7 {Oczywiscie lepsze niz}
+( 27.Rxf7+ {?} Kg8 {!} 28.Ra7 Rxe5 29.Rxa4 h5 {z remisem} ) h5
+28.Ng5+ Kf6 {Przegrywa. Ale beznadziejne bylo tez zejscie na osma linie}
+{%08DA} 29.Kf1 {!} {Ostatni niuans. Biale wtraconym posunieciem wymuszaja ofiare jakosci}
+Rxf2+ ( 29...Rb2 30.f4 Kf5 31.h3 {z matem} ) 30.Kxf2 Kxg5 31.Ke3
+Kg4 32.b5 Kh3 33.Rc4 Nb2 34.Rc2 1-0
+
+[Event "It (cat.9)"]
+[Site "Graz (Austria)"]
+[Date "1984.??.??"]
+[Round "?"]
+[White "Smyslov Vassily (RUS)"]
+[Black "Unzicker Wolfgang (GER)"]
+[Result "1-0"]
+[ECO "D18"]
+[WhiteElo "2610"]
+[BlackElo "2470"]
+[Annotator ""]
+[Source ""]
+[Remark ""]
+
+1.d4 Nf6 2.Nf3 d5 3.c4 c6 4.Nc3 dxc4 5.a4 Bf5 6.e3 e6 7.Bxc4
+Bb4 8.O-O O-O 9.Nh4 Bg6 10.Nxg6 hxg6 11.Qc2 Nbd7 12.Rd1 Qe7 13.Bd2
+c5 14.a5 Rac8 15.Qb3 a6 16.dxc5 Bxc3 17.Bxc3 Nxc5 18.Qa3 Rc6
+19.f3 Qc7 20.Bf1 Ncd7 21.e4 Rc8 22.Qe7 Re8 23.Qb4 Nc5 24.Bd4
+Nfd7 25.Rac1 Rc8 26.Be3 Qb8 27.Qa3 1-0
+
+[Event "Memorial A.Alekhine"]
+[Site "Moscow (Russia)"]
+[Date "1971.??.??"]
+[Round "?"]
+[White "Uhlmann Wolfgang (GER)"]
+[Black "Smyslov Vassily (RUS)"]
+[Result "0-1"]
+[ECO "E18"]
+[WhiteElo "2570"]
+[BlackElo "2620"]
+[Annotator ""]
+[Source ""]
+[Remark ""]
+
+1.c4 Nf6 2.Nc3 e6 3.Nf3 b6 4.g3 Bb7 5.Bg2 Be7 6.O-O O-O 7.d4
+Ne4 8.Bd2 d5 9.cxd5 exd5 10.Rc1 Nd7 11.Bf4 c5 12.dxc5 Nxc3 13.bxc3
+Nxc5 14.Be5 Re8 15.Re1 Ne4 16.Qa4 a6 17.c4 Bc5 18.e3 dxc4 19.Qxc4
+Rc8 20.Qe2 Nxf2 21.Qxf2 Bxf3 22.Bh3 Rxe5 23.Bxc8 Bc6 24.Bh3 Qe8
+25.Bg2 Rxe3 26.Kh1 Bxg2+ 27.Kxg2 Qe4+ 28.Kh3 Qe6+ 29.Kg2 Qd5+
+30.Kh3 Re6 0-1
+
+[Event "Match \"Women-Veterans\""]
+[Site "Munich (Germany)"]
+[Date "2000.??.??"]
+[Round "5"]
+[White "Polgar Sofia (HUN)"]
+[Black "Smyslov Vassily (RUS)"]
+[Result "0-1"]
+[ECO "C60"]
+[WhiteElo "2501"]
+[BlackElo "2486"]
+[Annotator ""]
+[Source ""]
+[Remark "VII"]
+
+1.e4 e5 2.Nf3 Nc6 3.Bb5 g6 {Jeden z ululionych wariantow Smyslowa - testowal go przez cala swoja kariere zawodnicza}
+4.c3 {Mozna probowac natychmiastowe} ( 4.d4 {z przykladowa mozliwa kontynuacja}
+exd4 5.Bg5 Be7 6.Bxe7 Qxe7 7.Bxc6 dxc6 8.Qxd4 Nf6 9.Nc3 {z nieco lepsza pozycja bialych}
+) a6 5.Bc4 {Logiczna posuniecie w tego typu pozycjach - goniec stoi lepiej na c4 niz na a4}
+d6 6.d4 Bg7 7.O-O Qe7 {Biale maja pionka na c3, zatem ten ruch nie wiaze sie z nieprzyjemnym manewrem Nc3-d5}
+8.dxe5 Nxe5 9.Nxe5 dxe5 10.b3 Nf6 11.Ba3 c5 {!} {Otoz to, oslabienie pola d5 nie ma zadnego znaczenia, a goniec na a3 stoi teraz bardzo zle}
+12.Bd5 O-O 13.b4 {?} ( 13.c4 Rb8 {z rowna pozycja} ) Rd8 14.bxc5
+Nxe4 {Na pierwszy rzut oka widac, ze czarne zyskaly na chwilowych komplikacjach. Lepsze pionki i centrum decyduja o ich przewadze}
+15.c4 Qc7 16.Re1 {?} {Bardzo slabe posuniecie - najslabsza z siostr Polgar nie docenila grozb czarnych}
+Bf5 {Jeszcze silniejsze bylo natychmiastowe} ( 16...Nxf2 {!}
+17.Kxf2 e4 {I pozycja bialych sie rozsypuje.} ) 17.g4 {Biale probuja skomplikowac gre. W przeciwnym przypadku zostawaly w czysto gorszej pozycji.}
+{%08DA} Nxf2 {!} {
+Dynamiczna ofiara - biale maja co prawda lepsza pozycje niz przy ofierze ruch
+wczesniej, wciaz jednak czarne stoja w jej wyniku duzo lepiej}
+18.Kxf2 e4 19.Kg2 ( 19.Kg1 Be6 {!} {Czarne nie musza sie spieszyc - figury bialych stoja zbyt beznadziejnie, by pomoc w walce}
+) Be6 {!} 20.Nd2 Bxd5 21.cxd5 Rxd5 {
+Czarne za figure maja tylko dwa piony, a wydaje sie, ze biale sie trzymaja.
+Jednak czarne moga bardzo szybko polepszyc swoje figury, a biale nie moga na ten przywilej liczyc}
+22.Qe2 Bxa1 23.Rxa1 Re8 {Nieco dokladniejsze byloby}
+( 23...Rad8 {!} 24.Nc4 Rd3 {z dalszym Qf4} ) 24.Nc4 Rd3 25.Rb1
+Qc6 {O beznadziei pozycji bialych swiadczy przede wszystki goniec, ktory jest calkowicie wylaczony z gry}
+26.Kg1 {Przegrywa} Rxa3 {!} 27.Nxa3 Qxc5+ 28.Qf2 e3 {Biale w najlepszym przypadku zostana bez paru pionkow. Dlatego poddaly sie}
+ 0-1
+

@@ -1,4 +1,14 @@
 ZPionka::Application.routes.draw do
+  get "uploads/new"
+
+  get "uploads/index"
+
+  get "uploads/show"
+
+  get "uploads/create"
+
+  get "uploads/destroy"
+
   get "newsletters/new"
 
   get "newsletters/create"
@@ -207,7 +217,8 @@ ZPionka::Application.routes.draw do
   get "session/new"
   get "page/home"
   
- 
+
+resources :uploads 
 resources :newsletters 
 resources :allowances
 resources :players

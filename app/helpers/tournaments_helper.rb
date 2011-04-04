@@ -61,9 +61,9 @@ module TournamentsHelper
 					if min_bucholtz ==0
 						min_bucholtz = max_bucholtz = add_bucholtz
 					elsif  add_bucholtz < min_bucholtz
-						min_bucholtz = add_bucholt
+						min_bucholtz = add_bucholtz
 					elsif  add_bucholtz > max_bucholtz
-						max_bucholtz = add_bucholt
+						max_bucholtz = add_bucholtz
 					end				
   				end	
   			end
