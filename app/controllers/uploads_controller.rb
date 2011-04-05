@@ -9,14 +9,12 @@ class UploadsController < ApplicationController
     
     
     if @upload.save
-      render :json => { :pic_path => @upload.picture.url.to_s , :name => @upload.picture.instance.attributes["picture_file_name"] }, :content_type => 'text/html'
-      
+      render :json => { :pic_path => @upload.picture.url.to_s , :name => @upload.picture.instance.attributes["picture_file_name"] }, :content_type => 'text/html'      
     else
-      render :json => { :result => 'error'}, :content_type => 'text/html'
+       render :json => { :result => 'error'}, :content_type => 'text/html'
+    end   
+       insert_PGN_tournament_file_into_database ("public/" + @upload.picture.url.to_s.split("?")[0])
     end
-    
-    insert_PGN_tournament_file_into_database ("public/" + @upload.picture.url.to_s.split("?")[0])
-     end
 
 
   def show

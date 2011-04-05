@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(:version => 20110404171936) do
     t.integer  "user2_id"
     t.string   "title"
     t.text     "message"
-    t.boolean  "was_read"
+    t.boolean  "was_read",   :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

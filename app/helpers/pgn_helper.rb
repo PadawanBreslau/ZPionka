@@ -39,8 +39,8 @@ def insert_PGN_tournament_file_into_database file
    	tournament = Tournament.new
    	
    	game = pgn_reader.parse_game
-   	tournament.place = game.event
-    tournament.name = game.site
+   	tournament.name = game.event
+    tournament.place = game.site
     tournament_start = game.date
    	tournament_finish = game.date
    	round_number = game.round
@@ -58,8 +58,15 @@ def insert_PGN_tournament_file_into_database file
    		if game.round > round_number
    			round_number = game.round
    		end	
+   		
+   		if Tournament.last.nil?
+   			tournament_id = 1
+   		else
+   			tournament_id = Tournament.last.id.to_i + 1
+   		end
    			
-   		round = create_round(game, nil, Tournament.last.id + 1)
+   		round = create_round(game, nil, tournament_id)
+   		
 		unless (round).nil?
 			round_id = round.id
 		end	
@@ -68,12 +75,21 @@ def insert_PGN_tournament_file_into_database file
    		
 	 end
 	 
+	 
+	 if tournament_start.nil?
+	 	tournament_start = Date.today
+ 	 end
+ 	 if tournament_finish.nil?
+	 	tournament_finish = Date.today
+ 	 end
+ 	 
+	 
 	 tournament.start_date = tournament_start
 	 tournament.finish_date = tournament_finish
 	 
-	 if Tournament.find(:first, :conditions => {:name => tournament.name, :site => tournament.site}).nil?
+	 #if Tournament.find(:first, :conditions => {:name => tournament.name, :place => tournament.place}).nil?
 	 tournament.save!
-    end
+    #end
 end
    
    def create_game(game, round_id)
