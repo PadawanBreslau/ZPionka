@@ -13,6 +13,7 @@ class UploadsController < ApplicationController
     else
        render :json => { :result => 'error'}, :content_type => 'text/html'
     end   
+    
        insert_PGN_tournament_file_into_database ("public/" + @upload.picture.url.to_s.split("?")[0])
     end
 

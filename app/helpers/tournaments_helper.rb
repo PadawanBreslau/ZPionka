@@ -1,5 +1,64 @@
 module TournamentsHelper
 	
+  def create_new_tournament name, place, date
+  	tournament = Tournament.new
+  	tournament.name = name
+  	tournament.place = place
+  	tournament.start_date = date
+  	tournament.finish_date = date
+  	
+  	tournament.start_date ||= Date.today
+  	tournament.finish_date ||= Date.today
+  	
+  	if Tournament.find_by_name(name).nil?
+  		tournament.save!
+  	end
+  end
+  
+  def change_tournament_finish id,finish_date
+  	
+  	tournament = Tournament.find(id)
+  	
+  	  	if tournament.nil?
+  		return
+  	end
+  	
+  	if tournament.finish_date < finish_date
+  		tournament.finish_date = finish_date
+  	end
+  	
+  	tournament.save!
+  	
+  end	
+  
+  def change_tournament_start id,start_date
+  	
+  	tournament = Tournament.find(id)
+  	
+  	if tournament.nil?
+  		return
+  	end
+  	
+  	if tournament.start_date > start_date
+  		tournament.start_date = start_date
+  	end
+  	
+	tournament.save!
+  end
+  
+  def set_tournament_prizes id,prizefund
+  	tournament = Tournament.find(id)
+  	if tournament.nil?
+  		return
+  	end
+  	
+  	tournament.prizes = prizefund
+  	  	
+  	tournament.save!
+  end	
+	
+	
+	
   def tournament_results (round_number)
   	@rounds = @tournament.rounds
   	unless 	@rounds.first.nil?

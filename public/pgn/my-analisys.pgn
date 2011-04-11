@@ -1,0 +1,53 @@
+[Event ""]
+[Site ""]
+[Date "????.??.??"]
+[Round "?"]
+[White ""]
+[Black ""]
+[Result "*"]
+[ECO "B00"]
+[WhiteElo "0"]
+[BlackElo "0"]
+[Annotator ""]
+[Source ""]
+[Remark ""]
+
+1.d4 Nc6 ( 1...b5 2.e4 Bb7 3.f3 a6 ( 3...b4 4.Be3 e6 5.Bd3 c5
+6.Ne2 $14 ) 4.c4 bxc4 5.Bxc4 e6 6.Nc3 Nf6 7.Nge2 d5 8.exd5 Nxd5
+( 8...exd5 9.Bd3 $14 ) 9.O-O Nb6 10.Bb3 Be7 11.Be3 $14 )
+( 1...e5 2.dxe5 Nc6 3.Nf3 Qe7 4.Nc3 Nxe5 5.Nd5 Nxf3+ 6.gxf3 Qd8
+7.Bf4 d6 8.Qd2 $14 ) ( 1...b6 2.e4 Bb7 3.Bd3 e6 4.Nf3 c5 5.c3
+$14 ) 2.Nf3 d6 ( 2...d5 {%02$41 1.d4 d5} ) ( 2...Nf6 3.c4 e6
+( 3...d5 4.Nc3 dxc4 ( 4...Bg4 5.cxd5 Nxd5 6.e4 Nxc3 7.bxc3 e5
+8.d5 Nb8 9.Qa4+ Nd7 10.Nxe5 Qf6 11.Be2 $16 ) ) ) 3.e4 Nf6 4.Nc3
+Bg4 ( 4...e5 $41 ) 5.Be3 e6 ( 5...e5 6.Bb5 ) 6.h3 Bh5 7.d5 exd5
+8.exd5 Ne5 ( 8...Bxf3 9.Qxf3 Ne5 10.Qe2 $14 ) 9.g4 Nxf3+ 10.Qxf3
+Bg6 11.O-O-O $14 *
+
+[Event ""]
+[Site ""]
+[Date "????.??.??"]
+[Round "?"]
+[White ""]
+[Black ""]
+[Result "*"]
+[ECO "A58"]
+[WhiteElo "0"]
+[BlackElo "0"]
+[Annotator ""]
+[Source ""]
+[Remark ""]
+
+1.d4 Nf6 2.c4 c5 3.d5 b5 4.cxb5 a6 5.bxa6 Bxa6 6.Nc3 d6 7.Nf3
+g6 8.g3 Bg7 9.Bg2 O-O 10.O-O Nbd7 11.Rb1 Qa5 ( 11...Qb6 12.b3
+Rfb8 13.Bb2 Qb4 14.Nd2 Ne8 15.Qc2 $14 ) ( 11...Ra7 12.b3 Qa8
+13.Bb2 Rb8 14.Re1 {%02'with the idea' e4,e5} ) ( 11...Ng4 12.Qc2
+Qa5 13.Bd2 Rfb8 ( 13...Nge5 14.Nxe5 Nxe5 15.b3 Qa3 16.Bc1 Qa5
+17.Bg5 Rfe8 18.a4 ) 14.b3 Nge5 15.Nxe5 Nxe5 16.a4 )
+( 11...Qc7 12.b3 Rfb8 13.Qc2 Nb6 14.Rd1 Bb7 15.e4 Nfd7 16.Nb5
+Qc8 17.Bf1 $14 ) ( 11...Ne8 12.Qc2 Nc7 13.Rd1 Bxc3 14.bxc3 Bc4
+15.e4 Rxa2 16.Rb2 Rxb2 17.Bxb2 Qb8 18.Nd2 Bd3 19.Qxd3 Qxb2 20.Rb1
+$14 ) ( 11...Nb6 12.b3 Bb7 ( 12...Ra7 13.Re1 Qa8 14.e4 Ng4 15.Bb2
+Nd7 16.a4 Rb8 17.Bf1 {%02 x b5} ) ) 12.Bd2 Rfb8 13.b3 Ne8 14.Qc2
+Qa3 15.Bc1 Qa5 16.Bb2 c4 17.Na4 Bxb2 18.Rxb2 cxb3 19.axb3 $13 *
+
