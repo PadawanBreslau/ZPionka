@@ -19,11 +19,30 @@ jQuery(document).ready(function() {
     return false;
   });
   
+  
   jQuery('#board-flip').click(function() {
     chess.flipBoard();
     return false;
   });  
-
+  
+  $('.goto-position').click(function() {
+  	move = $(this).attr("data-move");
+  	moveDifference = move-chess.game.halfmove_number
+  	
+  	if(moveDifference>0){
+  	for(i=0;i<moveDifference;i++){
+   	 chess.transitionForward(); }   	
+  }
+ else{
+ 	  for(i=0;i<-moveDifference;i++){
+   	 chess.transitionBackward(); }
+ }
  
+    jQuery("#board-annot").text( chess.annotation() );
+    return false;
+  });
+
+
+
   
 })

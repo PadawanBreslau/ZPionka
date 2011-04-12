@@ -13,8 +13,9 @@
   <div id="game_movement">
     <a id="board-back" href="#"><%= image_tag("pictograms/strzalka_back.gif", :alt => "Back", :class => "round") %></a>
     <a id="board-next" href="#"><%= image_tag("pictograms/strzalka_next.gif", :alt => "Next", :class => "round") %></a>
-    <a id="board-flip" href="#"><%= image_tag("pictograms/flip.jpg", :alt => "Next", :class => "round") %> </a>
+    <a id="board-flip" href="#"><%= image_tag("pictograms/flip.jpg", :alt => "Flip", :class => "round") %> </a>
 </div>
+
   <p id="board-annot">
   </p>
   <div id="pgn-jchess">   
@@ -23,5 +24,24 @@
   </p>
 	
 </div>
+
+<div id="moves">
+	
+	
+<% @positions.each do |position| %>
+
+	<% half_move = position.move_number*2 %>
+	<% if position.white_on_move? %>
+		 <br/>
+		<%= position.move_number.to_s + ". " %>
+		<% half_move -= 1 %>
+	<% end %>
+	
+	
+   <a class="goto-position" href="#" data-move="<%= half_move%>"><%= position.move %></a>
+
+<% end %>	
+	
+</div>	
 
 

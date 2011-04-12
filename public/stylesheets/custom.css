@@ -54,7 +54,7 @@ color: #069;
 
 DIV#pgn-jchess
 {
-#display:none;
+display:none;
 }
 
 DIV#top_panel{
