@@ -15,7 +15,7 @@
 </head>
 <div class="container">
 
-
+<!-- TOP PANL -->
 <div id="top_panel">
 <div id="logo">
 	<%= render 'layouts/logo' %>
@@ -26,16 +26,22 @@
 <div id="login_panel">	
 	<%= render 'layouts/header' %>
 	</div>
-	</div>
+</div>
+<!-- END TOP PANL -->
+
+<div id="breadcrumbs">
+	<%= render 'layouts/breadcrumbs' %>
+</div>	
 
 
-
+<div id="middle_panel">
 <div id="left_panel">
 	<div id="nav_panel">
 			<%= render 'layouts/navigation' %>
 	</div>
 	
 	<div id="chat_panel">
+
 		<div id="display_chat_panel">
 			<%= render 'layouts/chat' %>
 		</div>
@@ -57,6 +63,9 @@
 <div id="right_panel">	
 	<%= render 'layouts/right_panel'%>
 </div>
+</div>
+
+
 
 <div id="footer">
 	<%= render 'layouts/footer' %>

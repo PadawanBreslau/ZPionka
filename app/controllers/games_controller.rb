@@ -50,6 +50,13 @@ class GamesController < ApplicationController
   	
   	@positions = @game.positions
   	
+
+  #	@engine = ChXBoardEngine.new "vendor/jazz/jazz-wb-444-32-ja.exe","vendor/jazz" 
+  #	@engine.init
+  #	@engine.send_message "setboard "+@positions.first.fen
+  #	@engine.send_message "analyze"
+  # @engine.quit
+  	
   end
 
   def update

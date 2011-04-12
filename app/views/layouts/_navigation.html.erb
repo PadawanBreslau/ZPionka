@@ -1,11 +1,5 @@
 
-<% @breadcrumb =  breadcrumb(request.request_uri, {}) %>
 
-<% unless @breadcrumb == '' %>
-<span class="breadcrumbs"><%= @breadcrumb.html_safe %><br/></span>
-<% else %>
-<span class="breadcrumbs"><%= link_to "Home", root_path %><br/></span>
-<% end %>
 
 
 
@@ -16,5 +10,4 @@
 	<li> Live broadcast
 	<li> Videos
 	<li> Photos		
-	
-</ul>	
+</ul>

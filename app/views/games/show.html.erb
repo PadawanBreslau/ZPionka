@@ -32,7 +32,7 @@
 
 	<% half_move = position.move_number*2 %>
 	<% if position.white_on_move? %>
-		 <br/>
+		
 		<%= position.move_number.to_s + ". " %>
 		<% half_move -= 1 %>
 	<% end %>
@@ -42,6 +42,11 @@
 
 <% end %>	
 	
+</div>	
+
+<div id="variations">
+	
+
 </div>	
 
 

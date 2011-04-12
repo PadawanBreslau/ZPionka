@@ -2,21 +2,26 @@
 <% gear = image_tag("pictograms/gear.png", :alt => "ZPionka", :class => "round") %>
 <% exit = image_tag("pictograms/exit.gif", :alt => "ZPionka", :class => "round") %>
 
+<% signin = image_tag("signin.png", :alt => "ZPionka", :class => "ilogin-top") %>
+<% signout = image_tag("signout.png", :alt => "ZPionka", :class => "ilogin-bottom") %>
+<% signup = image_tag("signup.png", :alt => "ZPionka", :class => "ilogin-bottom") %>
+<% myprofile = image_tag("profile.png", :alt => "ZPionka", :class => "ilogin-top") %>
+
 <% unless signed_in? %>
-<%= link_to "[Sign in]", new_session_path %><br/>
-<%= link_to "[Sign up]", new_user_path %>
+<%= link_to signin, new_session_path %><br/>
+<%= link_to signup, new_user_path %>
  <% end %>
 
 
 <% if signed_in? %>
 
-<%= link_to "My profile", current_user %>
+<%= link_to myprofile, current_user %>
 	
 <%= link_to mail, messages_path %>
-<%= link_to gear, edit_user_path(current_user) %>
 
 <br/>
-<%= link_to "[Sign out]", signout_path %>
+<%= link_to signout, signout_path %>
+<%= link_to gear, edit_user_path(current_user) %>
 	
 <% end %>	
 

@@ -8,6 +8,25 @@
 <% @edit_icon = image_tag("pictograms/edit_icon.gif", :alt => "+", :class => "round") %>
 <% @delete_icon = image_tag("pictograms/delete_icon.gif", :alt => "-", :class => "round") %>
 
+
+<% if controller_name == "games" && !@positions.nil? %>
+	<% @positions.each do |position| %>
+
+	<% half_move = position.move_number*2 %>
+	<% if position.white_on_move? %>
+		
+		<%= position.move_number.to_s + ". " %>
+		<% half_move -= 1 %>
+	<% end %>
+	
+	
+   <a class="goto-position" href="#" data-move="<%= half_move%>"><%= position.move %></a>
+
+<% end %>
+	
+<% end %>	
+
+
 <% if controller_name == "tournaments" %>
 <h3>ZPawn </h3>
 

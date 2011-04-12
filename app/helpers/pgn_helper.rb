@@ -117,12 +117,12 @@ def create_new_player color,game
     p = Player.new
    
    	if color == 0
-   		surname = game.white.split(", ")[0]
-   		name = game.white.split(", ")[1]
+   		surname = game.white.split(",")[0].delete(' ')
+   		name = game.white.split(",")[1].delete(' ')
    		rating = game.white_elo
    	elsif color == 1
-   		surname = game.black.split(", ")[0]
-   		name = game.black.split(", ")[1]
+   		surname = game.black.split(",")[0].delete(' ')
+   		name = game.black.split(",")[1].delete(' ')
    		rating = game.black_elo	   	
    	end  	
    	

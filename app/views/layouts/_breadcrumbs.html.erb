@@ -1,0 +1,7 @@
+<% @breadcrumb =  breadcrumb(request.request_uri, {}) %>
+
+<% unless @breadcrumb == '' %>
+<span class="breadcrumbs"><%= @breadcrumb.html_safe %></span>
+<% else %>
+<span class="breadcrumbs"><%= link_to "Home", root_path %></span>
+<% end %>

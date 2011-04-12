@@ -10,7 +10,7 @@ def title
 end
 
  def breadcrumb(url, options = {})
-    options.reverse_merge!( :separator => '>',
+    options.reverse_merge!( :separator => ' // ',
                             :home_link => 'Home')
 
     path_segments = url.sub(/\?.*/,'').split('/')[1..-1]

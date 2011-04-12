@@ -1,0 +1,114 @@
+Jazz - a chess playing program
+Copyright (C) 2009, 2011 Evert Glebbeek (eglebbk@dds.nl)
+
+SUMMARY
+-------
+Jazz is a computer program that plays chess. Strictly speaking, it is a
+library of functions that can be used to load, evaluate and analyse a chess
+position (game) that, when coupled to an interface, can be used to make a
+chess program.
+Stand-alone programs in the library are
+ * cjazz       - a console program that solves a test position (in EPD format)
+ * test_jazz   - a console program that runs a test suite
+ * perftest    - Count all child nodes from a given position
+ * a5jazz      - A chess program, with a GUI implemented using Allegro 5
+ * ucijazz     - A UCI interface for Jazz
+ * xbjazz      - An XBoard interface for Jazz
+
+
+LICENCE
+-------
+Jazz is distributed under the GPL. See the COPYING file for more
+information.
+
+
+PRELIMINARIES
+-------------
+To install "Jazz" from source code you will need:
+
+ * A copy of the source code (obviously)
+ * A copy of the GNU C compiler (recentish version, C99 compatibility
+   required; MSVC may or may not work)
+ * CMake, version 2.4 or newer (http://cmake.org/)
+ * GNU make, I have version 3.81
+
+To build Jazz with its (simplified) GUI, you will also need
+ * Allegro 5.0 or later
+
+This is optional, Jazz has an XBoard and a UCI interface and should work
+with most major chess GUIs.
+For optimal performance, you will also need
+
+ * A 64 bit operating system
+
+On the last test, the code ran about a factor 2 slower in 32 bit, so it
+makes quite a bit of difference. The code will compile and run fine in 32
+bit mode, however.
+
+NOTE: I have mainly tested the code on OS X, although it should work
+without trouble on Linux and Windows.
+
+COMPILING
+---------
+First, configure Jazz for your system. Either through the CMake GUI, or
+from the command line. From the top-level Jazz/ directory, run
+
+ $ mkdir Build
+ $ cd Build
+ $ cmake ..
+
+Then run
+
+ $ make
+
+This will place all generated files in the Build/ subdirectory, leaving the
+source tree clean. On Windows, substitute mingw32-make for "make". At the
+very least, this should get you the xboard and UCI interfaces.
+
+USING
+-----
+The a4jazz interface is a bit "minimal" at the moment, but it does allow
+you to play a game against the computer or make it solve a test position.
+You will see three windows: a chess board representing the current
+position, the list of moves played so far (on the right of the board,
+though only the first 20 moves are shown) and a window that will hold
+output messages from the search. This last window can be resized and
+scrolled.
+The program's time is currently hard coded at 5 seconds per move. If you
+want to change it, you'll have to modify the function "computer_timer" in
+src/interface/a5jazz.c.
+To move a piece, simply click on the piece you want to move and click on
+the destination square. If the move is legal, the piece will be moved there
+(the reverse also works, but there is no indicator for the selected empty
+square).
+
+Keyboard controls:
+
+Arrow keys        Move the blue cursor around the board
+Enter             Select the piece/square under the cursor
+Space             Tell the engine to play a move (it will not move until
+                  you tell it to)
+Delete            Start a new game from the initial position
+Backspace         Undo (take back) the last move
+Tab               Advance to the next move, if any (undoes backspace).
+                  You will not be able to do this if you take back a move
+                  and then press space to make the computer think.
+F5                Load position from an EPD file. Although EPD files can
+                  hold multiple positions, this will only load the first
+                  one.
+F6                Save the current position to an EPD file.
+Escape            Quit (unconditionally).
+< and >           Cycle through the available figurine sets (three at the
+                  moment)
+
+ACKNOWLEDGEMENTS
+-----------------
+The figurine sets used by the GUI come from
+http://www.enpassant.dk/chess/
+
+The material imbalance evaluation is adapted from Crafty,
+http://www.craftychess.com/
+
+Many ideas and algorithms are based on descriptions found at the Chess
+Programming Wiki, http://chessprogramming.wikispaces.com/
+
