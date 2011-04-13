@@ -20,6 +20,19 @@ jQuery(document).ready(function() {
   });
   
   
+ jQuery('#board-start').click(function() {
+    chess.transitionToStart();
+    jQuery("#board-annot").text( chess.annotation() );
+    return false;
+  });
+  
+  jQuery('#board-finish').click(function() {
+    chess.transitionToFinish();
+    jQuery("#board-annot").text( chess.annotation() );
+    return false;
+  });
+  
+  
   jQuery('#board-flip').click(function() {
     chess.flipBoard();
     return false;

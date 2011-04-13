@@ -18,17 +18,23 @@
 		<%= position.move_number.to_s + ". " %>
 		<% half_move -= 1 %>
 	<% end %>
-	
-	
    <a class="goto-position" href="#" data-move="<%= half_move%>"><%= position.move %></a>
-
 <% end %>
-	
+
+<br/><br/><br/>
+
+  <div id="game_movement">
+    <a id="board-start" href="#"><%= image_tag("pictograms/start-arrow.png", :alt => "Start", :class => "round") %> </a>
+    <a id="board-back" href="#"><%= image_tag("pictograms/back-arrow.gif", :alt => "Back", :class => "round") %></a>
+    <a id="board-next" href="#"><%= image_tag("pictograms/next-arrow.gif", :alt => "Next", :class => "round") %></a>
+    <a id="board-finish" href="#"><%= image_tag("pictograms/finish-arrow.png", :alt => "Finish", :class => "round") %> </a>
+  </div>
 <% end %>	
 
 
 <% if controller_name == "tournaments" %>
-<h3>ZPawn </h3>
+<div id="zpawn_display">
+<h3>Live broadcast</h3>
 
 <% @zpawns = Zpawn.find_all_by_tournament_id(id_name) %>
 <% @zpawns.each do |zpawn| %>
@@ -42,6 +48,7 @@
 	<strong><%= @login = User.find(zpawn.user_id).login + ": " %></strong>
 	<%= zpawn.content.html_safe %> <br/>
 <% end %>	
+</div>
 <% end %>
 
 	
@@ -51,7 +58,7 @@
 		<% if !route[:id].nil?  %>
 
 		<% form_for @zpawn do |f| %>
-		<%= f.text_field :content, :size => 28 %>
+		<%= f.text_field :content, :size => 25 %>
 		
 		<%= f.hidden_field :user_id, :value => current_user.id %>
 		<%= f.hidden_field :tournament_id, :value => id_name %>

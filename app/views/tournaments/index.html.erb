@@ -5,27 +5,19 @@
 		<%= link_to @tournament_stripe , tournament  %></span> 
 		<%= link_to "[+]", :controller => "tournaments", :action => "add_to_observed_and_redirect", :id =>   
 tournament.id %>
-
 		<% if signed_in? %>
 			<%= link_to "[-]", :controller => "tournaments", :action => "remove_from_observed_and_redirect", :id =>   
 tournament.id %>
-
 		<% end %>
 		<br/>
-	
-		
-
 	<% if  !tournament_not_observed(tournament.id) || (!signed_in? && cookies.signed[:watched_tournament] == tournament.id.to_s) %> 
 	<table><tr><td width="80px">
-		<% @rounds = get_all_rounds(tournament.id) %>
-	
+		<% @rounds = get_all_rounds(tournament.id) %>	
 		<% @rounds.each do |round| %>
-		<span class="round_stripe">
-			
+		<span class="round_stripe">		
 			<% @round_number = "Round " + round.round_number.to_s %>
 			<%= link_to @round_number, :controller => "tournaments", :action => "add_to_observed_round_and_redirect", :id =>  
-tournament.id, :round_id => round.id %>
-			
+tournament.id, :round_id => round.id %>			
 				<br/>
 		</span>
 		<% end %>
@@ -33,19 +25,13 @@ tournament.id, :round_id => round.id %>
 	<td valign="top">
 		<% @eye = image_tag("pictograms/eye.gif", :alt => "Observe", :class => "round") %>
 		<% @closed_eye = image_tag("pictograms/closed-eye.gif", :alt => "Observe", :class => "round") %>
-		
-				<%= ":" %>
-		<%= cookies.signed[:watched_round] %>
-		
+				
 		<% unless signed_in? %>
 			<% @games = get_all_games(tournament.id,0) %>
 		<% else %>
 			<% @games = get_all_games(tournament.id, current_user.id) %>
 		<% end%>
-			
-
-			<% unless @games.nil? %>
-		
+			<% unless @games.nil? %>		
 				<% @games.each do |game| %>
 					<span class="game_stripe">
 						<%= link_to prepare_game_string(game), game %> &nbsp&nbsp&nbsp
@@ -55,19 +41,12 @@ tournament.id, :round_id => round.id %>
 						<% elsif signed_in? && !already_observed(game) %>
 						<%= link_to @closed_eye,  :controller => "tournaments", :action => "add_to_observed_games", :id => game.id, :confirm => "Are you sure you want to observe this game?" %>
 						<% end %>
-					</span>
-					
-					
+					</span>					
 					<br/>
-				<% end %>
-		
+				<% end %>		
 			<% end %>
-	</td>
-	
+	</td>	
 </tr></table>
-	<% end %>
-	
-		
-	
+	<% end %>	
 	</div>
 <% end %>

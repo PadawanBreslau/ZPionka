@@ -30,13 +30,14 @@ font-size: 200% ;
 
 h3#game_header_name {  
     font-family: Arial, Helvetica, sans-serif;
+    color: #ddd;
 	font-size: 15px;
 	font-weight: bold;
 	margin-left: 25px;
 	margin-top: 2px;
 	margin-bottom: 2px;
 	padding: 2px;
-	color: black;
+	#color: black;
         }
 
 
@@ -179,7 +180,15 @@ DIV#board
 	background-color:#454d50;
 	width: 100% ;
 	height: 80% ;
+	color: #ddd;
 }
+
+DIV#board a{
+	color: #ddd;
+	font-weight:bold;
+	font-variant:small-caps;
+}
+
 
 DIV#moves
 {
@@ -207,14 +216,21 @@ DIV#right_panel
 	width: 20% ;
 	overflow:auto;
 	height: 100% ;
+	
+}
+
+DIV#zpawn_display
+{
+height: 80% ;
+min-height: 320px;
 }
 
 DIV#zpawn_add
 {
 	position: block;
-	background-color: red;
-	top: 200px;
-	
+	#background-color: red;
+	#top: 200px;
+	height: 20% ;	
 }
 
 DIV#game_info_panel
@@ -238,7 +254,7 @@ DIV#game_notation_panel
 DIV#footer
 {
 
-	background-color: yellow;
+	background-color: #333;
 	width: 100% ;
 	height: 30px;	
 
@@ -246,7 +262,7 @@ DIV#footer
 
 DIV#tournament_stripe{
 	display:block;
-	background-color: #332222;
+	background-color: #303030;
 	font-color: white;
 	font-weight: bold;
 	font-family: "Georgia";
@@ -278,17 +294,24 @@ p.tournament_stripe{
 
 span.round_stripe {
 	color: white;
-	padding-left:25px;
+	padding-left:15px;
 # wezsze 
 }
 
+span.round_stripe a{
+	color: #ddd;
+	font-weight: bold; 
+}
+
 span.game_stripe{
-	color: white;
-	padding-left:10px;
-	
+
+}
+
+span.game_stripe a{
+	color: #bbb;
+	padding-left:5px;	
 	font-family: "Georgia";
-	font-variant: small-caps;
-	
+	font-variant: small-caps;	
 }
 
 span.breadcrumbs{

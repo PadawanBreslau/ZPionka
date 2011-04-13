@@ -1,4 +1,4 @@
-<b>Sign-up form</b>
+<b>New article form: <%= @user.id %></b>
 <%= form_for(@info) do |f| %>
 <%= render 'shared/info_error_messages' %>
 
@@ -24,6 +24,7 @@
 <td><%= f.label :Content %></td>
 <td><%= text_area :info , :content	  %></td>
 </tr>
+
 
 <%= f.hidden_field :user_id, :value => @user.id %>
 

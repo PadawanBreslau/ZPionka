@@ -1,21 +1,8 @@
-
-
 <div id="wrapper">
-<div id="game_header">	
-<h3 id="game_header_name"><%= @ggame.get_white.to_s + @ggame.get_white_elo_str.to_s %></h3>
-<h3 id="game_header_name"><%= @ggame.get_black.to_s + @ggame.get_black_elo_str.to_s %></h3>
-</div>
-<div id="result">
-	<h2><%=  @ggame.get_result_str.to_s %>
-</div>
+
+<h3 id="game_header_name"><%= @ggame.get_white.to_s + " (" + @ggame.get_white_elo_str.to_s + ") " %>-<%= " " + @ggame.get_black.to_s + " (" +  @ggame.get_black_elo_str.to_s + ") " +  @ggame.get_result_str.to_s %></h3>
 
   <div id="board3"></div>
-  <div id="game_movement">
-    <a id="board-back" href="#"><%= image_tag("pictograms/strzalka_back.gif", :alt => "Back", :class => "round") %></a>
-    <a id="board-next" href="#"><%= image_tag("pictograms/strzalka_next.gif", :alt => "Next", :class => "round") %></a>
-    <a id="board-flip" href="#"><%= image_tag("pictograms/flip.jpg", :alt => "Flip", :class => "round") %> </a>
-</div>
-
   <p id="board-annot">
   </p>
   <div id="pgn-jchess">   
@@ -26,7 +13,6 @@
 </div>
 
 <div id="moves">
-	
 	
 <% @positions.each do |position| %>
 

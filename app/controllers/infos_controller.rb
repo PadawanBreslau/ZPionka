@@ -6,6 +6,7 @@ class InfosController < ApplicationController
   end
 
   def create
+  @user = current_user
   @info = Info.new(params[:info])
   if @info.save
     flash[:success] = "Succesfull adding"

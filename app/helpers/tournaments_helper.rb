@@ -224,12 +224,14 @@ def already_observed(game)
 end	
 
 def make_result(result)
-	if result == "1"
+	if result == "0"
 		"1-0"
 	elsif result == "2"
+		"0-1"
+	elsif result == "1"
 		"1/2"
 	elsif result == "3" 
-		"0-1"
+		"*"
 	else 
 		" - "
 	end
