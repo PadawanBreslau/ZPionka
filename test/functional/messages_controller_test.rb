@@ -1,39 +1,34 @@
 require 'test_helper'
 
 class MessagesControllerTest < ActionController::TestCase
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
-  test "should get create" do
-    get :create
-    assert_response :success
-  end
+	
+def setup
+		  
+  @message1 = messages(:one)
+  @message2 = messages(:two)
+  @controller  = MessagesController.new
+  @request     = ActionController::TestRequest.new
+  @response    = ActionController::TestResponse.new
+end 
+	
 
   test "should get edit" do
-    get :edit
+    get :edit,  :id => @message1.id
+        
+    assert_not_nil assigns(:title) 
+    assert_equal assigns(:title), "Edit message"
     assert_response :success
   end
 
   test "should get update" do
-    get :update
-    assert_response :success
-  end
-
-  test "should get index" do
-    get :index
-    assert_response :success
-  end
-
-  test "should get show" do
-    get :show
+    get :update,  :id => @message1.id
     assert_response :success
   end
 
   test "should get destroy" do
-    get :destroy
-    assert_response :success
+    get :destroy,  :id => @message2.id
+    assert_equal flash[:success], "message destroyed."
+    assert_response :redirect
   end
 
 end

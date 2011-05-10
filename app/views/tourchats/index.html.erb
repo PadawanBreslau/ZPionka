@@ -3,7 +3,8 @@
 <% @tourchats.each do |tourchat|%>
 <% @user = User.find(tourchat.user_id) %>
 <div class="chat_stripe">
-<%= @user.login %>: <%= tourchat.content %>
+<%= tourchat.created_at.strftime("%h.%m") %>
+<%= link_to @user.login, @user %>: <%= tourchat.content %>
 </div>
 <%end%>
 

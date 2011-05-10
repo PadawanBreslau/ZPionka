@@ -31,6 +31,8 @@ class PlayersController < ApplicationController
   end	
 
   def index
+  	@players = Player.all
+  	
   end
 
   def destroy

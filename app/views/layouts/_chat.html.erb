@@ -19,10 +19,14 @@
 <%= link_to @delete_icon, chat, :method => :delete, :confirm => "Are you sure?" %>	
 <% end %>
 
-<% user_login = User.find(chat.user_id).login %>	
-<% display_stripe = "<strong>" + user_login + "</strong>: " +	chat.content %>
+<% user = User.find(chat.user_id) %>
+<% user_login = user.login %>	
+<% display_stripe = "<strong>" + user_login + "</strong></br> "  %>
 
-<span class="chat_stripe">	<%= display_stripe.html_safe  %></span><br/>
+<span class="chat_stripe"><%= chat.updated_at.strftime("%H.%M")%>	
+	<%= link_to display_stripe.html_safe, user  %>
+	<%= chat.content.html_safe %>
+</span><br/>
 <% end %>	
 
 

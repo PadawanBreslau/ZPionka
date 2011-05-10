@@ -1,6 +1,17 @@
 require 'test_helper'
 
 class GamechatsControllerTest < ActionController::TestCase
+	
+def setup
+		  
+  @chat1 = gamechats(:one)
+  @chat2 = gamechats(:two)
+  @controller  = GamechatsController.new
+  @request     = ActionController::TestRequest.new
+  @response    = ActionController::TestResponse.new
+end 	
+
+	
   test "should get new" do
     get :new
     assert_response :success
@@ -12,17 +23,17 @@ class GamechatsControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
-    get :edit
+    get :edit, :id => @chat1.id
     assert_response :success
   end
 
   test "should get update" do
-    get :update
+    get :update, :id => @chat1.id
     assert_response :success
   end
 
   test "should get show" do
-    get :show
+    get :show, :id => @chat1.id
     assert_response :success
   end
 
@@ -32,7 +43,7 @@ class GamechatsControllerTest < ActionController::TestCase
   end
 
   test "should get destroy" do
-    get :destroy
+    get :destroy, :id => @chat2.id
     assert_response :success
   end
 

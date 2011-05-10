@@ -2,7 +2,11 @@ class InfosController < ApplicationController
   def new
     @title = "New info"
     @info = Info.new
-    @user = current_user
+    if !current_user.nil?
+    	@user = current_user
+    else
+    	@user = User.new
+    end
   end
 
   def create

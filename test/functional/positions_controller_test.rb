@@ -1,6 +1,15 @@
 require 'test_helper'
 
 class PositionsControllerTest < ActionController::TestCase
+	
+def setup
+  @position1 = positions(:one)
+  @position2 = positions(:two)
+  @controller  = PositionsController.new
+  @request     = ActionController::TestRequest.new
+  @response    = ActionController::TestResponse.new
+end 	
+	
   test "should get new" do
     get :new
     assert_response :success
@@ -12,12 +21,12 @@ class PositionsControllerTest < ActionController::TestCase
   end
 
   test "should get edit" do
-    get :edit
+    get :edit, :id => @position1.id
     assert_response :success
   end
 
   test "should get update" do
-    get :update
+    get :update, :id => @position1.id
     assert_response :success
   end
 
@@ -27,12 +36,12 @@ class PositionsControllerTest < ActionController::TestCase
   end
 
   test "should get show" do
-    get :show
+    get :show, :id => @position1.id
     assert_response :success
   end
 
   test "should get destroy" do
-    get :destroy
+    get :destroy, :id => @position1.id
     assert_response :success
   end
 

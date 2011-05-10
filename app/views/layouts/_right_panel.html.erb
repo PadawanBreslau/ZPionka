@@ -15,11 +15,14 @@
 	<% half_move = position.move_number*2 %>
 	<% if position.white_on_move? %>
 		
-		<%= position.move_number.to_s + ". " %>
+		<span class="move_number"><%= position.move_number.to_s + ". " %></span>
 		<% half_move -= 1 %>
 	<% end %>
    <a class="goto-position" href="#" data-move="<%= half_move%>"><%= position.move %></a>
 <% end %>
+
+<% @ggame = Game.find(@positions.first.game_id) %>
+<strong><%= make_result @ggame.result %></strong>
 
 <br/><br/><br/>
 
@@ -32,23 +35,35 @@
 <% end %>	
 
 
-<% if controller_name == "tournaments" %>
-<div id="zpawn_display">
-<h3>Live broadcast</h3>
+<% if controller_name == "tournaments" && !id_name.nil? %>
+	<div id="zpawn_display">
+	<h3>Live broadcast</h3>
 
-<% @zpawns = Zpawn.find_all_by_tournament_id(id_name) %>
-<% @zpawns.each do |zpawn| %>
+	<% @zpawns = Zpawn.find_all_by_tournament_id(id_name) %>
+	<% @zpawns.each do |zpawn| %>
 	
-<% if admin_in? %>	
-	<%= link_to @edit_icon, edit_zpawn_path(zpawn) %>
-	<%= link_to @delete_icon, zpawn, :method => :delete, :confirm => "Are you sure?" %>
-<% end %>
+		<% if admin_in? %>	
+			<%= link_to @edit_icon, edit_zpawn_path(zpawn) %>
+			<%= link_to @delete_icon, zpawn, :method => :delete, :confirm => "Are you sure?" %>
+		<% end %>
 	
-    <i><%= zpawn.updated_at.strftime("%H:%M") %></i>&nbsp
-	<strong><%= @login = User.find(zpawn.user_id).login + ": " %></strong>
-	<%= zpawn.content.html_safe %> <br/>
-<% end %>	
+	    <i><%= zpawn.updated_at.strftime("%H:%M") %></i>&nbsp
+		<strong><%= @login = User.find(zpawn.user_id).login + ": " %></strong>
+		<%= zpawn.content.html_safe %> <br/>
+	<% end %>	
 </div>
+<% elsif controller_name != "games" %>		
+	
+	<div id="right_info_panel">
+	<h3> Newest info</h3>
+
+	<% @infos = Info.find(:all, :limit => 5) %>
+	<% @infos.each do |info| %>
+		<span class="rignt_info_panel_stripe"><%= link_to info.title, info %></span><br/>
+		<%= info.short_content %><hr/>
+	
+	<% end %>
+</div>	
 <% end %>
 
 	
@@ -68,5 +83,5 @@
 	
 <% end %>	
 		</div>
-	
+
 <% end %>	

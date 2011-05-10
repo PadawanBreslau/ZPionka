@@ -26,7 +26,7 @@ class UploadsController < ApplicationController
 
   def index
      @title = "Upload list" 
-     @uploads = Upload.find_all_by_tournament_id(params[:tournament_id])
+    # @uploads = Upload.find_all_by_tournament_id(params[:tournament_id])
      @upload = Upload.new
   end
 

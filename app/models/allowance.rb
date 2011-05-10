@@ -2,7 +2,7 @@ class Allowance < ActiveRecord::Base
 
  #validates :user_id, :presence => true, :numericality => true
  
- has_one :user
+ belongs_to :user
  
 
  

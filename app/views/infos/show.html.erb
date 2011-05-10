@@ -1,8 +1,10 @@
-<%= @info.title %><br />
+<%= @info.updated_at.strftime("%d.%m.%Y") %>
+
+<span class="info_title"><%= @info.title %></span><br/><br/>
 <% unless @info.lead==nil %>
-<%= @info.lead %><br />
+<strong><%= @info.lead %></strong><br />
 <% end%>
-<%= @info.short_content %><br />
+<% @info.short_content %><br/>
 
 <%= @info.content %><br />
 <hr/>

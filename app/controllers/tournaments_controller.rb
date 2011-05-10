@@ -66,7 +66,7 @@ class TournamentsController < ApplicationController
     
     unless signed_in?
     	cookies.permanent.signed[:watched_round] =  params[:round_id]
-    	redirect_to :back
+    	redirect_to_back
     	return
     end		
     
@@ -77,7 +77,7 @@ class TournamentsController < ApplicationController
   	unless @already_observed_round.nil? 
   		@already_observed_round.delete
   	end 
-	redirect_to :back
+	redirect_to_back
   end
   
   def remove_from_observed_round_and_redirect
@@ -85,7 +85,7 @@ class TournamentsController < ApplicationController
   	unless @obstour.nil?
   		@obstour.delete
   	end
-  	redirect_to :back
+  	redirect_to_back
   end	
   
 
@@ -110,9 +110,9 @@ class TournamentsController < ApplicationController
   end
 
   def destroy
-    Tournament.find(params[:Tournament]).destroy
+    Tournament.find(params[:id]).destroy
     flash[:success] = "Tournament destroyed."
-    redirect_to tournament_path
+    redirect_to tournaments_path
   end
 
   def edit

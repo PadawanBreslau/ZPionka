@@ -185,7 +185,12 @@ module TournamentsHelper
   end	
 	
 def	tournament_not_observed(id)
-	Observedtournament.find_by_tournament_id(id).nil?
+
+	if signed_in?
+		Observedtournament.where(:user_id => current_user.id, :tournament_id => id).first.nil?
+	else 
+	   true
+	end
 end
 
  def  get_all_rounds(id)

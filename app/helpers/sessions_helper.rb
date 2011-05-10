@@ -25,12 +25,12 @@ def signed_in?
 end
 
 def admin_in?
-	if current_user!= nil 
-		 @user_id = current_user.id 
-		 signed_in? && Allowance.isAdmin?(@user_id)
-	else 
-		return false
-	end
+if current_user!= nil
+@user_id = current_user.id
+signed_in? && Allowance.isAdmin?(@user_id)
+else
+return false
+end
 end
 
 def deny_access

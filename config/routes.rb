@@ -108,12 +108,16 @@ ZPionka::Application.routes.draw do
   get "games/index"
 
   get "games/show"
+  
+  get "games/read_pgn_file"
 
   get "games/update"
 
   get "players/new"
 
   get "players/create"
+  
+  get "players/list_all_games"
 
   get "players/edit"
 
@@ -154,6 +158,12 @@ ZPionka::Application.routes.draw do
   get "tourchats/destroy"
 
   get "tournaments/new"
+
+  get "tournaments/add_to_observed_and_redirect"
+  
+  get "tournaments/add_to_observed_games"
+  
+  get "tournaments/remove_from_observed_and_redirect"
 
   get "tournaments/create"
 
@@ -213,6 +223,7 @@ ZPionka::Application.routes.draw do
   get "user/update"
   get "user/edit"
   get "user/destroy"
+  get "user/index"  
   get "info/index_user"
   get "session/new"
   get "page/home"
@@ -225,6 +236,7 @@ resources :players
 resources :zpawns
 resources :tourchats
 resources :tournaments
+resources :tourplaces
 resources :rounds
 resources :comments  
 resources :messages  

@@ -6,9 +6,11 @@ one:
   player2_id: 1
   result: MyString
   round_date: 26-01-2011
+  pgn_file: ../pgn/partie.pgn
 
 two:
   round_id: 1
   player1_id: 1
   player2_id: 1
   result: MyString
+  pgn_file: ../pgn/partie.pgn

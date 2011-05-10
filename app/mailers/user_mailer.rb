@@ -12,7 +12,7 @@ class UserMailer < ActionMailer::Base
     @user = user
     @newsletter = newsletter
     @url  = "http://zpionka.pl"
-    mail(:to => user.email,
+    mail(:to => @user.email,
          :subject => "Newsletter: " + @newsletter.title )
   end	
   

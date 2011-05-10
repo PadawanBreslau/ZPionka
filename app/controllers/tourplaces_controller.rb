@@ -37,9 +37,9 @@ class TourplacesController < ApplicationController
   end
 
   def destroy
-    Tourplace.find(params[:Tourplace]).destroy
+    Tourplace.find(params[:id]).destroy
     flash[:success] = "Tourplace destroyed."
-    redirect_to tourplace_path
+    redirect_to tourplaces_path
   end
 
   def edit

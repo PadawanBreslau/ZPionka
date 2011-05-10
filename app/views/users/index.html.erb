@@ -1,6 +1,11 @@
 <% @users = User.find(:all, :order => "login") %>
+<table>
 <% @users.each do |user| %>
-<ul> 
-<li><%= link_to user.login, user %>
-</ul>
+	<tr>
+		<td>
+		<%= link_to user.login, user %> </td>
+	<td><% unless user.allowance.nil? %>
+		<%= user.allowance.description %>
+	<% end %></td></tr>
 <% end %>
+</table>

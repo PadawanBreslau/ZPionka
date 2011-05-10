@@ -1,8 +1,8 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  name: MyString
-  surname: MyString
+  name: PlayerName1
+  surname: PlayerSurname1
   rating: 1
   country: MyString
 

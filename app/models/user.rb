@@ -9,10 +9,12 @@ validates :email, :presence => true, :format => { :with => email_regex }
 validates_numericality_of :rating
 validates_numericality_of :age
 validates :password, :presence => true, :confirmation => true
+validates_uniqueness_of :email, :on => :create
+validates_uniqueness_of :login, :on => :create
 
 before_save :encrypt_password
 
-belongs_to :allowance
+has_one :allowance
 has_many :comments
 has_many :infos
 has_many :gamechats

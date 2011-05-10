@@ -1,6 +1,9 @@
 <div id="wrapper">
 
-<h3 id="game_header_name"><%= @ggame.get_white.to_s + " (" + @ggame.get_white_elo_str.to_s + ") " %>-<%= " " + @ggame.get_black.to_s + " (" +  @ggame.get_black_elo_str.to_s + ") " +  @ggame.get_result_str.to_s %></h3>
+<h3 id="game_header_name">
+	<%= link_to @ggame.get_white.to_s + " (" + @ggame.get_white_elo_str.to_s + ") ", @player_white %>-
+	<%= link_to @ggame.get_black.to_s + " (" +  @ggame.get_black_elo_str.to_s + ") ", @player_black  %>
+	<%= @ggame.get_result_str.to_s %></h3>
 
   <div id="board3"></div>
   <p id="board-annot">
@@ -19,7 +22,7 @@
 	<% half_move = position.move_number*2 %>
 	<% if position.white_on_move? %>
 		
-		<%= position.move_number.to_s + ". " %>
+		<span class="move_number"><%= position.move_number.to_s + ". " %></span>
 		<% half_move -= 1 %>
 	<% end %>
 	
@@ -27,6 +30,7 @@
    <a class="goto-position" href="#" data-move="<%= half_move%>"><%= position.move %></a>
 
 <% end %>	
+
 	
 </div>	
 

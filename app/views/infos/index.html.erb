@@ -1,8 +1,9 @@
 <% @info = Info.find(:all, :order => "created_at DESC") %>
 <% @info.each do |info| %>
 
-<%= info.title %><br/>
-<%= info.short_content %><br/>
+<%= info.updated_at.strftime("%d.%m.%Y") %>
+<span class="info_title"><%= info.title %></span><br/>
+<%= info.short_content %><br/><br/>
 
 <%= link_to "Read info", info %>
 

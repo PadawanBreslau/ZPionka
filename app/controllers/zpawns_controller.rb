@@ -41,7 +41,7 @@ class ZpawnsController < ApplicationController
   def destroy
     Zpawn.find(params[:id]).destroy
     flash[:success] = "Zpawn destroyed."
-    redirect_to :back
+    redirect_to_back root_path
   end
 
   def edit

@@ -6,7 +6,15 @@ class UsersController < ApplicationController
 
   def create
   @user = User.new(params[:user])
-  if @user.save
+    	  	
+  if @user.save 
+      
+    @allowance = Allowance.new
+  	@allowance.user_id = @user.id
+  	@allowance.allowance_level = 5
+  	@allowance.description = "User"
+  	@allowance.save!
+  
     flash[:success] = "Udane dodanie"
 	UserMailer.welcome_email(@user).deliver
 	redirect_to @user
@@ -33,8 +41,16 @@ def show
 
 end
 
-  def update
+def update
+  @user = User.find(params[:id])
+  if @user.update_attributes(params[:user])
+    flash[:success] = "User succesfully updated."
+    redirect_to @user
+  else
+    @title = "Edit user"
+    render 'edit'
   end
+end
 
   def edit
       @title = "Edit user"

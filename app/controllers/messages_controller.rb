@@ -6,6 +6,7 @@ class MessagesController < ApplicationController
 
   def create
   @message = Message.new(params[:message])
+  @message.was_read = false
   if @message.save
     flash[:success] = "Succesfully sent"
     redirect_to @message

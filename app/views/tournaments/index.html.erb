@@ -14,8 +14,12 @@ tournament.id %>
 	<table><tr><td width="80px">
 		<% @rounds = get_all_rounds(tournament.id) %>	
 		<% @rounds.each do |round| %>
-		<span class="round_stripe">		
-			<% @round_number = "Round " + round.round_number.to_s %>
+		<span class="round_stripe">
+			<% if !Observedround.where(:user_id => current_user.id, :round_id => round.id).first.nil? %>
+				<% @round_number = "#Round " + round.round_number.to_s %>
+			<% else %>	
+				<% @round_number = "Round " + round.round_number.to_s %>
+			<% end %>	
 			<%= link_to @round_number, :controller => "tournaments", :action => "add_to_observed_round_and_redirect", :id =>  
 tournament.id, :round_id => round.id %>			
 				<br/>

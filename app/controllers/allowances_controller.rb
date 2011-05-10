@@ -32,12 +32,6 @@ class AllowancesController < ApplicationController
   	
   end
   
-
-  def edit
-  end
-
-  def destroy
-  end
   
   private
   def delete_where_user_id_and_not_id (allowance)

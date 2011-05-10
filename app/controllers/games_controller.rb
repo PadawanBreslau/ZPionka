@@ -39,12 +39,14 @@ class GamesController < ApplicationController
   		@game_pgn = PGNReader.new @game.pgn_file
   		@ggame = @game_pgn.parse_game
   		@round = @ggame.get_round
-  			
-  	else	
+  	  	@player_white = Player.find(@game.player1_id)
+  		@player_black = Player.find(@game.player2_id)
   	
+  	else	
+  		
   	@game_pgn = PGNReader.new
-  	@player_white = Player.find(@game.player1_id).surname
-  	@player_black = Player.find(@game.player2_id).surname
+  	@player_white = Player.find(@game.player1_id)
+  	@player_black = Player.find(@game.player2_id)#.surname
   	
   	end
   	

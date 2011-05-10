@@ -2,7 +2,9 @@ class CommentsController < ApplicationController
   def new
   	@title = "Add new comment"
   	@comment = Comment.new
-  	@user_id = current_user.id
+  	if !current_user.nil?
+  		@user_id = current_user.id
+  	end
   	@info_id = params[:info_id]
   end
 
@@ -44,14 +46,17 @@ class CommentsController < ApplicationController
     @redirect_to = @comment.info_id
     @comment.destroy
     flash[:success] = "Comment destroyed."
-    redirect_to Info.find(@redirect_to)
+    redirect_to_back root_path
+    #redirect_to Info.find(@redirect_to)
   end
 
   def edit
-    @title = "Edit comment"
+	@title = "Edit comment"
     @comment = Comment.find(params[:id])
-    @user_id = current_user.id
-  	@info_id = params[:info_id]
+    if !current_user.nil?
+    	@user_id = current_user.id 
+	end
+    @info_id = params[:info_id]
   end
 
 end
