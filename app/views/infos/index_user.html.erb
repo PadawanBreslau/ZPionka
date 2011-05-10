@@ -1,6 +1,7 @@
 
 
 <% @info = Info.find(:all, :order => "created_at DESC", :conditions => {:user_id => params[:id]}) %>
+<% unless @info.empty? %>
 <% @info.each do |info| %>
 
 <strong><%= info.title %></strong><br/>
@@ -17,5 +18,10 @@
 <% end %>
 
 <hr/>
+<% end %>
+
+<% else %>
+<h3><%= "No infos to display" %></h3> 
 
 <% end %>
+<%= link_to "Return to profile", current_user %>

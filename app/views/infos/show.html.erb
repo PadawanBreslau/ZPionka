@@ -15,8 +15,8 @@
 <%= comment.find_user(comment.user_id) %></b>
 <% if comment.user_id == current_user.id %>
 
-<%= link_to "Edit", edit_comment_path(comment,:info_id => @info.id) %>
-<%= link_to "Delete", comment, :method => :delete, :confirm => "Are you sure?" %>
+<%= link_to "Edit", edit_comment_path(comment,:info_id => @info.id)  %>
+<%= link_to 'Delete', delete_comment_path(:id => comment.id) %>
 	
 <% end %>	
 <br/><%= comment.content %>

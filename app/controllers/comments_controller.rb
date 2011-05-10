@@ -43,7 +43,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    @redirect_to = @comment.info_id
+    #@redirect_to = @comment.info_id
     @comment.destroy
     flash[:success] = "Comment destroyed."
     redirect_to_back root_path

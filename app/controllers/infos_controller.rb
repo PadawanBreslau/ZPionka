@@ -45,6 +45,10 @@ class InfosController < ApplicationController
   end
   
   end
+  
+  def delete
+  	
+  end	
 
   def destroy
     Info.find(params[:id]).destroy

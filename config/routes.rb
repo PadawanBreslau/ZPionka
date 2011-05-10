@@ -216,6 +216,8 @@ ZPionka::Application.routes.draw do
   get "info/update"
 
   get "info/destroy"
+  
+  get "info/delete"
 
   get "info/edit"
   get "user/new"
@@ -246,6 +248,8 @@ resources :games
 resources :sessions, :only => [:new, :create, :destroy]
 
 
+
+match '/delete_comment', :to => "comments#destroy"
 match '/signout', :to => "sessions#destroy"
 match '/userlist', :to => "users#index" 
 match '/infolist', :to => "infos#index" 
