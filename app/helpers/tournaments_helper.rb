@@ -61,15 +61,11 @@ module TournamentsHelper
 	
   def tournament_results (round_number)
   	@rounds = @tournament.rounds
-  	unless 	@rounds.first.nil?
-  		@games = @rounds.first.games
-		players = all_players(@games)
-	
-		@games = @tournament.games
-	else
-		return
-	end
-	
+
+	@games = @tournament.games
+	players = all_players(@games)
+
+
 	@games.each do |game|
 		player1 = game.player1_id
 		player2 = game.player2_id
@@ -77,19 +73,22 @@ module TournamentsHelper
 		
 		unless result.nil?
 			
-			if result == "1"
+			if result == "0"
 				
 				players = find_player_with_id(player1, players,1)
 				players = find_player_with_id(player2, players,0)
+		
+			elsif result == "1"	
+			
+				players = find_player_with_id(player1, players,0.5)
+				players = find_player_with_id(player2, players,0.5)		
+				
 			elsif result == "2"
 				
-				players = find_player_with_id(player1, players,0.5)
-				players = find_player_with_id(player2, players,0.5)
-				
-			elsif result == "3"	
-			
 				players = find_player_with_id(player1, players,0)
-				players = find_player_with_id(player2, players,1)	
+				players = find_player_with_id(player2, players,1)
+				
+
 		    end
     	
 		end    	
@@ -106,8 +105,8 @@ module TournamentsHelper
   def count_bucholtz(players)
   	players.each do |player|
 	  	player_bucholtz = 0
-	  	max_bucholtz = 0
-	  	min_bucholtz = 0
+	  	max_bucholtz = -1
+	  	min_bucholtz = -1
 	  	
   		@opponents = find_player_opponents(player[0])
   		
@@ -117,7 +116,7 @@ module TournamentsHelper
   					add_bucholtz = player2[1]
 					player_bucholtz += add_bucholtz
 					
-					if min_bucholtz ==0
+					if min_bucholtz == -1
 						min_bucholtz = max_bucholtz = add_bucholtz
 					elsif  add_bucholtz < min_bucholtz
 						min_bucholtz = add_bucholtz
@@ -128,8 +127,13 @@ module TournamentsHelper
   			end
   		end	
 	  	
-	  	player[2] = player_bucholtz
-	  	player[3] = player_bucholtz - (max_bucholtz+min_bucholtz)
+	  	if max_bucholtz!=min_bucholtz
+	  		player[2] = player_bucholtz - (max_bucholtz+min_bucholtz)
+  		else
+  			player[2] = player_bucholtz - max_bucholtz
+  		end
+  		
+	  	player[3] = player_bucholtz
   	end	
   	
   	players
@@ -140,8 +144,8 @@ module TournamentsHelper
   	  	
 	  	@opponents = find_player_opponents(player[0])
 	  	rounds = @opponents.size
+	  	@rating_sum = 0
 	  	@opponents.each do |opponent|
-	  		@rating_sum = 0
 	  		rating = Player.find(opponent).rating
 	  		@rating_sum += rating
         end
@@ -181,7 +185,7 @@ module TournamentsHelper
   		players.insert(0,p1)
   		players.insert(0,p2)
   	end	
-  	players
+  	players.uniq!
   end	
 	
 def	tournament_not_observed(id)

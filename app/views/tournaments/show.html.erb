@@ -19,15 +19,15 @@
  <td>
  	
  <table border="1" align="center">	
- <tr><td>Nr</td><td width="50%">Player</td><td>Pts.</td><td>MBuch</td><td>Buch</td><td>AvgRtg</td></tr>	
+ <tr><td>Nr</td><td width="50%">Player</td><td>Rating</td><td>Pts.</td><td>MBuch</td><td>Buch</td><td>AvgRtg</td></tr>	
  <%	@results = tournament_results(max_round_number) %>
  <% counter = 1 %>
  <% unless @results.nil? %>
  <% @results.each do |result| %>
  <% player = Player.find(result[0]) %>
  <tr><td>
- <%= counter.to_s + ". " %></td><td><strong><%= link_to (player.surname + " " + player.name),player %></strong></td><td>
- <%= result[1] %></td><td><%= result[2]%> </td><td> <%= result[3]%> </td><td> <%= result[4]%></td>
+ <%= counter.to_s + ". " %></td><td><strong><%= link_to (player.surname + " " + player.name),player %></td><td><%= player.rating%></strong></td><td>
+ <%= result[1].to_f %></td><td><%= result[2].to_f %> </td><td> <%= result[3].to_f %> </td><td> <%= result[4]%></td>
  <% counter+=1 %>
  </tr>
  <% end %>

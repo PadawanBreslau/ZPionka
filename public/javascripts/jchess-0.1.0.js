@@ -168,12 +168,14 @@ if (typeof console == "undefined") { var console = { log: function() {} } }
         }
       },
       
+      
        transitionToFinish : function() {
         while (this.game.halfmove_number < this.game.transitions.length) {
           this.runTransitions(this.game.transitions[this.game.halfmove_number].forward);
           this.game.halfmove_number++;          
         }
       },
+      
       
       transitionToStart : function() {
         while (this.game.halfmove_number > 0) {

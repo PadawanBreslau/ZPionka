@@ -10,7 +10,13 @@ jQuery(document).ready(function() {
   jQuery().keyup(function(event) {
    if(event.keyCode==39) chess.transitionForward();
    else if(event.keyCode==37) chess.transitionBackward();
+   else if(event.keyCode==40) chess.transitionToStart(); //key down
+   else if(event.keyCode==38) chess.transitionToFinish(); // key up
+   else if(event.keyCode==70) chess.flipBoard();
+   else alert(event.keyCode)
   });
+  
+  
 
   jQuery('#board-back').click(function() {
     chess.transitionBackward();
