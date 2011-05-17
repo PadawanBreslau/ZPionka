@@ -1,0 +1,15 @@
+[Event "Najdorf Memorial"]
+[Site "Warsaw POL"]
+[Date "2010.07.17"]
+[Round "1"]
+[White "Janczarski, Michal"]
+[Black "Hammer, Jon Ludvig"]
+[Result "1-0"]
+[WhiteElo "0"]
+[BlackElo "0"]
+[ECO "?"]
+[FEN "1r4k1/2qbn1b1/1p2pr1p/2P2p2/pP1p1Pp1/P2P2P1/Q2N1NBP/2R1R1K1 b - - 0 24"]
+
+24... b5 
+{ Najaktywniejsza proba gry. Biale probuje ustawic wieze na polu c5 aby rozpoczac nacisk na piona b5. Jesli ten pionek padnie, skoczki bialych wroca do gry i pozycja bedzie wygrana.} 
+1-0

@@ -139,6 +139,7 @@ Autocompleter.Base = Class.create({
          Event.stop(event);
          return;
        case Event.KEY_LEFT:
+       		alert('Right key stroke')
        case Event.KEY_RIGHT:
          return;
        case Event.KEY_UP:

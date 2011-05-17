@@ -7,6 +7,11 @@ jQuery(document).ready(function() {
  // var chess5 = jQuery('#board5').chess({pgn : jQuery('#with-queening').html()});
  // var chess6 = jQuery('#board6').chess({pgn : jQuery('#unambiguous-knight-move').html()});
 
+  jQuery().keyup(function(event) {
+   if(event.keyCode==39) chess.transitionForward();
+   else if(event.keyCode==37) chess.transitionBackward();
+  });
+
   jQuery('#board-back').click(function() {
     chess.transitionBackward();
     jQuery("#board-annot").text( chess.annotation() );

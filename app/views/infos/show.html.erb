@@ -1,6 +1,6 @@
 <%= @info.updated_at.strftime("%d.%m.%Y") %>
 
-<span class="info_title"><%= @info.title %></span><br/><br/>
+<span class="info_title"><%= @info.title %>&nbsp&nbsp(<%= link_to @user.login, @user %>)</span><br/><br/>
 <% unless @info.lead==nil %>
 <strong><%= @info.lead %></strong><br />
 <% end%>
@@ -12,11 +12,12 @@
 <% @comments = @info.show_comments(@info.id) %>
 <% @comments.each do |comment| %>
 <b>
-<%= comment.find_user(comment.user_id) %></b>
+<% @user_login = comment.find_user(comment.user_id) %>
+<strong><%= link_to @user_login, User.find_by_login(@user_login) %></strong></b>
 <% if comment.user_id == current_user.id %>
 
 <%= link_to "Edit", edit_comment_path(comment,:info_id => @info.id)  %>
-<%= link_to 'Delete', delete_comment_path(:id => comment.id) %>
+<%= link_to 'Delete', delete_comment_path(:id => comment.id), :confirm => "Are you sure" %>
 	
 <% end %>	
 <br/><%= comment.content %>

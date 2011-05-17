@@ -24,7 +24,7 @@ class InfosController < ApplicationController
   def show
   @info = Info.find(params[:id])
   @title = @info.title
-  
+  @user = User.find(@info.user_id)
   
   
   end
@@ -32,6 +32,7 @@ class InfosController < ApplicationController
   def index
      @title = "Info list" 
      @info = Info.paginate(:page => params[:page])
+     
   end
 
   def update

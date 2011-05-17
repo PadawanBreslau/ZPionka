@@ -248,7 +248,7 @@ resources :games
 resources :sessions, :only => [:new, :create, :destroy]
 
 
-
+match 'user_send_message', :to => "users#mail_index"
 match '/delete_comment', :to => "comments#destroy"
 match '/signout', :to => "sessions#destroy"
 match '/userlist', :to => "users#index" 

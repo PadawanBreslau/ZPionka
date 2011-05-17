@@ -1,14 +1,19 @@
 <% @info = Info.find(:all, :order => "created_at DESC") %>
 <% @info.each do |info| %>
+	<% @user = User.find(info.user_id) %>
 
 <%= info.updated_at.strftime("%d.%m.%Y") %>
-<span class="info_title"><%= info.title %></span><br/>
-<%= info.short_content %><br/><br/>
+<span class="info_title"><%= info.title %>&nbsp&nbsp(<%= link_to @user.login, @user %>)</span><br/>
+<%= info.short_content %>&nbsp <%= link_to "More...", info %><br/><br/>
+
+
+
 
 <%= link_to "Read info", info %>
+(<%= comment_count = Comment.find(:all, :conditions => {:info_id => info.id}).size %>)
 
 
-<% if admin_in? || signed_in? && current_user.id == @info.user_id %>
+<% if admin_in? || signed_in? && current_user.id == info.user_id %>
 | <%= link_to "Edit info", edit_info_path(info)%> |
 <%= link_to "Delete info", info, :method => :delete, :confirm => "Are you sure?",
 :title => "Delete #{info.title}" %>

@@ -48,7 +48,8 @@
 		<% end %>
 	
 	    <i><%= zpawn.updated_at.strftime("%H:%M") %></i>&nbsp
-		<strong><%= @login = User.find(zpawn.user_id).login + ": " %></strong>
+	    <% @login = User.find(zpawn.user_id) %>
+		<strong><%= link_to @login.login + ": ", @login %></strong>
 		<%= zpawn.content.html_safe %> <br/>
 	<% end %>	
 </div>
@@ -60,8 +61,17 @@
 	<% @infos = Info.find(:all, :limit => 5) %>
 	<% @infos.each do |info| %>
 		<span class="rignt_info_panel_stripe"><%= link_to info.title, info %></span><br/>
-		<%= info.short_content %><hr/>
-	
+		<%= info.short_content %><br/>
+		<%= link_to "Read info", info %>
+		(<%= comment_count = Comment.find(:all, :conditions => {:info_id => info.id}).size %>)
+
+
+		<% if admin_in? || signed_in? && current_user.id == info.user_id %>
+| 			<%= link_to "Edit info", edit_info_path(info)%> |
+			<%= link_to "Delete info", info, :method => :delete, :confirm => "Are you sure?",
+:title => "Delete #{info.title}" %><hr/>
+
+		<% end %>
 	<% end %>
 </div>	
 <% end %>

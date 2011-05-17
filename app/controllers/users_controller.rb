@@ -41,6 +41,10 @@ def show
 
 end
 
+def mail_index
+  	@users = User.all	
+end
+
 def update
   @user = User.find(params[:id])
   if @user.update_attributes(params[:user])

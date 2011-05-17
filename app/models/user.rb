@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+	
+	default_scope :order => 'login ASC'
   
 attr_accessor  :password,  :password_confirmation
 email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

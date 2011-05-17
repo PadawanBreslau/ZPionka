@@ -15,7 +15,7 @@ tournament.id %>
 		<% @rounds = get_all_rounds(tournament.id) %>	
 		<% @rounds.each do |round| %>
 		<span class="round_stripe">
-			<% if !Observedround.where(:user_id => current_user.id, :round_id => round.id).first.nil? %>
+			<% if signed_in? && !Observedround.where(:user_id => current_user.id, :round_id => round.id).first.nil? %>
 				<% @round_number = "#Round " + round.round_number.to_s %>
 			<% else %>	
 				<% @round_number = "Round " + round.round_number.to_s %>

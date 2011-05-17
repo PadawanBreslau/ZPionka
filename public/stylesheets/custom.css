@@ -141,6 +141,8 @@ DIV#chat_panel{
 	background-image:url('../images/navigation.png');
 }
 
+
+
 DIV#display_chat_panel
 {
 	display:block;
@@ -184,6 +186,12 @@ DIV#board
 }
 
 DIV#board a{
+	color: #ddd;
+	font-weight:bold;
+	font-variant:small-caps;
+}
+
+DIV#right_info_panel a{
 	color: #ddd;
 	font-weight:bold;
 	font-variant:small-caps;
@@ -293,6 +301,12 @@ padding:10px;
 font-size: 80% ;
 }
 
+DIV#zpawn_display a {
+	color: #ddd;
+	font-weight:bold;
+	font-variant:small-caps;
+}
+
 
 p.tournament_stripe{
 	color: white;
@@ -315,6 +329,12 @@ span.round_stripe a{
 	color: #ddd;
 	font-weight: bold; 
 	padding-left:-5px;
+}
+
+span.chat_stripe a {
+	color: #ddd;
+	font-weight:bold;
+	font-variant:small-caps;
 }
 
 span.round_stripe a:active{
