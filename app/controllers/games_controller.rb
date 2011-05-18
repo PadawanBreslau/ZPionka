@@ -2,6 +2,9 @@ class GamesController < ApplicationController
   def new
   end
 
+def variation
+end	
+
   def create
   end
 
@@ -28,29 +31,39 @@ class GamesController < ApplicationController
   end
 
   def show
-  	@game = Game.find(params[:id])
-  	@file = File.new @game.pgn_file.to_s
-  	@pgn_string = read_pgn_file @file
+  	if Game.find(params[:id])!=nil?
+  		@game = Game.find(params[:id])
+  		@file = File.new @game.pgn_file.to_s
+  		@pgn_string = read_pgn_file @file
   	
-  	@game_pgn = PGNReader.new @game.pgn_file
-  	@ggame = @game_pgn.parse_game
-	
-  	unless @game.pgn_file.nil?
   		@game_pgn = PGNReader.new @game.pgn_file
   		@ggame = @game_pgn.parse_game
-  		@round = @ggame.get_round
-  	  	@player_white = Player.find(@game.player1_id)
-  		@player_black = Player.find(@game.player2_id)
+	
+  		unless @game.pgn_file.nil?
+  			@game_pgn = PGNReader.new @game.pgn_file
+  			@ggame = @game_pgn.parse_game
+  			@round = @ggame.get_round
+  		  	@player_white = Player.find(@game.player1_id)
+  			@player_black = Player.find(@game.player2_id)
   	
-  	else	
+  		else	
   		
-  	@game_pgn = PGNReader.new
-  	@player_white = Player.find(@game.player1_id)
-  	@player_black = Player.find(@game.player2_id)#.surname
+ 	 		@game_pgn = PGNReader.new
+ 	 		@player_white = Player.find(@game.player1_id)
+ 	 		@player_black = Player.find(@game.player2_id)#.surname
+  	  	
+  		end
+  		
+  		  	@positions = @game.positions
+  			@position = @positions.first.id
   	
-  	end
   	
-  	@positions = @game.positions
+  			cookies[:position] = @position
+  	
+  	else
+  		@position = Position.find(cookies[:position])
+	end
+  	
   	
 
   #	@engine = ChXBoardEngine.new "vendor/jazz/jazz-wb-444-32-ja.exe","vendor/jazz" 

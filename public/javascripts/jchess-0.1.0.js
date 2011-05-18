@@ -164,23 +164,31 @@ if (typeof console == "undefined") { var console = { log: function() {} } }
       transitionForward : function() {
         if (this.game.halfmove_number < this.game.transitions.length) {
           this.runTransitions(this.game.transitions[this.game.halfmove_number].forward);
-          this.game.halfmove_number++;          
+          this.game.halfmove_number++;   
+          var new_cookie_value = parseInt(ReadCookie('position'))+1;   
+          createCookie('position',new_cookie_value,1);
+
+			
+
+		//$('#vars').replaceWith("<div id='vars'><h1>Krowa</h1></div>"); 
+        $('#vars').load('variations #vars' , { 'id': 1 });
+         //alert(location) ;   
         }
       },
-      
       
        transitionToFinish : function() {
         while (this.game.halfmove_number < this.game.transitions.length) {
           this.runTransitions(this.game.transitions[this.game.halfmove_number].forward);
-          this.game.halfmove_number++;          
+          this.game.halfmove_number++;   
+         // alert(ReadCookie('position')) ;       
         }
       },
-      
       
       transitionToStart : function() {
         while (this.game.halfmove_number > 0) {
           this.game.halfmove_number--;
-          this.runTransitions(this.game.transitions[this.game.halfmove_number].backward);          
+          this.runTransitions(this.game.transitions[this.game.halfmove_number].backward);
+          //alert(ReadCookie('position')) ;          
         }
       },
       
@@ -189,7 +197,10 @@ if (typeof console == "undefined") { var console = { log: function() {} } }
       transitionBackward : function() {
         if (this.game.halfmove_number > 0) {
           this.game.halfmove_number--;
-          this.runTransitions(this.game.transitions[this.game.halfmove_number].backward);          
+          this.runTransitions(this.game.transitions[this.game.halfmove_number].backward);
+          var new_cookie_value = parseInt(ReadCookie('position'))-1;   
+          createCookie('position',new_cookie_value,1);
+        //  alert(ReadCookie('position')) ;            
         }
       },
       

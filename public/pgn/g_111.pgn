@@ -1,18 +1,13 @@
-[Event "12th ch-EUR"]
-[Site "Aix-les-Bains FRA"]
-[Date "2011.03.27"]
-[Round "6.96"]
-[White "Antal,Ge"]
-[Black "Zawadzka,J"]
+[Event "ch POL"]
+[Site "Warsaw POL"]
+[Date "2011.02.15"]
+[Round "4"]
+[White "Staniszewski, Piotr"]
+[Black "Tazbir, Marcin"]
 [Result "1-0"]
-[WhiteElo "2545"]
-[BlackElo "2386"]
-[ECO "C52"]
 
-1. e4 e5 2. Nf3 Nc6 3. Bc4 Bc5 4. b4 Bxb4 5. c3 Ba5 6. d4 d6 7. Qb3 Qd7 8. Nbd2 
-Bb6 9. dxe5 Na5 10. Qc2 Nxc4 11. Nxc4 Qc6 12. Nxb6 axb6 13. Nd4 Qc4 14. exd6 
-cxd6 15. a3 Ne7 16. Rb1 O-O 17. Rb4 Qc7 18. Nb5 Qc6 19. O-O d5 20. Bg5 f6 21. 
-Bf4 dxe4 22. Bd6 Nd5 23. Rd4 Qxb5 24. c4 Qa4 25. Qxa4 Rxa4 26. Bxf8 Kxf8 27. 
-Rxd5 Be6 28. Rd8+ Kf7 29. Rb8 Bxc4 30. Rxb7+ Kg6 31. Ra1 b5 32. h3 Ra6 33. Rd1 
-Rxa3 34. Rdd7 Ra1+ 35. Kh2 Ra2 36. Kg3 Kf5 37. Rxg7 e3 38. fxe3 Bd5 39. e4+ Bxe4 
-40. Rxb5+ Ke6 1-0
+1. d4 Nf6 2. c4 g6 3. Nc3 d5 4. cxd5 Nxd5 5. e4 Nxc3 6. bxc3 Bg7 7. Bc4 O-O 8. 
+Be3 c5 9. Ne2 Nc6 10. O-O Qc7 11. Rc1 Na5 12. Bd3 b6 13. Qd2 Bd7 14. Bh6 Rad8 
+15. Bxg7 Kxg7 16. Qe3 f6 17. Nf4 Nc6 18. Bb5 e5 19. Nd5 Qd6 20. dxc5 Qxc5 21. 
+Qxc5 bxc5 22. Rfd1 Na5 23. Nc7 Bc8 24. Ba6 Rxd1+ 25. Rxd1 Rf7 26. Ne8+ Kf8 27. 
+Nd6 1-0

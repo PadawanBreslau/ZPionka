@@ -1,15 +1,18 @@
-[Event "2nd Grandmasters' Tournament"]
-[Site "Lublin 2010"]
-[Date "2010/5/18"]
-[Round "9"]
-[White "Macieja, Bartlomiej (2618)"]
-[Black "Dziuba, Marcin (2576)"]
-[Result "*"]
+[Event "ch POL"]
+[Site "Warsaw POL"]
+[Date "2011.02.16"]
+[Round "5"]
+[White "Macieja, Bartlomiej"]
+[Black "Gajewski, Grzegorz"]
+[Result "1-0"]
 
-1. c4 e6 2. d4 d5 3. Nf3 c6 4. Nbd2 Nf6 5. e3 Be7 6. b3 b6 7. Bd3 Bb7 8. O-O 
-Nbd7 9. Bb2 O-O 10. Qe2 c5 11. Rfd1 cxd4 12. exd4 Re8 13. Ne5 dxc4 14. bxc4 Qc7 
-15. f4 g6 16. Ndf3 Nh5 17. Qe3 Ng7 18. Nxd7 Qxd7 19. Ne5 Qc7 20. Qh3 f5 21. Be2 
-Bd6 22. Rac1 Bxe5 23. fxe5 Be4 24. d5 Rad8 25. d6 Qc6 26. c5 bxc5 27. Bd4 Qa4 
-28. Rxc5 Rb8 29. Qe3 Qxa2 30. Ra1 Rb1+ 31. Rxb1 Qxb1+ 32. Rc1 Qb8 33. Bxa7 Qa8 
-34. Bb6 f4 35. Qf2 Qa3 36. Qc5 Qb2 37. Bf3 Bxf3 38. gxf3 Nf5 39. d7 Rd8 40. Rc2 
-Qb1+ 41. Rc1 Qb2 42. Qc7 Kg7 43. Bf2 Kh6 44. Rf1 *
+1. e4 c5 2. Nf3 e6 3. d4 cxd4 4. Nxd4 a6 5. Bd3 Bc5 6. Nb3 Be7 7. f4 d6 8. Be3 
+Nf6 9. N1d2 Nc6 10. g4 h6 11. h4 h5 12. g5 Ng4 13. Bg1 b5 14. a4 Bb7 15. axb5 
+axb5 16. Bxb5 O-O 17. Rh3 Rxa1 18. Qxa1 Nb4 19. Qa7 Qa8 20. Qxa8 Rxa8 21. Rc3 
+Bd8 22. Rc4 Na6 23. Ra4 g6 24. Ke2 e5 25. fxe5 Nxe5 26. Na5 Bxa5 27. Rxa5 Nc7 
+28. Rxa8+ Bxa8 29. Ba4 Ne6 30. b4 Kg7 31. Bb3 Nf4+ 32. Kf1 Ng4 33. c4 f6 34. Bd4 
+Ne6 35. gxf6+ Nxf6 36. Bc3 Kf7 37. e5 dxe5 38. Bxe5 Ng4 39. Bg3 Nd4 40. c5+ Nxb3 
+41. Nxb3 Ne3+ 42. Ke2 Nc2 43. Be1 Ke6 44. Bc3 Kd5 45. Kd3 Na3 46. Na5 Nb5 47. 
+Nc4 Ke6 48. Be5 Bg2 49. Ne3 Bb7 50. Bb2 Nc7 51. Kd4 Bf3 52. Nf1 Nb5+ 53. Ke3 Bc6 
+54. Bc1 Nc3 55. Bd2 Ne4 56. Nh2 Nf6 57. Nf3 Be8 58. Kd4 Bb5 59. Ne5 Be8 60. c6 
+Ng4 61. Nxg4 hxg4 62. Kc5 g3 63. b5 g2 64. Be3 1-0

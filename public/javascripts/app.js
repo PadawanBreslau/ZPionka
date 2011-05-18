@@ -1,3 +1,34 @@
+function extractCookieValue(val) {
+  if ((endOfCookie = document.cookie.indexOf(";", val)) == -1) {
+     endOfCookie = document.cookie.length;
+  }
+  return unescape(document.cookie.substring(val,endOfCookie));
+}
+
+function ReadCookie(cookiename) {
+  var numOfCookies = document.cookie.length;
+  var nameOfCookie = cookiename + "=";
+  var cookieLen = nameOfCookie.length;
+  var x = 0;
+  while (x <= numOfCookies) {
+        var y = (x + cookieLen);
+        if (document.cookie.substring(x, y) == nameOfCookie)
+           return (extractCookieValue(y));
+           x = document.cookie.indexOf(" ", x) + 1;
+           if (x == 0){
+              break;
+           }
+  }
+  return (null);
+}
+
+function createCookie(name, value, expiredays) {
+  var todayDate = new Date();
+  todayDate.setDate(todayDate.getDate() + expiredays);
+  document.cookie = name + "=" + value + "; expires=" +todayDate.toGMTString() + ";"
+}
+
+
 jQuery(document).ready(function() {
   // Uncomment one at a time to see the examples
  // var chess1 = jQuery('#board1').chess();
@@ -13,7 +44,7 @@ jQuery(document).ready(function() {
    else if(event.keyCode==40) chess.transitionToStart(); //key down
    else if(event.keyCode==38) chess.transitionToFinish(); // key up
    else if(event.keyCode==70) chess.flipBoard();
-   else alert(event.keyCode)
+
   });
   
   

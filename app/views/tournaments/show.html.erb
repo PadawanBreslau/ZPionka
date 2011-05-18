@@ -6,7 +6,7 @@
 	
 <% @rounds.each do |round| %>
 
-<% @round_stripe = "Round " + round.round_number.to_s %>	
+<% @round_stripe = "Round" + round.round_number.to_s %>	
 <%= link_to @round_stripe, round %><br/>
 
 <% if round.round_number > max_round_number %>
@@ -18,7 +18,7 @@
  
  <td>
  	
- <table border="1" align="center">	
+ <table border="1" align="center" width="70%">	
  <tr><td>Nr</td><td width="50%">Player</td><td>Rating</td><td>Pts.</td><td>MBuch</td><td>Buch</td><td>AvgRtg</td></tr>	
  <%	@results = tournament_results(max_round_number) %>
  <% counter = 1 %>

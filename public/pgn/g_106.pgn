@@ -1,13 +1,15 @@
-[Event "POL-ch"]
+[Event "ch POL"]
 [Site "Warsaw POL"]
-[Date "2010.01.09"]
-[Round "1"]
-[White "Jakubowski, Krzysztof"]
-[Black "Socko, Bartosz"]
+[Date "2011.02.15"]
+[Round "4"]
+[White "Gajewski, Grzegorz"]
+[Black "Kempinski, Robert"]
 [Result "1/2-1/2"]
 
-1. d4 Nf6 2. Bg5 e6 3. e4 h6 4. Bxf6 Qxf6 5. Nc3 Bb4 6. e5 Qd8 7. Qg4 Qg5 8. Qe2 
-d5 9. a3 Bxc3+ 10. bxc3 b6 11. Nh3 Qe7 12. Qg4 g6 13. Nf4 Ba6 14. Bxa6 Nxa6 15. 
-Qe2 Nb8 16. c4 dxc4 17. Qxc4 O-O 18. O-O c6 19. a4 Rc8 20. Rfe1 Nd7 21. Qd3 Qg5 
-22. g3 Qf5 23. Qxf5 gxf5 24. c4 Nf8 25. d5 cxd5 26. cxd5 Rc5 27. Rad1 Rac8 28. 
-Kg2 Kg7 29. Rd4 Ra5 30. dxe6 fxe6 31. Nh5+ Kf7 32. Nf6 Rc2 1/2-1/2
+1. d4 Nf6 2. c4 g6 3. Nc3 Bg7 4. e4 O-O 5. Nf3 d6 6. Be2 e5 7. O-O exd4 8. Nxd4 
+Nc6 9. Be3 Re8 10. f3 Nh5 11. Qd2 Nxd4 12. Bxd4 Nf4 13. Rfd1 Qg5 14. Bf1 Bxd4+ 
+15. Qxd4 Ne6 16. Qf2 Bd7 17. c5 Qxc5 18. Qxc5 Nxc5 19. Nd5 Red8 20. Nxc7 Rac8 
+21. Nd5 Kf8 22. Rd2 Be6 23. Rad1 Bxd5 24. Rxd5 Ke7 25. Rc1 Ne6 26. Rdd1 Rxc1 27. 
+Rxc1 d5 28. exd5 Rxd5 29. Rc2 g5 30. Kf2 f5 31. Bc4 Rc5 32. Ke3 Kf6 33. g3 b5 
+34. Bd3 f4+ 35. gxf4 gxf4+ 36. Kd2 Rd5 37. Rc6 Ke5 38. b4 Nd4 39. Rc7 Nxf3+ 
+1/2-1/2
