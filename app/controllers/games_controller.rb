@@ -2,8 +2,9 @@ class GamesController < ApplicationController
   def new
   end
 
-def variation
-end	
+ def variation
+ 	safdsfsfsfds
+ end	
 
   def create
   end
@@ -54,15 +55,24 @@ end
   	  	
   		end
   		
-  		  	@positions = @game.positions
-  			@position = @positions.first.id
-  	
-  	
-  			cookies[:position] = @position
-  	
-  	else
-  		@position = Position.find(cookies[:position])
 	end
+	
+	@positions = @game.positions
+	
+	cookies['position_start'] = @game.positions.first.id
+    cookies['position_last'] =  @game.positions.last.id
+	
+	 unless cookies['position'].nil? 	
+		cookies.delete 'position'	
+	 end 
+
+    
+    cookies['position'] = cookies['position_start']
+ 	
+    #@position = @positions.first.id
+  	
+  	
+ 	#cookies[:position] = @position
   	
   	
 

@@ -1,3 +1,8 @@
+function startCookieValue(){
+		var new_cookie_value = parseInt(ReadCookie('position_start'));
+        createCookie('position',new_cookie_value,1);
+      }
+
 function extractCookieValue(val) {
   if ((endOfCookie = document.cookie.indexOf(";", val)) == -1) {
      endOfCookie = document.cookie.length;

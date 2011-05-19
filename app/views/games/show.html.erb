@@ -1,5 +1,6 @@
 <div id="wrapper">
-<h2><% cookies[:position] %></h2>
+
+
 	
 <h3 id="game_header_name">
 	<%= link_to @ggame.get_white.to_s + " (" + @ggame.get_white_elo_str.to_s + ") ", @player_white %>-
@@ -36,8 +37,12 @@
 
 <div id="variations">
 	
+<script>
+startCookieValue();
+</script>
 
 
 </div>	
+
 
 

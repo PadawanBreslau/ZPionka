@@ -166,13 +166,9 @@ if (typeof console == "undefined") { var console = { log: function() {} } }
           this.runTransitions(this.game.transitions[this.game.halfmove_number].forward);
           this.game.halfmove_number++;   
           var new_cookie_value = parseInt(ReadCookie('position'))+1;   
-          createCookie('position',new_cookie_value,1);
-
-			
-
-		//$('#vars').replaceWith("<div id='vars'><h1>Krowa</h1></div>"); 
-        $('#vars').load('variations #vars' , { 'id': 1 });
-         //alert(location) ;   
+          createCookie('position',new_cookie_value,1); 
+          $('#vars').load('variations #vars' , { 'id': 1 });
+         //alert(document.cookie) ;   
         }
       },
       
@@ -180,16 +176,24 @@ if (typeof console == "undefined") { var console = { log: function() {} } }
         while (this.game.halfmove_number < this.game.transitions.length) {
           this.runTransitions(this.game.transitions[this.game.halfmove_number].forward);
           this.game.halfmove_number++;   
+
          // alert(ReadCookie('position')) ;       
         }
+          var new_cookie_value = parseInt(ReadCookie('position_last'));
+          createCookie('position',new_cookie_value,1); 
+          $('#vars').load('variations #vars' , { 'id': 1 });
       },
       
       transitionToStart : function() {
         while (this.game.halfmove_number > 0) {
           this.game.halfmove_number--;
           this.runTransitions(this.game.transitions[this.game.halfmove_number].backward);
+
           //alert(ReadCookie('position')) ;          
         }
+          var new_cookie_value = parseInt(ReadCookie('position_start'));
+          createCookie('position',new_cookie_value,1); 
+          $('#vars').load('variations #vars' , { 'id': 1 });
       },
       
       
@@ -200,6 +204,8 @@ if (typeof console == "undefined") { var console = { log: function() {} } }
           this.runTransitions(this.game.transitions[this.game.halfmove_number].backward);
           var new_cookie_value = parseInt(ReadCookie('position'))-1;   
           createCookie('position',new_cookie_value,1);
+          
+          $('#vars').load('variations #vars' , { 'id': 1 });
         //  alert(ReadCookie('position')) ;            
         }
       },
