@@ -1,0 +1,17 @@
+
+<div id="movecomments">
+<% cookie = cookies['position'] %>	
+<% @movecomments = Movecomment.find(:all, :conditions => ['position_id =?',cookie]) %>
+<% unless @movecomments.nil? %>
+<% @movecomments.each do |comment| %>
+<% @user = User.find(comment.user_id) %>	
+Created by:&nbsp <%= link_to @user.login, @user %>
+<%= comment.updated_at.strftime('%Y-%m-%d %H:%M') %><%= comment.content %>
+<br/>	
+	
+<% end %>	
+<% end %>
+
+
+</div>
+

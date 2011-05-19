@@ -1,4 +1,16 @@
 ZPionka::Application.routes.draw do
+  get "movecomments/new"
+
+  get "movecomments/create"
+
+  get "movecomments/index"
+
+  get "movecomments/update"
+
+  get "movecomments/edit"
+
+  get "movecomments/destroy"
+
   get "uploads/new"
 
   get "uploads/index"
@@ -230,7 +242,7 @@ ZPionka::Application.routes.draw do
   get "session/new"
   get "page/home"
   
-
+resources :movecomments
 resources :uploads 
 resources :newsletters 
 resources :allowances

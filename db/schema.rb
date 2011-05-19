@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110404171936) do
+ActiveRecord::Schema.define(:version => 20110519154942) do
 
   create_table "allowances", :force => true do |t|
     t.integer  "user_id"
@@ -69,6 +69,15 @@ ActiveRecord::Schema.define(:version => 20110404171936) do
     t.string   "title"
     t.text     "message"
     t.boolean  "was_read",   :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "movecomments", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "content"
+    t.integer  "move_sign"
+    t.integer  "position_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
