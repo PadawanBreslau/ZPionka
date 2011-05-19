@@ -1,14 +1,37 @@
+<% @edit_icon = image_tag("pictograms/edit_icon.gif", :alt => "+", :class => "round") %>
+<% @delete_icon = image_tag("pictograms/delete_icon.gif", :alt => "-", :class => "round") %>
+<% cookie = cookies['position'] %>
+<% @movecomments = Movecomment.find(:all, :conditions => ['position_id =?',cookie]) %>
 
 <div id="movecomments">
-<% cookie = cookies['position'] %>	
-<% @movecomments = Movecomment.find(:all, :conditions => ['position_id =?',cookie]) %>
+	
+<% if signed_in? %>
+<% form_for @movecomment do |f| %>
+<table><tr>
+<td><%= f.text_field :content %></td><td><%= f.submit "Save comment" %></td>
+</tr></table>
+
+  <%= f.hidden_field :position_id, :value => cookies['position'] %>
+  
+  <%= f.hidden_field :user_id, :value => current_user.id  %>
+<% end %>
+<% end %>		
+	
+	
 <% unless @movecomments.nil? %>
 <% @movecomments.each do |comment| %>
 <% @user = User.find(comment.user_id) %>	
-Created by:&nbsp <%= link_to @user.login, @user %>
-<%= comment.updated_at.strftime('%Y-%m-%d %H:%M') %><%= comment.content %>
-<br/>	
+<%= link_to @user.login, @user %>
+<%= comment.updated_at.strftime('%d-%m-%y %H:%M') %>&nbsp<%= comment.content %>
+<% if signed_in? && @user == current_user || admin_in? %>
+
+<%= link_to @edit_icon, edit_movecomment_path(comment) %>
+<%= link_to @delete_icon, comment, :method => :delete, :confirm => "Are you sure?" %>
 	
+<% end %>
+
+<br/>	
+
 <% end %>	
 <% end %>
 

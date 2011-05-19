@@ -1,2 +1,19 @@
-<h1>Movecomments#edit</h1>
-<p>Find me in app/views/movecomments/edit.html.erb</p>
+<% form_for @movecomment do |f| %>
+
+
+<table>
+
+<tr>
+<td><%= f.label :Contnet %></td>
+<td><%= text_area :movecomment, :content	  %></td>
+</tr>
+
+  <%= f.hidden_field :position_id, :value => @position_id %>
+  
+  <%= f.hidden_field :user_id, :value => @user_id  %>
+
+<tr><td>
+<%= f.submit "Update" %></td>
+</tr>
+</table>
+<% end %>

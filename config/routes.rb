@@ -259,6 +259,7 @@ resources :infos
 resources :games
 resources :sessions, :only => [:new, :create, :destroy]
 
+match 'games/movecomments', :to => "games#_movecomment"
 match 'games/variations', :to => "games#_variations"
 match 'user_send_message', :to => "users#mail_index"
 match '/delete_comment', :to => "comments#destroy"

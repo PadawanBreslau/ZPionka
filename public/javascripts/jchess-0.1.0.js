@@ -168,6 +168,7 @@ if (typeof console == "undefined") { var console = { log: function() {} } }
           var new_cookie_value = parseInt(ReadCookie('position'))+1;   
           createCookie('position',new_cookie_value,1); 
           $('#vars').load('variations #vars' , { 'id': 1 });
+          $('#movecomments').load('movecomments #movecomments' , { 'id': 1 })
          //alert(document.cookie) ;   
         }
       },
@@ -182,6 +183,7 @@ if (typeof console == "undefined") { var console = { log: function() {} } }
           var new_cookie_value = parseInt(ReadCookie('position_last'));
           createCookie('position',new_cookie_value,1); 
           $('#vars').load('variations #vars' , { 'id': 1 });
+          $('#movecomments').load('movecomments #movecomments' , { 'id': 1 })
       },
       
       transitionToStart : function() {
@@ -194,6 +196,7 @@ if (typeof console == "undefined") { var console = { log: function() {} } }
           var new_cookie_value = parseInt(ReadCookie('position_start'));
           createCookie('position',new_cookie_value,1); 
           $('#vars').load('variations #vars' , { 'id': 1 });
+          $('#movecomments').load('movecomments #movecomments' , { 'id': 1 })
       },
       
       
@@ -206,6 +209,7 @@ if (typeof console == "undefined") { var console = { log: function() {} } }
           createCookie('position',new_cookie_value,1);
           
           $('#vars').load('variations #vars' , { 'id': 1 });
+          $('#movecomments').load('movecomments #movecomments' , { 'id': 1 })
         //  alert(ReadCookie('position')) ;            
         }
       },

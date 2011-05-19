@@ -27,6 +27,7 @@ protected
 def load_layout_variables 
 	@tourchat = Tourchat.new
 	@zpawn = Zpawn.new
+	@movecomment = Movecomment.new
 end
 
 def redirect_to_back(default = root_url)
