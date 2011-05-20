@@ -11,7 +11,13 @@
 
 <% if controller_name == "tournaments" %>
 
+
 <% @chat = Tourchat.find_all_by_tournament_id(id_name) %>
+
+<% unless @chat.nil? %>
+	<span class="h3_stripe">Tournament chat</span><br/>
+<% end %>
+
 <% @chat.each do |chat| %>
 
 <% if admin_in? || (signed_in? && current_user.id == chat.user_id) %>	

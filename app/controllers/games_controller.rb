@@ -36,6 +36,24 @@ class GamesController < ApplicationController
   		@game = Game.find(params[:id])
   		@file = File.new @game.pgn_file.to_s
   		@pgn_string = read_pgn_file @file
+  		
+  		
+  		
+  		@nextgame = Game.find(@game.id+1) rescue @game
+  		@prevgame = Game.find(@game.id-1) rescue @game
+  		
+  		if @nextgame==@game || @nextgame.round!=@game.round
+  			@nextroundgame = @nextgame
+  			@nextgame=@game
+  		end
+  		
+  		if @prevgame==@game || @prevgame.round!=@game.round
+  			@prevroundgame = @prevgame
+  			@prevgame=@game
+  		end
+  			
+
+  		
   	
   		@game_pgn = PGNReader.new @game.pgn_file
   		@ggame = @game_pgn.parse_game

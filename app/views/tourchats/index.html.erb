@@ -1,5 +1,6 @@
 
 <% unless @tourchats == nil %>
+
 <% @tourchats.each do |tourchat|%>
 <% @user = User.find(tourchat.user_id) %>
 <div class="chat_stripe">

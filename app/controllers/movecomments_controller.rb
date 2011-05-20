@@ -1,6 +1,7 @@
 class MovecommentsController < ApplicationController
+  
   def new
-  	@title = "Add new movecomment"
+  	@title = "Add new move comment"
   	@movecomment = Movecomment.new
   	if !current_user.nil?
   		@user_id = current_user.id
@@ -14,7 +15,7 @@ class MovecommentsController < ApplicationController
     flash[:success] = "Succesfull adding movecomment"
     redirect_to_back root_path
   else
-    @title = "Add new movecomment"
+    @title = "Add new move comment"
     render 'new'
   end
   end

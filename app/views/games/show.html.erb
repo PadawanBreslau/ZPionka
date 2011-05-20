@@ -16,7 +16,24 @@ startCookieValue();
 	<%= @pgn_string %> </div>
 
   </p>
-	
+  
+
+  
+  <%= link_to "Back to round", @game.round %>|  <%= link_to "Back to tournament", @game.round.tournament %> &nbsp&nbsp&nbsp&nbsp&nbsp
+  
+  <% unless @game == @prevgame %>
+ 	 <%= link_to "<< Previous game", @prevgame %>
+  <% else %>
+  	<%= link_to "<< Previous round game", @prevroundgame %>
+  <% end %>
+  
+  &nbsp|&nbsp
+  <% unless @game == @nextgame %>
+    <%= link_to "Next game >>", @nextgame %>
+  <% else %>
+  	<%= link_to "Next round game >>", @nextroundgame %>
+  <% end %>
+  
 </div>
 
 <div id="moves">

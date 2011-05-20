@@ -396,6 +396,17 @@ span.chat_stripe{
 	
 }
 
+span.h3_stripe{
+	font-size:120% ;
+	color: #fff;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	padding-left: 2px;
+	font-family: "Georgia";
+	font-variant: small-caps;
+	
+}
+
 a.goto-position {
 font-weight: bold;
 color:#ccc;

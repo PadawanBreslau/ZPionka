@@ -45,7 +45,7 @@
 
 <% if controller_name == "tournaments" && !id_name.nil? %>
 	<div id="zpawn_display">
-	<h3>Live broadcast</h3>
+	<span class="h3_stripe">Live broadcast</span><br/>
 
 	<% @zpawns = Zpawn.find_all_by_tournament_id(id_name) %>
 	<% @zpawns.each do |zpawn| %>
