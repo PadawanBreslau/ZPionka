@@ -186,9 +186,9 @@ DIV#board
 }
 
 DIV#board a{
-	color: #ddd;
+	#color: #ddd;
 	font-weight:bold;
-	font-variant:small-caps;
+	#font-variant:small-caps;
 }
 
 DIV#right_info_panel a{
@@ -407,19 +407,27 @@ span.h3_stripe{
 	
 }
 
+span.user_link a{
+	color: #fff;
+	font-family: "Georgia";
+	font-variant: small-caps;
+}
+
 a.goto-position {
 font-weight: bold;
 color:#ccc;
 }
 
-span.read_message{
+span.read_message a{
 	font-size:100%;
 	font-family: "Georgia";
+	color: #0f0;
 	}
 
-span.unread_message{
-	font-size:130% ;
+span.unread_message a{
+	font-size:125% ;
 	font-weight: bold;
+	color: #603;
 }
 
 comment{

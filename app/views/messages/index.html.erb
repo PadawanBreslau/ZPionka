@@ -11,14 +11,14 @@
 			<%=  link_to message.title, message %>   
 			<%= "</span></td><td>".html_safe + message.created_at.strftime("%d.%m.%Y")%>
 			<%=  "</td><td> ".html_safe %> 
-			<%= link_to @sender.login, @sender %>
+			<span class="user_link"><%= link_to @sender.login, @sender %></span>
 			<%= "</td>".html_safe %>
 		<% else %>
 			<%= "<td><span class='unread_message'>".html_safe %>
 			<%=  link_to message.title, message %> 
 			<%= "</span></td><td>".html_safe + message.created_at.strftime("%d.%m.%Y")%>  
 			<%=  "</td><td> ".html_safe %> 
-			<%= link_to @sender.login, @sender %>
+			<span class="user_link"><%= link_to @sender.login, @sender %></span>
 			<%= "</td>".html_safe %>
 		<% end%>
  	<% link_to message.title.html_safe, message %> 
@@ -39,13 +39,17 @@
 			<%= "<td><span class='read_message'>".html_safe %>
 			<%=  link_to message.title, message %>   
 			<%= "</span></td><td>".html_safe + message.created_at.strftime("%d.%m.%Y")%>
-			<%=  "</td><td> ".html_safe + @receiver.login + " " + "</td>".html_safe %>
+			<%=  "</td><td> ".html_safe %> 
+			<span class="user_link"><%= link_to @receiver.login,@receiver %></span> 
+			<%= "</td>".html_safe %>
 			
 		<% else %>
 			<%= "<td><span class='unread_message'>".html_safe %>
 			<%=  link_to message.title, message %> 
 			<%= "</span></td><td>".html_safe + message.created_at.strftime("%d.%m.%Y")%>  
-			<%=  "</td><td> ".html_safe + @receiver.login + " " + "</td>".html_safe %>
+			<%=  "</td><td> ".html_safe %> 
+			<span class="user_link"><%= link_to @receiver.login,@receiver %></span> 
+			<%= "</td>".html_safe %>
 		<% end%>
 		
 	</tr>	
