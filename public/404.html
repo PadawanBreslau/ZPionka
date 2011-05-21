@@ -3,24 +3,35 @@
 <head>
   <title>The page you were looking for doesn't exist (404)</title>
   <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
+    body { background-color: #eee; color: #444; text-align: center; font-family: arial, sans-serif; }
     div.dialog {
-      width: 25em;
+      text-size: 120%;
+      width: 40em;
       padding: 0 4em;
       margin: 4em auto 0 auto;
       border: 1px solid #ccc;
       border-right-color: #999;
       border-bottom-color: #999;
     }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
+    h1 { font-size: 120%; color: #f00; line-height: 1.5em; }
+    ul { text-align: left; font-family: georgia;}
+    a {  color: #000}
   </style>
 </head>
 
 <body>
   <!-- This file lives in public/404.html -->
+  <img src="images\404.png" alt="Something wrong">
   <div class="dialog">
+  	
     <h1>The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
+    <p>You may have mistyped the address or the page may have moved. You can try following links</p>
+    <ul type="discs">
+    	<li> <a href="tournaments"> Tournament list</a>
+    	<li> <a href="tomaiframes"> Broadcast list</a>
+    	<li> <a href="infos"> New articles </a>
+    </ul>
+    <h1>Or you can run for your lives!</h1>
   </div>
 </body>
 </html>

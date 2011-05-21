@@ -16,13 +16,64 @@ class TomaiframesController < ApplicationController
 
   def edit
   	  @title = "Edit iframe"
-      @user = Tomaiframe.find(params[:id])
+      @iframe = Tomaiframe.find(params[:id])
   end
 
   def update
   end
+  
+  def match_with_tournament
+  	  @title = "Matching live broadcast with tournaments"
+      @iframe = Tomaiframe.find(params[:id])
+      @tournaments = Tournament.all
+      
+      
+  end
+  
+  def match_and_back_to_iframe
+  	 @iframe = Tomaiframe.find(params[:iframe_id]) 
+  	 @iframe.tournament_id = params[:tournament_id]
+  	 @iframe.save!
+  	
+  	 flash[:success] = "Udane dodanie"
+  	 redirect_to tomaiframes_path
+  end
+  
+  def finish_or_open_broadcast
+  	 @iframe = Tomaiframe.find(params[:id])
+  	 if params[:what] == "close"
+  	 	@iframe.is_finished = true
+  	 else
+  	 	@iframe.is_finished = false
+  	 end
+  	 @iframe.save!
+  	 
+  	 redirect_to tomaiframes_path
+  end	
 
   def show
+      @iframe = Tomaiframe.find(params[:id])
+  	  @title = "Live broadcast from " + @iframe.tournament_name
+      
+  	  if @iframe.optional_code == ""
+  	  
+  	 	if @iframe.width.nil?
+  	  		@iframe_width = ""
+  	  	else
+  	  		@iframe_width = "width='"+@iframe.width.to_s+"' "
+  	  	end
+  	  
+  	  	if @iframe.height.nil?
+  	  		@iframe_height = ""
+  	  	else
+  	  		@iframe_height = "height='"+@iframe.height.to_s+"' "
+  	  	end
+  	  
+  	  	@iframe_string = "<iframe src='" + @iframe.url + "' " + @iframe_width + @iframe_height + " frameborder='" + @iframe.frameborder ="'  scrolling='" + @iframe.scrolling ="'  marginheight='" + @iframe.marginheight ="'  marginwidth='" + @iframe.marginwidth ="'></iframe>"
+  	  else
+  	  	@iframe_string = @iframe.optional_code
+  	  end
+  	
   end
 
   def index

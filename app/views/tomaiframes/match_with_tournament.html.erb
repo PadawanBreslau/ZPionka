@@ -1,0 +1,10 @@
+<span class="h3_stripe">Matching live broadcast with tournament: <%= @iframe.tournament_name %></span>
+<% @tournaments.each do |tournament| %>
+	
+<%= link_to tournament.name+","+tournament.place, :controller => "tomaiframes", :action => "match_and_back_to_iframe", :iframe_id => @iframe.id, :tournament_id => tournament.id %>
+
+<br/>
+<% end %>	
+
+
+	

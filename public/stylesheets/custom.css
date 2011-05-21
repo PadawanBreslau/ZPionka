@@ -411,6 +411,18 @@ span.h3_stripe{
 	
 }
 
+span.h2_stripe{
+	font-size:150% ;
+	color: #fff;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	padding-left: 20px;
+	font-family: "Georgia";
+	font-variant: small-caps;
+	
+	
+}
+
 span.user_link a{
 	color: #fff;
 	font-family: "Georgia";

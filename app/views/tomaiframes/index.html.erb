@@ -2,7 +2,21 @@
 <table>
 <% @iframes.each do |iframe| %>
 	<tr>
-		<td><%= link_to iframe.tournament_name, iframe%></td>
+		<td><%= link_to iframe.tournament_name, iframe%></td><td><%= iframe.broadcast_info%></td>
+		
+		<% if iframe.is_finished %>
+			<td>FINISHED </td>
+		<% else %>
+			<td>IN PROGRESS </td>
+		<% end %>
+		
+		<% if admin_in? %>
+			<% if !iframe.is_finished %>
+				<td><%= link_to "Finish", :controller => "tomaiframes", :action => "finish_or_open_broadcast", :id => iframe.id, :what => "close" %> </td>
+			<% else %>
+				<td><%= link_to "Open", :controller => "tomaiframes", :action => "finish_or_open_broadcast", :id => iframe.id, :what => "open" %> </td>
+			<% end %>
+		<% end %>
 	</tr>	
 <% end %>	
 </table>

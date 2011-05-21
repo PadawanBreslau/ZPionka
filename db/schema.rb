@@ -149,14 +149,15 @@ ActiveRecord::Schema.define(:version => 20110520212018) do
     t.string   "url"
     t.integer  "width"
     t.integer  "height"
-    t.integer  "frameborder"
-    t.boolean  "scrolling"
-    t.integer  "marginwidth"
-    t.integer  "marginheight"
+    t.integer  "frameborder",     :default => 0
+    t.boolean  "scrolling",       :default => false
+    t.integer  "marginwidth",     :default => 0
+    t.integer  "marginheight",    :default => 0
     t.text     "optional_code"
     t.boolean  "is_finished",     :default => false
     t.string   "tournament_name"
     t.integer  "tournament_id"
+    t.text     "broadcast_info"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,6 +1,12 @@
 ZPionka::Application.routes.draw do
   get "tomaiframes/new"
 
+  get "tomaiframes/match_with_tournament"
+  
+  get "tomaiframes/match_and_back_to_iframe"
+  
+  get "tomaiframes/finish_or_open_broadcast"
+
   get "tomaiframes/create"
 
   get "tomaiframes/edit"
@@ -275,6 +281,8 @@ resources :infos
 resources :games
 resources :sessions, :only => [:new, :create, :destroy]
 
+
+match '/broadcast_matching', :to => "tomaiframe#match_with_tournament"
 match 'games/movecomments', :to => "games#_movecomment"
 match 'games/variations', :to => "games#_variations"
 match 'user_send_message', :to => "users#mail_index"

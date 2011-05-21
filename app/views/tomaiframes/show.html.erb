@@ -1,2 +1,16 @@
-<h1>TomaIframes#show</h1>
-<p>Find me in app/views/toma_iframes/show.html.erb</p>
+<span class="h2_stripe"><%= @iframe.tournament_name %></span><br/>
+<div id="iframe">
+
+<span class="h3_stripe">	
+
+</span>
+
+
+<%=  @iframe_string.html_safe 	%>
+
+<br/>
+
+<% if admin_in? %>
+	<%= link_to "Match this iframe to tournament", :controller => "tomaiframes", :action => "match_with_tournament", :id => @iframe.id %>		
+<% end %>	
+</div>

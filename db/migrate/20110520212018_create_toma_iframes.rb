@@ -4,10 +4,10 @@ class CreateTomaIframes < ActiveRecord::Migration
       t.string :url
       t.integer :width
       t.integer :height
-      t.integer :frameborder
-      t.boolean :scrolling
-      t.integer :marginwidth
-      t.integer :marginheight
+      t.integer :frameborder, :default => "0"
+      t.boolean :scrolling, :default => "false"
+      t.integer :marginwidth, :default => "0"
+      t.integer :marginheight, :default => "0"
       t.text :optional_code
       t.boolean :is_finished, :default => false
       t.string :tournament_name

@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
   
   before_filter :load_layout_variables
 
+unless  Rails.application.config.consider_all_requests_local
+  rescue_from Exception, :with => :render_404
+end
+
 
 		
   include Java 	

@@ -2,6 +2,7 @@
 <%= form_for(@iframe) do |f| %>
 
 
+
 <table>
 <tr>
 <td><%= f.label :Url %>*</td>
@@ -38,12 +39,21 @@
 <td><%= f.text_field :marginheight %></td>
 </tr>
 
+<tr>
+<td><%= f.label :Tournament_name %></td>
+<td><%= f.text_field :tournament_name %></td>
+</tr>
 
 <tr>
 <td><%= f.label :Optional_code %></td>
-<td><%= text_area :toma_iframe, :optional_code, :size => "40x10"  %></td>
+<td><%= text_area :tomaiframe, :optional_code, :size => "40x10"  %></td>
 </tr>
 
+
+<tr>
+<td><%= f.label :Broadcast_info %></td>
+<td><%= text_area :tomaiframe, :broadcast_info, :size => "40x10"  %></td>
+</tr>
 <tr><td>
 <%= f.submit "Save changes" %></td>
 </tr>
