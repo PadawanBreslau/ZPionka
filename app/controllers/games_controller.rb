@@ -105,8 +105,12 @@ class GamesController < ApplicationController
   end
   
   def show_games_in_java_window
-  	#
+  	 
   	@observes = Observe.find_all_by_user_id(current_user)
+  	
+  	if @observes.size < 4 
+  		redirect_to_back root_path
+  	end
   	
   	@game1 = Game.find(@observes[0].game_id)
   	@game_pgn = PGNReader.new @game1.pgn_file
@@ -130,29 +134,46 @@ class GamesController < ApplicationController
   	
   	@frame = JFrame.new "Window to display games"
   	@frame.set_visible true
-  	@frame.set_location 50, 50
+  	@frame.set_location 20, 20
   	@frame.set_size 1080, 720
   	
   	@panel1 = JPanel.new
-  	@panel1.add @browser1
+  	@panel1.set_layout BorderLayout.new
+  	@panel1.add @browser1, BorderLayout::CENTER
   	@panel1.set_size 540, 360
 	@panel1.set_visible true
-  	
+	
+	@button1 = JButton.new "Change game"
+	@panel1.add @button1, BorderLayout::SOUTH
+	
 	@panel2 = JPanel.new
-  	@panel2.add @browser2
+  	@panel2.set_layout BorderLayout.new
+  	@panel2.add @browser2, BorderLayout::CENTER
   	@panel2.set_size 540, 360
-  	@panel2.set_visible true
-  	
-  	@panel3 = JPanel.new
-  	@panel3.add @browser3
+	@panel2.set_visible true
+	
+	@button2 = JButton.new "Change game"
+	@panel2.add @button2, BorderLayout::SOUTH
+	
+	@panel3 = JPanel.new
+  	@panel3.set_layout BorderLayout.new
+  	@panel3.add @browser3, BorderLayout::CENTER
   	@panel3.set_size 540, 360
-  	@panel3.set_visible true
-  	
-  	@panel4 = JPanel.new
-  	@panel4.add @browser4
+	@panel3.set_visible true
+	
+	@button3 = JButton.new "Change game"
+	@panel3.add @button3, BorderLayout::SOUTH
+	
+	@panel4 = JPanel.new
+  	@panel4.set_layout BorderLayout.new
+  	@panel4.add @browser4, BorderLayout::CENTER
   	@panel4.set_size 540, 360
-  	@panel4.set_visible true
+	@panel4.set_visible true
+	
+	@button4 = JButton.new "Change game"
+	@panel4.add @button4, BorderLayout::SOUTH
   	
+
   	@frame.set_layout GridLayout.new 2,2
   	
   	@frame.add @panel1
