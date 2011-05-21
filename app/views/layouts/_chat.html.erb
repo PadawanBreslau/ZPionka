@@ -14,7 +14,7 @@
 
 <% @chat = Tourchat.find_all_by_tournament_id(id_name) %>
 
-<% unless @chat.nil? %>
+<% unless @chat.empty? %>
 	<span class="h3_stripe">Tournament chat</span><br/>
 <% end %>
 
@@ -35,7 +35,29 @@
 </span><br/>
 <% end %>	
 
+<% elsif controller_name == "games"  %>
+<% @chat = Gamechat.find_all_by_game_id(id_name) %>
+
+<% unless @chat.empty? %>
+	<span class="h3_stripe">Game chat</span><br/>
+<% end %>
 
 
+<% @chat.each do |chat| %>
+
+<% if admin_in? || (signed_in? && current_user.id == chat.user_id) %>	
+<%= link_to @edit_icon, edit_tourchat_path(chat) %>
+<%= link_to @delete_icon, chat, :method => :delete, :confirm => "Are you sure?" %>	
+<% end %>
+
+<% user = User.find(chat.user_id) %>
+<% user_login = user.login %>	
+<% display_stripe = "<strong>" + user_login + "</strong></br> "  %>
+
+<span class="chat_stripe"><%= chat.updated_at.strftime("%H.%M")%>	
+	<%= link_to display_stripe.html_safe, user  %>
+	<%= chat.comment.html_safe %>
+</span><br/>
+<% end %>	
 	
 <% end %>	

@@ -26,6 +26,7 @@ protected
 
 def load_layout_variables 
 	@tourchat = Tourchat.new
+	@gamechat = Gamechat.new
 	@zpawn = Zpawn.new
 	@movecomment = Movecomment.new
 end

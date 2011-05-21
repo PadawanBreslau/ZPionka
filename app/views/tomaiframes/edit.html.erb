@@ -1,0 +1,51 @@
+<b>Toma IFRAME creator</b>
+<%= form_for(@iframe) do |f| %>
+
+
+<table>
+<tr>
+<td><%= f.label :Url %>*</td>
+<td><%= f.text_field :url %></td>
+</tr>
+
+<tr>
+<td><%= f.label :width %></td>
+<td><%= f.text_field :width%></td>
+</tr>
+
+<tr>
+<td><%= f.label :height %></td>
+<td><%= f.text_field :height%></td>
+</tr>
+
+<tr>
+<td><%= f.label :Frameborder %></td>
+<td><%= f.text_field :frameborder %></td>
+</tr>
+
+<tr>
+<td><%= f.label :Scrolling %></td>
+<td><%= f.check_box :scrolling %></td>
+</tr>
+
+<tr>
+<td><%= f.label :Marginwidth %></td>
+<td><%= f.text_field :marginwidth %></td>
+</tr>
+
+<tr>
+<td><%= f.label :Marginheight %></td>
+<td><%= f.text_field :marginheight %></td>
+</tr>
+
+
+<tr>
+<td><%= f.label :Optional_code %></td>
+<td><%= text_area :toma_iframe, :optional_code, :size => "40x10"  %></td>
+</tr>
+
+<tr><td>
+<%= f.submit "Save changes" %></td>
+</tr>
+</table>
+<% end %>

@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  url: MyString
+  width: 1
+  height: 1
+  frameborder: 1
+  scrolling: false
+  marginwidth: 1
+  marginheight: 1
+  optional_code: MyText
+
+two:
+  url: MyString
+  width: 1
+  height: 1
+  frameborder: 1
+  scrolling: false
+  marginwidth: 1
+  marginheight: 1
+  optional_code: MyText

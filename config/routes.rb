@@ -1,4 +1,18 @@
 ZPionka::Application.routes.draw do
+  get "tomaiframes/new"
+
+  get "tomaiframes/create"
+
+  get "tomaiframes/edit"
+
+  get "tomaiframes/update"
+
+  get "tomaiframes/show"
+
+  get "tomaiframes/index"
+
+  get "tomaiframes/delete"
+
   get "movecomments/new"
 
   get "movecomments/create"
@@ -242,6 +256,7 @@ ZPionka::Application.routes.draw do
   get "session/new"
   get "page/home"
   
+resources :tomaiframes 
 resources :movecomments
 resources :uploads 
 resources :newsletters 
@@ -249,6 +264,7 @@ resources :allowances
 resources :players
 resources :zpawns
 resources :tourchats
+resources :gamechats
 resources :tournaments
 resources :tourplaces
 resources :rounds

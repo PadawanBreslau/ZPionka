@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110519154942) do
+ActiveRecord::Schema.define(:version => 20110520212018) do
 
   create_table "allowances", :force => true do |t|
     t.integer  "user_id"
@@ -143,6 +143,22 @@ ActiveRecord::Schema.define(:version => 20110519154942) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "pgn_file"
+  end
+
+  create_table "tomaiframes", :force => true do |t|
+    t.string   "url"
+    t.integer  "width"
+    t.integer  "height"
+    t.integer  "frameborder"
+    t.boolean  "scrolling"
+    t.integer  "marginwidth"
+    t.integer  "marginheight"
+    t.text     "optional_code"
+    t.boolean  "is_finished",     :default => false
+    t.string   "tournament_name"
+    t.integer  "tournament_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tourchats", :force => true do |t|

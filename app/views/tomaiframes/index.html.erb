@@ -1,0 +1,8 @@
+<span class="h3_stripe">Available games</span>
+<table>
+<% @iframes.each do |iframe| %>
+	<tr>
+		<td><%= link_to iframe.tournament_name, iframe%></td>
+	</tr>	
+<% end %>	
+</table>

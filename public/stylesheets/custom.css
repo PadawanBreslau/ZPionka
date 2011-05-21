@@ -152,7 +152,7 @@ DIV#display_chat_panel
 	background-color:#353d40;
 	width: 100% ;
 	height: 80% ;
-	min-height: 200px;
+	min-height: 250px;
 	overflow:auto;
 }
 
@@ -186,7 +186,7 @@ DIV#board
 }
 
 DIV#board a{
-	#color: #ddd;
+	color: #ddd;
 	font-weight:bold;
 	#font-variant:small-caps;
 }
@@ -299,6 +299,10 @@ top:20px;
 
 padding:10px;
 font-size: 80% ;
+}
+
+DIV#cms a{
+color: #000;
 }
 
 DIV#zpawn_display a {

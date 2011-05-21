@@ -19,3 +19,19 @@
 	
 	
 <% end %>	
+
+<% if signed_in? && controller_name == "games" && !route[:id].nil?  %>
+	
+
+		<% form_for @gamechat do |f| %>
+		<%= f.text_field :comment, :size => 18 %>
+		
+		<%= f.hidden_field :user_id, :value => current_user.id %>
+		<%= f.hidden_field :game_id, :value => id_name %>
+		
+		<%= image_submit_tag ("add_chat_message.gif")%>
+		<% end %>	
+	
+	
+	
+<% end %>	
