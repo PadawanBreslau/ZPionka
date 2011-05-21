@@ -142,6 +142,8 @@ ZPionka::Application.routes.draw do
   get "games/show"
   
   get "games/read_pgn_file"
+  
+  get "games/show_games_in_java_window"
 
   get "games/update"
 

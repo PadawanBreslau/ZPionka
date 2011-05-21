@@ -2,9 +2,6 @@ class GamesController < ApplicationController
   def new
   end
 
- def variation
- 	safdsfsfsfds
- end	
 
   def create
   end
@@ -106,6 +103,66 @@ class GamesController < ApplicationController
   # @engine.quit
   	
   end
+  
+  def show_games_in_java_window
+  	#
+  	@observes = Observe.find_all_by_user_id(current_user)
+  	
+  	@game1 = Game.find(@observes[0].game_id)
+  	@game_pgn = PGNReader.new @game1.pgn_file
+  	@parsed_game = @game_pgn.parse_game
+  	@browser1 = GameBrowser.new @parsed_game
+  	
+  	@game2 = Game.find(@observes[1].game_id)
+  	@game_pgn = PGNReader.new @game2.pgn_file
+  	@parsed_game = @game_pgn.parse_game
+  	@browser2 = GameBrowser.new @parsed_game
+  	
+  	@game3 = Game.find(@observes[2].game_id)
+  	@game_pgn = PGNReader.new @game3.pgn_file
+  	@parsed_game = @game_pgn.parse_game
+  	@browser3 = GameBrowser.new @parsed_game
+  	
+  	@game4 = Game.find(@observes[3].game_id)
+  	@game_pgn = PGNReader.new @game4.pgn_file
+  	@parsed_game = @game_pgn.parse_game
+  	@browser4 = GameBrowser.new @parsed_game
+  	
+  	@frame = JFrame.new "Window to display games"
+  	@frame.set_visible true
+  	@frame.set_location 50, 50
+  	@frame.set_size 1080, 720
+  	
+  	@panel1 = JPanel.new
+  	@panel1.add @browser1
+  	@panel1.set_size 540, 360
+	@panel1.set_visible true
+  	
+	@panel2 = JPanel.new
+  	@panel2.add @browser2
+  	@panel2.set_size 540, 360
+  	@panel2.set_visible true
+  	
+  	@panel3 = JPanel.new
+  	@panel3.add @browser3
+  	@panel3.set_size 540, 360
+  	@panel3.set_visible true
+  	
+  	@panel4 = JPanel.new
+  	@panel4.add @browser4
+  	@panel4.set_size 540, 360
+  	@panel4.set_visible true
+  	
+  	@frame.set_layout GridLayout.new 2,2
+  	
+  	@frame.add @panel1
+  	@frame.add @panel2
+  	@frame.add @panel3
+  	@frame.add @panel4
+  	
+  		
+  	redirect_to_back root_path
+  end	
 
   def update
   end

@@ -24,6 +24,7 @@ end
   include_class 'javax.swing.JButton'
   include_class 'javax.swing.JPanel'
   include_class 'javax.swing.JFrame'
+  include_class 'java.awt.GridLayout'
   include_class 'chesspresso.engines.ChXBoardEngine'
 
 protected

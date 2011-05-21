@@ -40,7 +40,8 @@
 <% @games.each do |game| %>
 <%= link_to prepare_game_string(game), game %><br/>
 <% end %>
-	
+<hr/>
+<%= link_to "Show observed games in java window", :controller => :games, :action => "show_games_in_java_window"  %>	
 </td>
 <td>
 	<h4>Comments</h4>
