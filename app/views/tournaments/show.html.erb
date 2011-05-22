@@ -37,3 +37,11 @@
  </td>	
 </tr>
 </table>
+
+<% if @iframe.nil? %>
+<%= @tournament_iframe.html_safe %>
+<% else %>
+
+<%= link_to @tournament_iframe.html_safe , @iframe %>
+
+<% end %>

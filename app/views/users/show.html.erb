@@ -1,9 +1,11 @@
+<% @eye = image_tag("pictograms/eye.gif", :alt => "Observe", :class => "round") %>
+
 <table>
 <tr>	
 
 
 <td>	
-<h2><%= @user.login %></h2>
+<span class="h2_stripe"><%= @user.login %></span></br>
 <%= @user.name %> <%= @user.surname %><br />
 <strong>Ranking: </strong><%= @user.rating%><br />
 <strong>URL</strong> <%= link_to users_path(@user), @user %><br />
@@ -20,7 +22,7 @@
 </td>
 
 <td>
-	<h4> Latest Written articles </h4>
+	<span class="h3_stripe"> Latest Written articles </span><br/>
 <% @infos = Info.find_all_by_user_id(@user.id, :limit => 3) %>
 <% @infos.each do |info| %>
 	
@@ -36,15 +38,17 @@
 </tr>
 <tr>
 <td>
-	<h4>Observed games</h4>
+	<span class="h3_stripe">Observed games</span><br/>
 <% @games.each do |game| %>
-<%= link_to prepare_game_string(game), game %><br/>
+<%= link_to prepare_game_string(game), game %>
+<%= link_to @eye,  :controller => "tournaments", :action => "remove_from_observed_games", :id => game.id , :confirm => "Are you sure you want to remove game from yourlist?" %>	<br/>
 <% end %>
 <hr/>
-<%= link_to "Show observed games in java window", :controller => :games, :action => "show_games_in_java_window"  %>	
+<%= link_to "Show observed games in java window", :controller => :games, :action => "show_games_in_java_window"  %>
+
 </td>
 <td>
-	<h4>Comments</h4>
+	<span class="h3_stripe">Comments</span><br/>
 
 <% @comments.each do |comment| %>	
 <%= link_to comment.info.title, comment.info %><br/>

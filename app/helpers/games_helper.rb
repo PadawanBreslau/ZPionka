@@ -1,5 +1,6 @@
 module GamesHelper
 	
+		
   def player(game,color)
   	if color == "white"
   		player = Player.find(game.player1_id)

@@ -94,6 +94,14 @@ class TournamentsController < ApplicationController
   @title = @tournament.name
   
   @rounds = @tournament.rounds
+  @iframe = @tournament.tomaiframe
+  
+  if @iframe.nil?
+  	@tournament_iframe = '<span class="h2_stripe">This tournament has no broadcast connected</span>'
+  else	
+    @tournament_iframe = '<span class="h2_stripe">Tournament broadcast</span>'
+  end
+  
   end
 
 

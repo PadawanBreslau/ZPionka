@@ -26,8 +26,11 @@ end
   include_class 'javax.swing.JFrame'
   include_class 'java.awt.GridLayout'
   include_class 'javax.swing.JButton'
+ # include_class 'javax.swing.ActionListener'
   include_class 'java.awt.BorderLayout'
+  include_class 'java.awt.event.ActionListener'
   include_class 'chesspresso.engines.ChXBoardEngine'
+  #require 'jruby_utils'
 
 protected
 

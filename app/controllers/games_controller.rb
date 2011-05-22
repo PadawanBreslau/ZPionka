@@ -1,4 +1,7 @@
 class GamesController < ApplicationController
+  
+
+	
   def new
   end
 
@@ -104,13 +107,51 @@ class GamesController < ApplicationController
   	
   end
   
+  def find_next_game observes, windows, position   # lista, zajęte, na której pozycji zmiana
+	@current_game = windows[position]
+	
+	(@current_game..observes.size-1).each do |i|
+		if i!= windows[0] && i!= windows[1] && i!= windows[2] && i!= windows[3]
+			return windows[position] = i
+		end
+	end	
+		
+#		if @current_game == windows[position]
+#			(1..@current_game).each do |i|
+#				if i!= windows[0] && i!= windows[1] && i!= windows[2] && i!= windows[3]
+#					return windows[position] = i
+#				end
+#			end	
+#		end
+	
+	windows[position]
+  end	
+  
+def find_prev_game observes, windows, position   # lista, zajęte, na której pozycji zmiana
+	@current_game = windows[position]
+	
+	(0..@current_game-1).each do |i|
+		if i!= windows[0] && i!= windows[1] && i!= windows[2] && i!= windows[3]
+			windows[position] = i
+		end
+	end	
+	windows[position]
+end
+  
+  
   def show_games_in_java_window
   	 
+  	@actionListener = java.awt.event.ActionListener.new
+  	
   	@observes = Observe.find_all_by_user_id(current_user)
   	
-  	if @observes.size < 4 
+  	
+    if @observes.size < 4 
   		redirect_to_back root_path
   	end
+  	
+  	@windows = [0,1,2,3]
+
   	
   	@game1 = Game.find(@observes[0].game_id)
   	@game_pgn = PGNReader.new @game1.pgn_file
@@ -143,8 +184,39 @@ class GamesController < ApplicationController
   	@panel1.set_size 540, 360
 	@panel1.set_visible true
 	
-	@button1 = JButton.new "Change game"
-	@panel1.add @button1, BorderLayout::SOUTH
+	@button1_1 = JButton.new "Previous game"
+	@button1_1.addActionListener do |e|
+		@prev_game = find_prev_game @observes, @windows, 0
+		@panel1.remove @browser1
+        @game = Game.find(@observes[@prev_game].game_id)
+        @game_pgn = PGNReader.new @game.pgn_file
+  		@parsed_game = @game_pgn.parse_game
+  		@browser1 = GameBrowser.new @parsed_game
+  		@panel1.add @browser1, BorderLayout::CENTER
+  		@panel1.revalidate
+  		@panel1.repaint 
+	
+    end
+    
+    @button1_2 = JButton.new "Next game"
+	@button1_2.addActionListener do |e|
+		@next_game = find_next_game @observes, @windows, 0
+		@panel1.remove @browser1
+        @game = Game.find(@observes[@next_game].game_id)
+        @game_pgn = PGNReader.new @game.pgn_file
+  		@parsed_game = @game_pgn.parse_game
+  		@browser1 = GameBrowser.new @parsed_game
+  		@panel1.add @browser1, BorderLayout::CENTER
+  		@panel1.revalidate
+  		@panel1.repaint 
+	
+    end
+    
+    @panel_buttons_1 = JPanel.new
+
+	@panel_buttons_1.add @button1_1
+	@panel_buttons_1.add @button1_2
+	@panel1.add @panel_buttons_1, BorderLayout::SOUTH
 	
 	@panel2 = JPanel.new
   	@panel2.set_layout BorderLayout.new
@@ -152,8 +224,39 @@ class GamesController < ApplicationController
   	@panel2.set_size 540, 360
 	@panel2.set_visible true
 	
-	@button2 = JButton.new "Change game"
-	@panel2.add @button2, BorderLayout::SOUTH
+	@button2_1 = JButton.new "Previous game"
+	@button2_1.addActionListener do |e|
+		@prev_game = find_prev_game @observes, @windows, 0
+		@panel2.remove @browser2
+        @game = Game.find(@observes[@prev_game].game_id)
+        @game_pgn = PGNReader.new @game.pgn_file
+  		@parsed_game = @game_pgn.parse_game
+  		@browser2 = GameBrowser.new @parsed_game
+  		@panel2.add @browser2, BorderLayout::CENTER
+  		@panel2.revalidate
+  		@panel2.repaint 
+	
+    end
+    
+    @button2_2 = JButton.new "Next game"
+	@button2_2.addActionListener do |e|
+		@next_game = find_next_game @observes, @windows, 0
+		@panel2.remove @browser2
+        @game = Game.find(@observes[@next_game].game_id)
+        @game_pgn = PGNReader.new @game.pgn_file
+  		@parsed_game = @game_pgn.parse_game
+  		@browser2 = GameBrowser.new @parsed_game
+  		@panel2.add @browser2, BorderLayout::CENTER
+  		@panel2.revalidate
+  		@panel2.repaint 
+	
+    end
+    
+    @panel_buttons_2 = JPanel.new
+
+	@panel_buttons_2.add @button2_1
+	@panel_buttons_2.add @button2_2
+	@panel2.add @panel_buttons_2, BorderLayout::SOUTH
 	
 	@panel3 = JPanel.new
   	@panel3.set_layout BorderLayout.new
@@ -162,6 +265,9 @@ class GamesController < ApplicationController
 	@panel3.set_visible true
 	
 	@button3 = JButton.new "Change game"
+	@button3.addActionListener do |e|
+      puts "Button got clicked3."
+    end
 	@panel3.add @button3, BorderLayout::SOUTH
 	
 	@panel4 = JPanel.new
@@ -171,6 +277,9 @@ class GamesController < ApplicationController
 	@panel4.set_visible true
 	
 	@button4 = JButton.new "Change game"
+	@button4.addActionListener do |e|
+      puts "Button got clicked4."
+    end
 	@panel4.add @button4, BorderLayout::SOUTH
   	
 

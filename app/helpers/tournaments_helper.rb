@@ -87,9 +87,13 @@ module TournamentsHelper
 				
 				players = find_player_with_id(player1, players,0)
 				players = find_player_with_id(player2, players,1)
-				
 
-		    end
+			else
+				players = find_player_with_id(player1, players,0)
+				players = find_player_with_id(player2, players,0)
+			
+			end
+		    
     	
 		end    	
 		
@@ -185,7 +189,7 @@ module TournamentsHelper
   		players.insert(0,p1)
   		players.insert(0,p2)
   	end	
-  	players.uniq!
+  	players.uniq
   end	
 	
 def	tournament_not_observed(id)

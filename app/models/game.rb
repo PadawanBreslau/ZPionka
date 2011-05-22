@@ -1,6 +1,6 @@
 class Game < ActiveRecord::Base
 	
-	# default_scope :order => "id DESC"
+	default_scope :order => "id ASC"
 	
 	validates :round_id, :presence => true
 	validates :player1_id, :numericality => true 

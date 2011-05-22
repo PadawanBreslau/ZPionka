@@ -54,6 +54,15 @@ class TomaiframesController < ApplicationController
   def show
       @iframe = Tomaiframe.find(params[:id])
   	  @title = "Live broadcast from " + @iframe.tournament_name
+  	  
+  	  @tournament = @iframe.tournament
+  	  if @tournament.nil?
+  	  	@tournament_link = '<span class="h3_stripe">This broadcast is not connected with tournament</span>'
+  	  else
+  	  	@tournament_link = '<span class="h3_stripe">Tournament results and infos</span>'
+  	  end
+  	  
+  	  	
       
   	  if @iframe.optional_code == ""
   	  
