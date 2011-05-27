@@ -2,9 +2,16 @@
 <% @closed_eye = image_tag("pictograms/closed-eye.gif", :alt => "Observe", :class => "round") %>	
 <% @goto = image_tag("pictograms/goto_icon.gif", :alt => "Go", :class => "round") %>	
 
-<h2> Games of <%= @player.name + " " + @player.surname  %> </h3>
+<span class="h2_stripe"> Games of <%= @player.name + " " + @player.surname  %> </span><br/>
+	
+	<% if admin_in? %>
+		<%= link_to "Edit user name", edit_player_path(@player) %><br/><br/>
+	
+	
+	<% end %>
+	
 
-<h4> Games with white </h4>	
+<span class="h3_stripe"> Games with white </span><br/>	
 <table>
 <tr><td>Player white</td><td>Player black</td><td>Result</td><td>Moves</td><td>Link</td><td>Observation</td></tr>
 <% @games_white.each do |game| %>
@@ -30,7 +37,7 @@
 <% end %>	
 </table>
 
-<h4> Games with black </h4>	
+<span class="h3_stripe"> Games with black </span><br/>	
 <table>
 <tr><td>Player white</td><td>Player black</td><td>Result</td><td>Moves</td><td>Link</td><td>Observation</td></tr>
 <% @games_black.each_with_index do |game,index| %>

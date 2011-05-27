@@ -1,4 +1,6 @@
-<% @users = User.find(:all, :order => "login") %>
+ <%= will_paginate @users %>
+
+
 <table>
 <% @users.each do |user| %>
 	<tr>

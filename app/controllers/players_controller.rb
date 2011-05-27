@@ -6,9 +6,22 @@ class PlayersController < ApplicationController
   end
 
   def edit
+  	  	@player = Player.find(params[:id])
+  	  	@title = "Editing player info"
+  	
   end
 
   def update
+  	
+  @player = Player.find(params[:id])
+  if @player.update_attributes(params[:player])
+    flash[:success] = "Player succesfully updated."
+    redirect_to @player
+  else
+    @title = "Edit player"
+    render 'edit'
+  end
+    	
   end
 
   def show
@@ -31,7 +44,8 @@ class PlayersController < ApplicationController
   end	
 
   def index
-  	@players = Player.all
+  	
+  	@players = Player.paginate(:page => params[:page], :per_page => 12)
   end
   
 

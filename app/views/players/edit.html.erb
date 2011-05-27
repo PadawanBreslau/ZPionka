@@ -1,2 +1,26 @@
-<h1>Players#edit</h1>
-<p>Find me in app/views/players/edit.html.erb</p>
+<b>Edit player</b>
+
+<%= form_for(@player) do |f| %>
+	
+<table>
+<tr>
+<td><%= f.label :Name %></td>
+<td><%= f.text_field :name %></td>
+</tr>
+
+<tr>
+<td><%= f.label :Surname %></td>
+<td><%= f.text_field :surname %></td>
+</tr>
+
+  <%= f.hidden_field :rating, :value => @player.rating  %>
+  
+  <%= f.hidden_field :country, :value => @player.country  %>	
+	
+  
+<tr><td>
+<%= f.submit "Update" %></td>
+</tr> 
+</table>	
+	
+<% end %>

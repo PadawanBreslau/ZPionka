@@ -176,7 +176,8 @@ end
   	@frame = JFrame.new "Window to display games"
   	@frame.set_visible true
   	@frame.set_location 20, 20
-  	@frame.set_size 1080, 720
+  	@frame.set_size 1080, 800
+  #	@frame.set_extended_state(Frame.MAXIMIZED_BOTH); 
   	
   	@panel1 = JPanel.new
   	@panel1.set_layout BorderLayout.new
@@ -226,7 +227,7 @@ end
 	
 	@button2_1 = JButton.new "Previous game"
 	@button2_1.addActionListener do |e|
-		@prev_game = find_prev_game @observes, @windows, 0
+		@prev_game = find_prev_game @observes, @windows, 1
 		@panel2.remove @browser2
         @game = Game.find(@observes[@prev_game].game_id)
         @game_pgn = PGNReader.new @game.pgn_file
@@ -240,7 +241,7 @@ end
     
     @button2_2 = JButton.new "Next game"
 	@button2_2.addActionListener do |e|
-		@next_game = find_next_game @observes, @windows, 0
+		@next_game = find_next_game @observes, @windows, 1
 		@panel2.remove @browser2
         @game = Game.find(@observes[@next_game].game_id)
         @game_pgn = PGNReader.new @game.pgn_file
@@ -264,11 +265,39 @@ end
   	@panel3.set_size 540, 360
 	@panel3.set_visible true
 	
-	@button3 = JButton.new "Change game"
-	@button3.addActionListener do |e|
-      puts "Button got clicked3."
+	@button3_1 = JButton.new "Previous game"
+	@button3_1.addActionListener do |e|
+		@prev_game = find_prev_game @observes, @windows, 2
+		@panel3.remove @browser3
+        @game = Game.find(@observes[@prev_game].game_id)
+        @game_pgn = PGNReader.new @game.pgn_file
+  		@parsed_game = @game_pgn.parse_game
+  		@browser3 = GameBrowser.new @parsed_game
+  		@panel3.add @browser3, BorderLayout::CENTER
+  		@panel3.revalidate
+  		@panel3.repaint 
+	
     end
-	@panel3.add @button3, BorderLayout::SOUTH
+    
+    @button3_2 = JButton.new "Next game"
+	@button3_2.addActionListener do |e|
+		@next_game = find_next_game @observes, @windows, 2
+		@panel3.remove @browser3
+        @game = Game.find(@observes[@next_game].game_id)
+        @game_pgn = PGNReader.new @game.pgn_file
+  		@parsed_game = @game_pgn.parse_game
+  		@browser3 = GameBrowser.new @parsed_game
+  		@panel3.add @browser3, BorderLayout::CENTER
+  		@panel3.revalidate
+  		@panel3.repaint 
+	
+    end
+    
+    @panel_buttons_3 = JPanel.new
+
+	@panel_buttons_3.add @button3_1
+	@panel_buttons_3.add @button3_2
+	@panel3.add @panel_buttons_3, BorderLayout::SOUTH
 	
 	@panel4 = JPanel.new
   	@panel4.set_layout BorderLayout.new
@@ -276,11 +305,39 @@ end
   	@panel4.set_size 540, 360
 	@panel4.set_visible true
 	
-	@button4 = JButton.new "Change game"
-	@button4.addActionListener do |e|
-      puts "Button got clicked4."
+	@button4_1 = JButton.new "Previous game"
+	@button4_1.addActionListener do |e|
+		@prev_game = find_prev_game @observes, @windows, 3
+		@panel4.remove @browser4
+        @game = Game.find(@observes[@prev_game].game_id)
+        @game_pgn = PGNReader.new @game.pgn_file
+  		@parsed_game = @game_pgn.parse_game
+  		@browser4 = GameBrowser.new @parsed_game
+  		@panel4.add @browser4, BorderLayout::CENTER
+  		@panel4.revalidate
+  		@panel4.repaint 
+	
     end
-	@panel4.add @button4, BorderLayout::SOUTH
+    
+    @button4_2 = JButton.new "Next game"
+	@button4_2.addActionListener do |e|
+		@next_game = find_next_game @observes, @windows, 3
+		@panel4.remove @browser4
+        @game = Game.find(@observes[@next_game].game_id)
+        @game_pgn = PGNReader.new @game.pgn_file
+  		@parsed_game = @game_pgn.parse_game
+  		@browser4 = GameBrowser.new @parsed_game
+  		@panel4.add @browser4, BorderLayout::CENTER
+  		@panel4.revalidate
+  		@panel4.repaint 
+	
+    end
+    
+    @panel_buttons_4 = JPanel.new
+
+	@panel_buttons_4.add @button4_1
+	@panel_buttons_4.add @button4_2
+	@panel4.add @panel_buttons_4, BorderLayout::SOUTH
   	
 
   	@frame.set_layout GridLayout.new 2,2
@@ -289,6 +346,7 @@ end
   	@frame.add @panel2
   	@frame.add @panel3
   	@frame.add @panel4
+  	@frame.repaint
   	
   		
   	redirect_to_back root_path

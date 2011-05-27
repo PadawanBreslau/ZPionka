@@ -29,7 +29,7 @@ end
 
 def index
  @title = "User list" 
- @user = User.paginate(:page => params[:page])
+ @users = User.paginate(:page => params[:page], :per_page=> 12)
 end
 
 def show

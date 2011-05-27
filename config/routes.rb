@@ -283,7 +283,7 @@ resources :infos
 resources :games
 resources :sessions, :only => [:new, :create, :destroy]
 
-
+match '/faq', :to => "pages#faq"
 match '/broadcast_matching', :to => "tomaiframe#match_with_tournament"
 match 'games/movecomments', :to => "games#_movecomment"
 match 'games/variations', :to => "games#_variations"

@@ -1,0 +1,533 @@
+\documentclass[12pt,leqno]{article}
+
+\usepackage{polski}     
+\usepackage[utf8]{inputenc}  
+       
+\usepackage{a4wide}          
+
+\usepackage{graphicx}          
+
+\usepackage{bbm}        
+\usepackage{amsthm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                          
+                                          
+\title{\LARGE \textbf{Tytuł pracy magisterskiej}}
+\author{Stanisław Zawadzki}
+
+\date{Wrocław, \today}
+
+\begin{document}
+\maketitle               
+\thispagestyle{empty}    
+\tableofcontents       
+\newpage
+\section{Wstęp}
+
+\subsection{Motywacja}
+W ciągu dwóch ostatnich dekad stworzonych zostało mnóstwo programów i witryn internetowych związanych z szachami. Realizują one różne funkcjonalność, implementują dziesiątki różnych interfejsów graficznych, umożliwiają niemal wszystkie czynności, jakie człowiek może wykonać z rozgrywkami na 64 polach. Większości z nich łączy jednak jedna wspólna cecha - skupiają się na zagadnieniu programistycznym, które w przypadku szachów jest często fascynujące, zapominając jednak o opcjach pozwalających użytkownikom na sprawne posługiwanie się ich narzędziami. Motywacją do mojej pracy było stworzenie wygodnego dla użytkowników serwisu internetowego pozwalającego na łączenie wielu funkcji związanych z szachami. Głównymi odbiorcami programu będą kibice oglądający przez Internet turnieje szachowe, ale ma być również użyteczny dla osób szukających informacji o turniejach szachowych, a także dla zainteresowanych profesjonalnymi analizami partii. Nie zamierzam zaprzestawać prac nad programem - w dalszej przyszłości chciałbym rozszerzyć spektrum zastosowań strony o możliwość bezpośredniej gry przez internet i kalendarz do wyszukiwania turniejów szachowych. Rozważam także ideę napisania nowej biblioteki do obsługi partii szachowych.
+
+Zanim podjąłem decyzję na temat funkcjonalności interfejsu przeprowadziłem badania obejmujące kilkudziesięciu szachistów oraz kilka już istniejących programów szachowych lub stron WWW o tematyce szachoewj. Uwzględniając uwagi oraz mając we względzie swoje prywatne potrzeby zaprojektowałem i wykonałem system do przechowywania w bazie danych, przeglądania i komentowania partii szachowych.
+
+\subsection{Słownik terminów szachowych}
+W trakcie tej pracy będzie przewijać się sporo terminów dotyczących szachów i programów szachowych. W tym punkcie wyjaśnie znaczenie owych słów, a także podam listę wyrażeń do nich synonimicznych.
+\begin{itemize}
+\item {\bf Szachy} - gra planszowa rozgrywana na szachownicach przy użyciu figur szachowych; \\ Synonim: królewska gra;
+\item {\bf Szachownica} - plansza, na której rozgrywa się partię szachów. Podzielona na 64 pola - 32 białe i 32 czarne. 
+\item {\bf Figura szachowa} - Jedna z sześciu możliwych typów figur (pionek, goniec, skoczek, wieża, hetman, król). Zawodnicy przemieszczają je podczas swoich posunięć \\ Synonim: bierka szachowa;figura
+\item {\bf Posunięcie} - Zmiana położenia figury szachowej wykonana przy zachowaniu zasad poruszania się tych figur \\ Synonim: ruch, półruch
+\item {\bf Szach} - Zaatakowanie króla przeciwnika, zmuzające go do natychmiastowej reakcji \\ Synonim: atak na króla
+\item {\bf Mat} - Szach, po którym nie można nie utracić swojego króla. Kończy natychmiast partię jako wygrana zawodnika, który wykonał posunięcie matujące
+\item {\bf Wygrana} - Aby wygrać partię należy zamatować przeciwnika lub skłonić go do dobrowolnego poddania partii. Zawodnik wygrywający otrzymuje jeden punkt, jego przeciwnik nie zyskuje żadnych punktów.
+\item {\bf Remis} - Uznanie partii za nierozstrzygniętą. Skutkuje podziałem punktów między obu zawodników (obaj otrzymują wówczas $\frac{1}{2}$ punktu).  \\ Synonim: podział punktu
+\item {\bf Propozycja remisu} - Dobrowolna oferta składana w dowolnym momencie gry przez jednego przeciwnika drugiemu. Jej zaakceptowanie oznacza podział punktu, jej odrzucenie nie wpływa na przebieg rozgrywki
+\item {\bf Reklamowanie remisu} - Istnieją sytuacje, w których można wnioskować o odgórne przyznanie remisu. Jeśli pozycja spełnia opisane w przepisach kryteria, wówczas sędzia może orzec podział punktu. W przeciwnym razie partii toczy się dalej.
+\item{\bf Czas rozgrywki} - Choć nie jest to wymagane przepisami, w praktyce partie mają swój limit czasu. Partia trwa wówczas 2X, gdzie X oznacza czas dla jednego zawodnika. Czas zawodnikowi płynie wówczas gdy jest kolej na jego posunięcie. Do odmierzania czasu korzysta się z zegarów szachowych. W momencie jak zawodnikowi kończy się czas do namysłu przegrywa on partię. \\ Synonim: tempo partii
+\item{\bf Zegar szachowy} - Urządzenie składające się z dwóch czasomierzy i przełącznika między nimi. Początkowo czas na obu licznikach jest ten sam, jednak upływa on różnie u obu zawodników - w zależności od czasu spędzonego na namyśle nad swoimi posunięciami. 
+\item{\bf Czas dodawany} - W niektórych przypadkach wybierane jest tempo gry, które modyfikuje wartość czasu na zegarze po wykonaniu posunięcia. Jest to zazwyczaj wartość pomiędzy trzema a trzydziestoma sekundami. Dodaje się ona automatycznie po przełączeniu dźwigni zegara. 
+\item {\bf Zawodnik grający białymi} - Gracz rozpoczynający grę. \\ Synonimy: Pierwszy zawodnik, gracz białymi, białe 
+\item {\bf Zawodnik grający czarnymi} - Gracz wykonujący posunięcia jako drugi. \\Synonimy: Drugi zawodnik, gracz czarnymi, czarne
+\item {\bf Silnik szachowy} - Program oceniający pozycję analizujący możliwe przebiegi partii. \\Synonimy: Program szachowy, silnik, silnik analityczny
+\item {\bf Zapis partii} - Zapisanie ciągu wszystkich wykonanych posunięć wraz z opisem zawodników i zawodów
+\item {\bf Szachownica elektroniczna} - Specjalna szachownica pozwalająca na automatyczne zczytwanie przebiegu partii
+
+
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%
+\section{Terminologia szachowa}
+Aby móc rozmawiać o szachowych interfejsach trzeba posiadać podstawową wiedzę na temat zasad królewskiej gry. W bieżącym rozdziale postaram się opisać każdą możliwą sytuację w partii szachowej, ale także opiszę specyfikę sprzętu i oprogramowania, które będą kluczowe dla mojej aplikacji. Rozpocznę od opisu ruchu figur, później omówię posunięcia nadzyczajne a na końcu opiszę wszystkie inne aspekty, które są kluczowe w przypadku implementowania interfejsu szachowego. Na końcu zostaną opisane szachownice elektroniczne oraz silniki szachowe, które to umożłiwią komputerowi znajdowanie potencjalnie najsilniejszych posunięć w pozycji.
+
+\subsection{Szachownica i figury}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Choć zasady gry w szachy są wielu osobom znane, na potrzeby tej pracy chciałbym przytoczyć wszystkie informacje, które mają znaczenie dla interfejsów szachowych. Plansza, na której odbywa się rozgrywka jest nazywana szachownicą. Jest to obszar podzielony na 64 pola (8x8) numerowane w wierszach liczbami (1-8), w kolumnach zaś literami (a-h). W terminologii szachowej zarówno na wiersze, jak i na kolumny mówi się "linie".  Patrząc z perspektywy gracza grającego białymi w lewym dolnym rogu jest pole a1, patrząc z perspektywy jego przeciwnika jest to pole h8. Pola są dwóch rodzajów - białe i czarne. Pola jednego koloru sąsiadują ze sobą po skosie i {\bf  pole a1 jest zawsze czarne}. Fizycznie nie ma wymagania, by używać dokładnie tych kolorów. \footnote { W rzeczywistości czarne pola są najczęściej ciemnobrązowe, białe zaś mają kolor jasnożółty.} i w przypadku programów szachowych standardem jest uznanie każdego koloru poza białym jako czarny.
+%Na szachownicy ustawiane są 32 figury. Początkowa pozycja jest zawsze ta sama - białe plasują swoje figury na pierwszej i drugiej linii, gracz grający czarnymi ustawia symetrycznie na siódmej i ósmej. Choć istnieją odmiany szachów \footnote{m.in. Szachy Fischera}, to w kanonicznych zasadach ustawienie jest zawsze identyczne - król jest ustawiany na polu e1 (i odpowiednio na polu e8), hetman, zwany także królową powinien stać na polu d1. Wieże są ustawiane na skrajnych liniach (a i h), tuż przy nich jest miejsce na skoczki. W dwa pozostałe wolne pola należy umieścić dwa gońce. Całą drugą linię zajmuje zaś falanga ośmiu pionków.%
+
+\begin{figure}
+\includegraphics{szachownica.jpg}
+\caption{Pozycja początkowa}
+\end{figure}
+
+\subsection{Zasady poruszania się figur}
+\subsubsection{Pionki}
+W przypadku pionków sytuacja jest dość prosta. Te najliczniej reprezentowane figury mogą się przesuwać wyłącznie do przodu. Kiedy przypada kolej danego zawodnika może on wykonać pionkiem jedno z trzech możliwych posunięć:
+\begin{enumerate}
+\item  {\bf Przesunąć pionka o jedno pole do przodu} (t.j. wzdłuż kolumny)\\
+Jest to podstawowe posunięcie możliwe do wykonania pionkiem. Można je wykonać wtedy, gdy pole na które zmierza pionek nie jest zajęte przez  inną figurę (zarówno swoją, jak i cudzą).
+\item {\bf Przesunąć pionka o dwa pola do przodu}\\
+Posunięcie to można wykonać tylko wtedy, gdy pionek zajmuje początkową pozycję.
+Jak w poprzednim przykładzie pole, na które zmierza pionek, jak i pole pośrednie nie mogą być zajęte przez żadną figurę.
+\item {\bf Zbić figurę przeciwnika poruszając się po skosie do przodu}\\
+Pionki jako jedyne szachowe figury biją w inny sposób niż się poruszają. W zwyczajnej sytuacji  pionki poruszają się wzdłuż kolumn. Jedynym sposobem, aby pionek przeszedł na sąsiednią linię jest zbicie innej figury. Pionki biją "po skosie", czyli jeśli  pionek białych stoi na polu e3, to może zbić figurę, która stoi na d4 lub f4. W przypadku gdyby na e3 stał pionek czarnych, mógłby on zbić figurę na polu d2 lub f2. W wyniku zbicia stawiamy pionka na polu dotychczas zajmowanym przez daną figurę, tamtą zaś usuwamy z szachownicy
+\end{enumerate}
+Dodatkowym i bardzo rzadkim ruchem jest tzw. ,,bicie w przelocie", o którym napiszę w dziale "Posunięcia niezwyczajne"
+\subsubsection{Lekkie figury}
+W nomenklaturze szachowej mianem ,,figury lekkiej" nazywamy gońce i skoczki. W tym punkcie zajmiemy się zdefiniowaniem sposobu poruszania się przez te dwie figury.  Goniec, zwany czasem błędnie laufrem, porusza się zawsze po skosie. Wynika z tego, że jeśli początkowo figura ta jest ustawiona na polu białego koloru, to do samego końca rozgrywki będzie się poruszała wyłącznie po polach tego właśnie typu. Goniec nie może ,,przeskoczyć nad przeszkodą". Stąd wynika, że może poruszyć się maksymalnie tak daleko, jak dużo ma wolnego miejsca po diagonali\footnote{W nomenklaturze szachowej każda ukośna linia mająca przynajmniej trzy pola jest diagonalą}. Goniec może zbić pierwszą figurę, która staje na jego drodze. \\
+
+Skoczek jest jedyną figurą, która może przeskoczyć nad innymi figurami. Ruchy skoczka jest najłatwiej porównać do litery ,,L". Może on wykonać posunięcie w każdą stronę, pod warunkiem iż będzie to ruch opisany jako "dwa pola do przodu i jedno w bok". W przypadku skoczka zwrot ,,do przodu" oznacza dowolny z czterech kierunków. Bicie skoczkiempolega na tym, że skoczek może zabrać figurę z tego pola, na które uda mu się wskoczyć.
+\subsubsection{Ciężkie figury}
+Podobnie jak w przypadku lekkich figur termin ,,ciężkie figury" określa dwa rodzaje szachowych figur:  wieżę i hetmana. Figury ciężkie w zdecydowanej większości przypadków są silniejsze od pozostałch figur. \\
+Posunięcia wieżą są podobne do posunięć gońca, z tą różnicą, że porusza się ona wzdłuż pionowych i poziomych linii. Tak jak w przypadku gońca może ona bić pierwszą figurę, która wystąpi na jej drodze. Innym ruchem, który może ona wykonać, jest roszada opisana w dziale posunięć niezwyczajnych.\\
+Jak porusza się hetman chyba nie muszę opisywać z jednego bardzo prostego powodu. Problem ośmiu hetmanów jest na tyle znanym zagadnieniem algorytmicznych, że każdy absolwent studiów informatycznych musiał się z nim wielokrotnie zapoznać. Skrótem opisując - hetman jest hybrydą wieży i gońca - łączy wszystkie cechy obu tych figur (poza możliwością roszady)
+
+\subsubsection{Król}
+Król jest, w zależności od punktu widzenia, albo najsłabszą, albo najsilniejszą figurą. Porusza się on w bardzo prosty sposób - może przejść na każde z okolicznych pól. Jedynym dodatkowym posunięciem w jego arsenale jest wzmiankowana wcześniej i opisana w następnym podrozdziale roszada. Jest jednak bardzo ważna cecha, która odróżnia króla od każdej innej figury. Monarcha nie może zostać umieszczony na polu atakowanym przez chociaż jedną figurę rywala. Tak samo trzeba zawsze coś przedsięwziąć, jeśli przeciwnik wykonując ruch zaatakował naszego króla. W tym przypadku trzeba wykonać jeden z trzech manewrów
+\begin{itemize}
+\item odejść królem na nieatakowane pole;
+\item zbić atakującą figurę;
+\item przesłonić obszar działania atakującej figury.
+\end{itemize}
+Król jest jedyną figurą z naszego arsenału, której nie możemy stracić. W momecie gdy monarcha zostaje tak osaczony, że nie może uniknąć zagłady, następuje koniec partii. Więcej o zakończeniu partii szachowej będzie napisane w następnych rozdziałach.
+
+
+%%%%%%%%%%%%
+\subsection{Posunięcia niezwyczajne}
+W poprzednim punkcie przedstawiłem wszystkie zwyczajne sposoby na wykonanie posunięcia. Teraz nadszedł czas na opisanie przypadków posunięć nadzwyczajnych. Niektóre z nich zdarzają się bardzo rzadko, niektóre z nich są obecne w prawie każdej partii szachowej.
+\subsubsection{Bicie w przelocie}
+Bicie w przelocie (ang. {\it en passant}) jest najrzadszym szachowym posunięciem. Występuje ono tylko w jednym momencie. Warunkiem koniecznym i wystarczającym, aby można było zagrać ten ruch jest fakt, iż pionek przeciwnika ruszył się o dwa pola do przodu, zaś nasz pionek atakuje pośrednie pole między początkowym o końcowym ustawinieniem pionka rywala. Aby dokonać zbicia przesuwamy pionka na owo pole pośrednie i zdejmujemy pionka rywala (jest to jedyny przypadek w grze, że bije się figurę z pola, na które się nie postawiło swojej figury). Ważną sprawą jest to, że ten ruch można wykonać tylko bezpośrednio po ruchu pionem o dwa pola. Później takie bicie jest niezgodne z przepisami.
+\subsubsection{Roszada}
+Roszada, w przeciwieństwie do bicia w przelocie, choć jest posunięciem niezwyczajnym, zdarza się bardzo często. Jest ona jedynym szachowym posunięciem, które wprawie w ruch więcej niż jedną figurę. Polega ona na jednoczesnym przesunięciu króla i wieży po pierwsze linii (odpowiednio dla czarnych figur - ostatniej). Muszą być jednak spełnione następujące warunki:
+\begin{enumerate}
+\item Wszystkie pola między królem a wieżą muszą być puste;
+\item Zarówno król, jak i wieża nie mogły wcześniej wykonać ani jednego posunięcia;
+\item Król nie jest atakowany przed wykonaniem roszady, nie będzie zaatakowany po wykonaniu roszady i nie przekroczy zaatakowanego pola w trakcie jej wykonywania.
+\end{enumerate}
+Oczywiście drugi z tych punktów determinuje, że roszadę jeden zawodnik może wykonać maksymalnie raz w czasie całej partii.\footnote{Choć w praktyce turniejowej zdarzały się przepadki, iż zawodnicy w stresie zapomnieli o tym, że roszada miała lub miejsce lub król wykonał już posunięcie i w wyniku tego partia zaczęła się toczyć w sposób nieprawidłowy}\\
+Ponieważ są dwie wieże na szachownicy to rozróżniamy dwa typy roszad.
+\begin{itemize}
+\item roszada krótka (występująca częściej w partiach szachowych) - król przechodzi z pola e1 na pole g1, wieża przesuwa się z h1 na f1
+\item roszada długa - król przechodzi z pola e1 na pole c1, wieża przesuwa się z pola a1 na pole d1 (zauważmy, że w przypadku tej roszady pole b1/b8 {\bf może} być atakowane).
+\end{itemize}
+\subsubsection{Promocja}
+Promocji dokonuje się z pomocą przesunięcia pionka aż do końcowej linii szachownicy (ósmej w przypadku białego pionka, pierwszej w przypadku czarnego). W momencie gdy pionek osiąga skraj szachownicy {\bf musi} on zostać zmieniony na hetmana, wieżę, gońca lub skoczka {\bf tego samego koloru!} Dozwolone jest posiadanie więcej figur, niż określa to stan początkowy (czyli można mieć na szachownicy nawet dziewięć hetmanów). Promocji można dokonać każdym pionkiem i cała czynność, czyli postawienie pionka na ostatniej linii oraz zamienienie go na figurę trwa dokładnie jeden ruch.
+
+%%%%%%%%%%%%
+\subsection{Początek, przebieg i koniec rozgrywki}
+W poprzednim punkcie opiszę warunki początkowe i końcowe rozgrywki szachowej. Zwłaszcza zakończenie partii jest ważną kwestią, gdyż istnieje duża liczba sytuacji, w których partię uznaje się za zakończoną. 
+\subsubsection{Rozpoczęcie rozgrywki}
+Na początku figury są rozstawione w sposob przedstawiony na diagramie nr XXX. Po zwyczajowym przywitaniu się z przeciwnikiem następuje uruchomienie zegara szachowego i białe wykonują swój pierwszy ruch. Od tej chwili obaj zawodnicy wykonują na zmianę po jednym posunięciu, korzystając z opisanych we wcześniejszym rozdziale zasad. W momencie gdy zawodnik zaatakuje króla rywala, powinien powiedzieć "szach", aby ów wiedział, że ma obowiązek zaradzeniu temu problemowi. Posunięcia są wykonywane na zmianę aż do momentu, aż w jakiś sposób nadejdzie koniec partii - w przypadku gdy w pewnym momencie nastąpił nieprawidłowy ruch powraca się do ostatniej prawidłowej pozycji. Sposobów, aby zakończyć partię jest naprawdę wiele, każda z nich jest szczegółowo opisana w przepisach Międzynarodowej Federacji Szachowej (FIDE).
+
+\subsubsection{Różne sposoby zakończenia partii}
+Partiastandardowo może zakończyć się na dwa sposoby - remisem lub zwycięstwem jednej ze stron. W szczególnych przypadkach dozwolone są jednak inne wyniki, takie jak walkower (oznaczany + - jeśli walkowera oddały czarne i w -+ w przeciwnym przypadku), obustronna porażka (oznaczana 0-0, przyznawana w przypadku skrajnego złamania zasad fair-play) oraz wynik $\frac{1}{2}$ - 0 (lub 0 - $\frac{1}{2}$) , który może się zdarzyć w wyjątkowych sytuacjach (jednemu z zawodników pozostał tylko król, drugi wciąż posiada materiał matujący, ale przekracza czas przeznaczony do namysłu). Trzeba jednak pamiętać, że wyniki niestandardowe zdażają się w znikomym ułamku liczby partii (najczęściej z nich widuje się walkowera) 
+Relatywnie najbardziej skomplikowane jest ustalenie, że partia skończyła się remisem. Zakończnie partii określają przepisy FIDE: \\\\
+
+{\bf ARTYKUŁ 5. PARTIA ZAKOŃCZONA}\\ \footnote{Przepisy gry od 01.07.2009 wg Światowej Federacji Szachów}
+{\bf 5.1. (a)} Partię wygrywa zawodnik, który zamatował króla
+przeciwnika. Mat natychmiast kończy partię pod warunkiem,
+że pozycja matowa powstała w wyniku prawidłowego
+posunięcia.\\
+{\bf (b)} Partię wygrywa zawodnik, którego przeciwnik oświadczył,
+że poddaje się. Poddanie natychmiast kończy partię.
+{\bf 5.2 (a)} Partia kończy się remisem, gdy zawodnik będący na
+posunięciu nie może wykonać żadnego prawidłowego
+ruchu, a jego król nie jest szachowany. Taką pozycję
+określa się słowem „pat". Pat natychmiast kończy partię,
+pod warunkiem, że pozycja patowa powstała w
+wyniku prawidłowego posunięcia.\\
+{\bf (b)} Partia kończy się remisem, jeśli powstaje pozycja, w
+której żaden z zawodników nie może zamatować króla
+za pomocą jakiejkolwiek serii prawidłowych posunięć.
+Pojawienie się tzw. „martwej pozycji" też natychmiast
+kończy partię, pod warunkiem, że powstała ona w wyniku
+prawidłowego posunięcia. (Patrz art. 9.6)\\
+{\bf (c)} Partia kończy się remisem w wyniku uzgodnienia pomiędzy
+obydwoma zawodnikami w trakcie partii. Zgoda
+na remis natychmiast kończy partię. (Patrz art. 9.1).\\
+{\bf (d)} Partia może zakończyć się remisem, jeżeli identyczna
+pozycja ma pojawić się na szachownicy przynajmniej
+po raz trzeci lub już pojawiła się przynajmniej trzykrotnie.
+(Patrz art. 9.2).\\
+{\bf (e)} Partia może zakończyć się remisem, jeżeli obaj zawodnicy
+przynajmniej w ostatnich 50 posunięciach nie
+wykonali żadnego ruchu pionkiem, ani nie pobili żadnej
+bierki. (Patrz art. 9.3).\\
+
+
+Trzeba zawsze pamiętać o każdym z wymienionych sposobów i posiadać narzędzia pozwalające sprawdzić, czy strony mogą zgodzić się na podział punktu. W ostatnich latach spora część zawodów szachowych dodała zasadę zakazu proponowania remisu przed zagraniem 30 posunięć. Jest to jednak wciąż jedynie wewnętrzny przepis i organizatorzy turnieju nie mają obowiązku się do niego stosować - oficjalnie wystarczy, że zawodnicy zagrają dwa półruchy\footnote{Wcześniej wg definicji partia nie jest jeszcze uznana za rozpoczętą}
+Nie licząc sytuacji zupełnie losowych\footnote{Zdarzały się nawet przypadki śmierci przy szachownicy} partie mogą kończyć się wyłącznie w sposoby określone w wyżej przytoczonych przepisach. 
+
+
+%%%%%%%%%%%%
+\subsection{Dodatkowe informacje o partiach szachowych}
+Pisząc o partiach szachowych należy przytoczyć jeszcze kilka terminów, które dotyczą każdej rozgrywki. Nie mają one bezpośredniego związku z szachami i można towarzysko rozgrywać partię bez tych elementów, jednak w profesjonalnych turniejach są one najczęściej wymagane przepisami.
+\subsubsection {Czas rozgrywki}
+W zdecydowanej większości przypadków partie szachowe, nawet te towarzyskie, grane są z limitem czasu. Może to być zaledwie minuta dla zawodnika na partię, a może to być kilka godzin. W ostatnich latach coraz bardziej popularna jest opcja dodawania czasu po wykonaniu każdego posunięcia. Zawodnicy mogą zużyć swój czas w zależności od potrzeb na analizowanie swoich posunięć. W momencie gdy wykonają ruch przełączają upływ czasu na konto rywala. W przypadku, jeśli zabraknie czasu do namysłu, partia jest uznana za przegraną zawodnika, który przekroczył limit. Historycznie czas odmierzano na zagarach mechanicznych, jednak coraz bardziej sie od tej praktyki odchodzi na rzecz elektronicznego mierzenia upływu czasu.
+\subsubsection{Zapis rozgrywki}
+W partiach granych dłuższym tempem (minimum godzina dla jednego zawodnika) istnieje obowiązek prowadzenia zapisu partii. Służy on zapamiętywaniu stanu partii po każdym wykonanym posunięciu, aby w każdej chwili można było prześledzić historię rozgrywki. Ogólnoświatową konwencją jest stosowanie tzw. skróconej notacji algebraicznej. Na początku zapisywana jest pierwsza litera figury\footnote{W niektórych językach, jak n.p. w angielskim jest to nie zawsze możliwe. Wówczas stosuje się inne oznacznie}, później zaś pole, na które ona zmierza. Jeśli jest to nierozstrzygające dopisuje się jeszcze informację, która z figur\footnote{Na przykład Sde2 - skoczek z linii 'd' idzie na pole e2} W świecie rzeczywistym odbywa się to z użyciem papierowych blankietów, w świecie programów komputerowych przechowuje się wiadomości o partii z użyciem plików o określonej strukturze.  
+
+%%%%%%%%%%%%
+\subsection{PGN i FEN - sposoby zapamiętywania partii}
+Od kiedy tylko informatyka włączyła się komercyjnie w świat szachów powstało pytanie, jak skutecznie zapisywać i odczytywać pojedyncze rozgrywki szachowe.  W tym celu powstał  format {\bf PGN (Portable Game Notation)}\footnote{dokumentację można znaleźć m.in. pod adresem http://pgn.freeservers.com/Standard.txt}, w którym w prosty sposób można zapisać wszystkie kluczowe informacje o partii szachowej. \\
+PGN jest formatem tekstowym, czytelnym dla bardziej doświadczonego szachisty. Nawet nie dysponując żadnym programem, który graficznie przedstawiłby daną rozgrywkę, bez najmniejszych problemów można otworzyć ten plik w edytorze tekstowym i przeczytać nagłówek i posunięcia. Format ten sprawdza się dobrze w przypadku pojedynczych partii lub zbiorów nie przekraczających kilkadziesiąt tysięc rozgrywek, jednak w przypadku wielkich baz (kilka milionów partii) staje się bardzo nieefektywny z uwagi na zerową kompresję i brak wsparcia dla algorytmów wyszukiwania.\footnote {Wówczas stosowane są inne, komercyjne formaty. }
+Plik PGN ma bardzo prostą strukturę - składa się z zapisów partii oddzielonych znakami nowej linii. Zapis każdej partii składa się z dwóch części: nagłówka i treści partii. W nagłówku podawane są informacje na temat warunków grania partii(miejsce, data, turniej czy runda turnieju), zaś w treści partii wypisane są posunięcia a także możliwe warianty i komentarze słowne. Dane w nagłówku przedstawione są w postaci [klucz "wartość"], przy czym obecność części kluczy nie jest wymagana. Posuniecia i warianty podawane są w skróconej lub rozszerzonej notacji algebraicznej. W samych plikach nie ma żadnej kontroli poprawności danych, zadanie to jest przerzucone na programistów korzystających z owych plików.\\
+{\bf FEN (Forsyth-Edwards Notation)} służy nie do zapisu partii, ale do zapamiętania konkretnej sytuacji na szachownicy. Czasem bowiem mamy do czynienia z sytuacją, kiedy nie potrzebujemy wcześniejszego przebiegu rozgrywki i interesuje nas tylko konkretna pozycja. Początkowo wydaje się to trywialnym zadaniem, jednak po głębszym namyśle odkrywamy problemy - jak zapisać, czy któraś ze stron może jeszcze zrobić roszadę (nie wynika to z samego ustawienia, bo król mógł używając przynajmniej dwóch posunięć raz jeszcze znaleźć się na pozycji początkowej), czy też możliwość bicia w przelocie? Do tego trzeba zadbać o zwięzłość tego zapisu. Notacja FEN opisuje linia po linii, każde pole na szachownicy, zliczając pola puste. \\
+Przykładowo - pozycja z pięcioma figurami, białym królem na polu g5, hetmanem na polu e6 oraz czarnymi figurami na polach g7(król), f7 (wieża) i h7 (pionek) wygląda następująco "8/5rkp/4Q3/6K1/8/8/8/8 w - - 0 1" \\
+Znak ,,/" oznacza nową linię poziomą szachownicy, wielkie litery opisują białe figury, małe litery opisują figury czarne. Litera 'w' oznacza, że grę rozpoczynają białe. Myślniki świadczą o braku możliwości zrobienia roszady. W ten sposób, korzystając z zaledwie kilkunastu znaków opisaliśmy całą pozycję. Z notacji FEN często korzysta się w plikach PGN, gdyż dzięki niej można rozpocząć zapis partii od dowolnej pozycji, a nie tylko od początkowej. 
+
+% Zapis szachowy
+
+\subsection{Oznaczenia figur szachowych}
+W formacie PGN należy rozstrzygnąć w jaki sposób oznaczamy figury W szachach nie ma jednolitego międzynarodowego nazewnictwa, każdy kraj stosuje nazwy w swoim języku. Jedynym standardem jest omijanie przedrostka, w przypadku gdy dochodzi do posunięcia pionkiem. Każdy profesjonalny szachista potrafi korzystać z nazw figur w języku angielskim\footnote{Nie należy jednak tego mylić z tzw. notacją angielską, która jest obecnie już nieużywanym sposobem zapisywania posunięć}: król-K(king),hetman-Q(queen),wieża-R(rook),goniec-B(bishop), skoczek-N(knight). Nie należy jednak zakładać, że każdy użytkownik będzie posiadał tę wiedzę. Ciekawym rozwiązaniem jest korzystanie z piktogramów, które nie tylko już są pewnym standardem\footnote{Istnieją choćby w domyślnych czcionkach systemów biurowych jak Microsoft Word czy OpenOffice}, ale są także graficznie zbliżone do rzeczywistych figur.  
+
+\subsection{Szachownice elektroniczne}
+Jeśli myślimy o transmisjach partii szachowych na żywo musimy także zrozumieć sposób, w jaki posunięcia szachowe są wysyłane do sieci. W tym celu korzysta się ze specjalnego sprzętu zwanego szachownicami elektronicznymi\footnote{Aktualnie rynek szachownic elektroniczynych jest zmonopolizowany przez holenderską firmę DGT znaną także z produkcji najlepszych zegarów elektronicznych}. Z wyglądu przypominają one zwykłe szachownice, jednak podłączone są one przewodowo\footnote{Przez gniazdo COM} do komputera, który przy pomocy programu autorstwa firmy DGT odczytuje sygnały z szachownic i interpretuje je jako posunięcia. Wówczas można już te partie zapisywać do plików i wysyłać na serwery do odczytu przez programy prowadzące transmisje. \\
+Podczas prowadzenia transmisji z użyciem szachownic elektronicznych zdarzają się błędy, które można podzielić na kilka kategorii:
+\begin{itemize}
+
+\item Błędy fizyczne \\
+Na salach turniejowych (wyłączywszy nieliczne superturnieje) nie ma możliwości, aby kable łączące szachownice elektroniczne z komputerem poprowadzić pod podłogą lub w inny sposób uniemożliwiający przypadkowe ich zerwanie. Z tego powodu trzeba brać pod uwagę, iż któryś z kibiców lub zawodników\footnote{W czasie namysłu rywala wielu szachistów wstaje od swojej partii i spaceruje po sali gry} spowoduje zerwanie kabla z transmisji.Niesprawne lub niepoprawnie przekazujące dane zegary także są częstą przyczyną błędów w przypadku oglądania partii on-line;
+
+\item Błędy szachistów\\ 
+Doświadczeni szachiści bardzo rzadko popełniają błąd polegający na wykonaniu nieprawidłowego posunięcia\footnote{Amatorzy dla odmiany rzadko grają na szachownicach elektronicznych, gdyż jest to drogi sprzęt i z tego powodu jest używany niemal wyłącznie na prestiżowych zawodach}. Mimo to, zwłaszcza w przypadku ograniczonego czasu do namysłu, zdarzają się sytuacje, w której zawodnik wykona nielegalne posunięcie\footnote{Najczęsciej jest to wykonanie nieprawidłowej roszady, choć zdarzają się też inne możliwości jak przypadkowe wykonanie ruchu złą figurą}. Spora część programów transmitujących partie nie bierze pod uwagę takich sytuacji. Powoduje to, że dalsza część partii jest odrzucana przez aplikację jako nieprawidłowa. Skutkuje to nie tylko zawieszeniem transmisji, ale także nie przekazuje żadnego komunikatu widzom, dlaczego stan szachownicy się nie zmienia;
+
+\item Błędy sędziego/obsługi technicznej zawodów\\
+Kolejną osobą, która może popełnić błąd jest sędzia lub specjalista od obsługi technicznej zawodów. Mając dostęp do panelu administowania szachownicami może wpisac źle dane partii, może także wpisać zły wynik. Może oczywiście również źle skonfigurować sieć, przez co pliki nie będą prawidłowo umieszczane na serwerze. 
+
+\item Błąd ,,późniejszej analizy"\\
+Jest to bardzo częsty błąd, który musi być starannie usuwany przez sędziego. Bierze się on z zachowania szachistów, którzy po zakończonej partii często przesuwają figury, aby sprawdzić potencjalny rozwój sytuacji. Komputer cały czas zapisuje zmiany na szachownicy jeśli nie otrzyma informacji, że obaj zawodnicy uzgodnili już słownie wynik partii. Co prawda teoretycznie unika się tego problemu poprzez specyficzne ustawienie królów zaraz po zakończeniu partii\footnote{Biały król na e4, czarny na d5 w przypadku wygranej białych, biały król na e4, czarny król na e5 w przypadku remisu oraz biały król na d4, czarny na e5 w przypadku wygranej czarnych}, ale w ferworze walki szachiści bardzo często o tym zapominają. Analizy po zakończeniu partii są bardzo często algorytmicznie nierozróżnialne od samej partii, zatem sędzia musi ręcznie, na podstawie papierowych zapisów partii, zweryfikować jej zakończenie. Kolejny problem tego samego rodzaju wynika, jeśli w końcowej pozycji postawienie króla na jednym z wyróżnionych pól jest możliwe. Wówczas ustawienie króla w celu wysłania informacji o wyniku zostanie potraktowane jako zwyczajne posunięcie królem.\\\\
+%Rozwiązanie?
+
+
+\end{itemize}
+
+\subsection{Silniki szachowe}
+%\includegraphics{rybka.GIF}
+
+Silniki szachowe są programami, które jako dane wejściowe otrzymują pozycję, jako rezultat zwracają zaś ocenę pozycji wraz z propozycjami najlepszych posunięć. Nie należy jednak podchodzić do nich w sposób jaki podchodzi się do zwyczajnych programów - ich wynik w zasadzie nigdy nie jest rozstrzygający i pewny, a ich działanie może być pod względem praktycznym nieskończone. Bierze się to z olbrzymiej ilości możliwych kontynuacji z danej pozycji. Mimo iż szachownica posiada zaledwie 64 pola, a każda z figur posada ograniczone pole działania przestrzeń możliwych sekwencji ruchów jest olbrzymia.\\
+\indent Liczba wszystkich możliwych partii szachowych jest skończona. Wynika to jednoznacznie z trzech obserwacji: 
+\begin{enumerate}
+\item Ilość figur na szachownicy może się jedynie zwiększąć\footnote{Promocja może zwiększyć jakość figur, jednak nie zwiększy ich ilości}
+\item Każdy pionek ma skończoną możliwą liczbę posunięć - może wykonać maksymalnie sześć ruchów
+\item W przypadku zagrania 50 posunięć bez bicia lub posunięcia pionkiem jest ogłaszany remis.
+\end{enumerate}
+Z punktów 1. i 2. wynika, iż ilość bić i posunięć pionkiem jest ograniczona do 30(zbić)+ ($2*8*6$)(możliwe posunięcia wszystkich pionków), czyli łącznie możemy mieć maksymalnie 126 podobnego typu posunięć, co w połączeniu z punktem trzecim daje nam maksymalnie $50*126 = 6300$ posunięć w jednej partii szachowej, co udowadnia, że szachy są grą skończoną. \\
+ 
+Mimo udowodnienia faktu, że każda partia szachowa musi się kiedyś zakończyć, trzeba być świadomym jak olbrzymia przestrzeń możliwych kontynuacji. Shannon szacuje się, że możliwych pozycji jest około $2^{43}$\cite{2}, zaś Tromp udowodnił górną granicę na liczbę możliwych partii na $2^{155}$\cite{3}.  Jest to oczywiście poza zasięgiem zdolności obliczeniowej komputerów. Nawet jeśli podejdzie się do sprawy bardziej praktycznie, eliminując za pomocą heurystyk jawnie błędne kontynuacje, to ilość możliwości jest wyzwaniem nawet dla współczesnych procesorów. Mimo iż komputery w chwili obecnej bez problemu pokonują najlepszych szachistów świata\footnote{Dekadę temu Garri Kasparow toczył ciężkie boje z superkomputerem Deep Blue, w chwili obecnej pokonałby go zapewne komercyjny program uruchomiony na zwyczajnym komputerze osobistym}, to nie należy zwieść się iluzji o ich wszechpotędze. Programy osiągają przewagę nad ludźmi dlatego, że nie popełniają błędów i cały czas grają na równym, bardzo wysokim poziomie.\footnote{Szachy są grą błędów. Najlepsi szachiści świata także popeniają wiele błędów - mniej jednak niż ich konkurenci} Cały czas jednak istnieją wyzwania, z którymi poradził sobie umysł ludzki, a maszyna wciąż nie potrafi. \\
+\indent Historia silników szachowych sięga lat 50-tych ubiegłego wieku, jednak dopiero w latach 80-tych maszyny zaczeły prezentować poziom, który pozwalał im na nawiązanie walki z profesjonalnymi szachistami. Lata dziewiędziesiąte były czasem walki o supremacje między ludźmi i maszynami, zaś pierwsza dekada obecnego stulecia doprowadziła do sytuacji, że człowiek jest już bez szans w pojedynku z maszyną. Prawda jest jednak taka, że podstawowe zasady programowania silników szachowych pozostały podobne do tych, które rozwijali uczeni kilkadziesiąt lat temu. \\
+
+\indent Istnieją dwa podstawowe typy filozofii tworzenia silników szachowych. Pierwsze działają korzystając z algorytmów {\it brute-force}, drugie zaś dokonują wstępnej selekcji możliwych posunięć. Co może dziwić, przez wiele lat programy z pierwszej z tych grup osiągały lepsze wyniki. Dlaczego tak się działo? Odpowiedź jest prosta - bardzo trudno dokonać poprawnej selekcji posunięć. Nawet jeśli w 99\% przypadków program dokona słusznej eliminacji, wciąż w wielu momentach partii nie będzie on rozpatrywał najsilniejszego posunięcia\footnote{Selekcja nie tylko odbywa się w korzeniu obliczeń, ale w większości jego potomnych węzłów również}. W takim przypadku zysk z eliminacji, czyli możliwość spojrzenia dalej w przyszłość, jest niwelowany przez ominięcie kluczowych wariantów. Drugi sposób działa w sposób przypominający ludzkie myślenie, jednak przez lata doprowadzało to do sytuacji, że programy korzystające z heurystyk selekcji posunięć były mniej konsekwente niż programy pierwszego rodzaju, zaś wciąż zbyt słabo naśladujące umysł profesjonalnego szachisty. Jednak koniec końców programistom udało się doprowadzić do sukcesu drugiej grupy programów.\\
+
+%\indent Silniki szachowe są programami pisanymi bardzo niskopoziomowo - szybkie działanie jest kluczowe dla nich i każda zbędna instrukcja byłaby wykonywana miliony razy na %sekundę, co w oczywisty sposób odbiłoby się na wynikach obliczeń. Działają one korzystając z algorytmów min-max, zwracając jako wynik ocenę pozycji po najlepszej według nich %sekwencji posunięć. Kluczowe dla nich są algorytmy oceny pozycji - musza one jako argument wziąć ustawienie figur i zwrócić wynik w postaci liczby. Umiejętność dobrego %przełożenia rozmaitych przewag i słabości pozycji na zwyczajną cyfrę często decyduje o tym, czy program działa dobrze, czy przeciętnie. W tym etapie programowania bardzo często %biorą udział prawdziwi szachiści, którzy korzystając ze swojej szachowej wiedzy oceniają, czy ważniejsza jest przewaga materialna, czy inne czynniki - tymczasowe czy też statyczne. %Jako że szachiści są tylko ludźmi, to nawet mając wiele doświadczenia w tym sporcie czasem popełniają w tym mniejsze lub większe błędy. Ostatecznie ten, który połączy najsprawniej %napisany algorytm obliczania drzewa przeszukiwań i oceniania pozycji w liściach, stworzy najlepszy program grający.
+
+\subsection{Algorytmy stosowane w silnikach szachowych}
+Silniki szachowe przedstawiają partię szachową jako drzewo. Cytując profesora Andrzeja Kisielewicza\cite{4} {\it "Początkowym wierzchołkiem drzewa  (korzeniem) jest stan początkowy gry (wraz ze wskazaniem , na kogo przypada ruch; przypomnijmy, że gracz zaczynający nazywa się MAX). Następnikami korzenia są wszystkie stany, jakie mogą powstać po wykonaniu ruchu przez MAXa-a (w szachach jest ich 20). W każdym z tych stanów ruch przypada z kolei na MIN-a i następniki wyznaczone są przez wszystkie możliwe ruchy MIN-a. Proces ten kontynuujemy, wyznaczając dla każdego stanu następniki, którymi są wszystkie stany, jakie mogą powstać z danego stanu po wykonaniu ruchu przez gracza, na którego przypada kolej ruchu"}. \\
+Obliczenia działają w sposób typowy dla algorytmów MIN-MAX-owych. Na początku obliczane są wartości w liściach (w przypadku szachów 1,0,-1 jeśli zakładamy, że możemy przedstawić pełne drzewo szachów) Zawodnik o nazwie MAX stara się maksymalizować wartość w wierzchołku, podczas gdy MIN dąży do minimalizacji tej wartości. W ten sposób przesuwamy sie od liści aż do korzenia, który jest końcową wartością działania algorytmu. Jest to jednak teoretyczny przykład, gdyż nie jesteśmy w stanie stworzyć tak wielkiego drzewa.\\ \cite{4} {\it "Ta sytuacja nie zraziła badaczy AI} (sztuczna inteligencja przyp. aut.){\it , a raczej zdopingowała, pokazując, że tu jest właśnie miejsce na wprowadzenie sztucznej inteligencji. Komputer(program) powinien być zdolny do oceny aktualnej sytuacji, do stwierdzenia czy przewagę (lepsze widoki na zwycięstwo) mają białe, czy czarne.  Następnie mógłby zanalizować różne sytuacje kilka lub kilkanaście ruchów naprzód i wybrać najbardziej obiecującą" } \\
+Silnik szachowe działają właśnie na zasadzie podobnej opisanej w powyższym akapicie. Twórcy rezygnują ze stworzenia pełnego drzewa szachów, budują jednak strukturę na kilkanaście półruchów naprzód i dając użytkownikowi częściowe wyniki obliczane za pomocą algorytmu MIN-MAX, gdzie wartości liścia wylicza się specjalnymi funkcjami ewaluacyjnymi. Funkcje te uruchamiane są dla każdej pozycji końcowej i z użyciem różnych kryteriów (tworzonych bardzo często przez szachistów) liniowo wyliczają wartość pozycji. Jest to wartość orientacyjna, gdyż stworzenie dobrej funkcji ewaluacyjnej jest wyjątkowo trudnym zadaniem. Warto zwrócić uwagę, że algorytm tworząc liść od korzenia od razu wylicza wartość funkcji dla późniejszych węzłów, gdyż każdy wierzchołek kiedyś był liściem. \\
+Aby uzyskać dobre praktyczne wyniki trzeba jeszcze bardziej poluzować założenia. W sytuacji przedstawionej wyżej komputer jest w stanie doliczyć maksymalnie do kilkunastu posunięć wprzód. Są pozycje, w której to jest niewielka wartość. W tym przypadku może pomóc metoda nazwana "odcinaniem alfa-beta" (alpha-beta pruning). Wykorzystuje ona fakt, że jesteśmy w stanie dynamicznie podczas tworzenia drzewa wykazać, że dana gałąź nie rokuje szans na wygenerowanie rozwiązania. Wówczas algorytm MIN-MAX może uciąć tę gałąź, zmniejszając liczbę węzłów do przeszukania. Jest to poważne usprawnienie standardowego algorytmu MIN-MAX, tym bardziej, że w pozycji szachowej bardzo często jest wiele ruchów, które można niemal automatycznie odrzucić. Dzięki odcinaniu możemy nie interesować się nie rokującymi nadziei na wynik gałęziami i wykorzystać zasoby do przeliczania tych szansownych kontynuacji. \\
+W ostatnich latach silniki szachowe zostały wzbogacone o dodatkowe elementy. Z jednej strony dodano do nich programy zawierające wiedzę dotycząca debiutów i końcówek, z drugiej w samych funkcjach oceniających dodano podprogramy. Służą one do pokonywania słabości algorytmu MIN-MAX - problemu dalekiego horyzontu oraz rozpoznawania twierdz. Problem horyzontu następuje wówczas, jak pozycja ma jasną i stabilną ocenę, jednak powód tej oceny uwidoczni się dopiero za kilkanaście ruchów. Problem twierdz był natomiast zgoła odwrotny - komputer nie potrafił zauważyć, że pomimo bycia stroną silniejszą nie potrafi on wzmocnić pozycję tak, żeby osiągnąć zwycięstwo. Doprowadzało to do kuriozalnych sytuacji, kiedy program nakazywał chodzić w kółko nie mogąc przeprowadzić konstruktywnego planu, lecz cały czas uznawał swoją pozycję za wygraną. Obecne programy szachowe już radzą sobie z tym zadaniem. 
+
+%%% TODO
+\subsection{Universal Chess Interface i xBoard}
+Aby programy mogły korzystać z silników szachowych konieczne było ustalenie wspólnego interfejsu. W chwili obecnej standerdem jest stworzony w 2000 roku przez Rudofa Hubera i Stefana Meyear-Kahlena, autorów silnika Shredder. Różni się ona od starszego rozwiązania, xBoard, lepszym wsparciem dla dodatkowych programów szachowych - książek debiutowych oraz tabeli końcówek.\\
+Aby silnik spełniał implementował UCI musi wspierać komendy wydawane z  interfejsu do silnika oraz z silnika do interfejsu.\footnote{Specyfikacja UCI dostępna jest pod adresem http://wbec-ridderkerk.nl/html/UCIProtocol.html} W przypadku komend przekazywanych z interfejsu (graficznego lub tekstowego) są to w większości polecenia dotyczące analiz - zmień ustawienie, ustaw pozycję, rozpocznij i zakończ analizę. W drugą stronę silnik zwraca do interfejsu najlepsze posunięcie oraz informacje o pozycji. W chwili obecnej zdecydowana większość nowopowstających silników wspiera właśnie standard UCI. \\
+XBoard jest starszym rozwiązaniem, które starciło w ostatnich latach na popularności, jednak jest wciąż rozwijane - także dlatego, że wspiera także gry podobne do szachów jak xiangqi (szachy chińskie), shogi (szachy japońskie) czy makruk (szachy tajskie). Część współczesnych silników wspiera nie tylko UCI, ale także xBoarda. 
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Ewaluacja dotychczasowych rozwiązań}
+Programy służące do przeglądania partii szachowych istnieją już od dziesięcioleci. Profesjonalni szachiści wraz ze sporą liczba amatorów korzystają z całej gamy obecnych na rynku produktów. Niemal każdy szachista, który wyszukuje w Internecie  informacje o szachach korzysta także z programów realizujących inne funkcje. 
+
+%wykresy - cały punkt do redakcji
+\subsection{Ankiety na temat istniejących rozwiązań}
+Ocenienie już istniejących rozwiązań jest kluczowym aspektem tworzenia nowego oprogramowania. Przy dziesiątkach istniejących programów szachowych niemal każdy miłośnik królewskiej gry korzystał z kilku z nich. Umieściłem na stronie internetowej sondę, w której wzięło udział 139 użytkowników.\\
+
+Pierwsze pytanie dotyczyło czynności szachowych wykonywanych przez dane osoby na Internecie.\\\\
+\includegraphics[width=400px,height=308px]{co-robia.png} \\\\
+Z wyników tego pytania można wnioskować, że większość szachistów-użytkowników Internetu korzysta z szerokiego spektrum funkcjonalności szachowych. Prawie wszyscy korzystają z możlwiości, jaką daję im transmisje internetowe na żywo. Bardzo duży odsetek osób dodatkowo czyta informacje o turniejach oraz uczestniczy w rozgrywkach internetowych. \\
+Kolejne moje pytanie dotyczyło informacji na temat sposobu oglądania partii on-line.\\\\
+\includegraphics[width=400px,height=308px]{gdzie-ogladaja.png}\\\\
+
+Widać, że tutaj również większość użytkowników postępuje podobnie. Zdecydowana większość widzów śledzi partie bezpośrednio na stronie organizatora, zaś niemal połowa poprzez kafejkę internetową Playchess. Zaledwie $\frac{1}{4}$ badanych korzysta z najpopularniejszego serwisu wyświetlającego partie z różnych turniejów. Można z tego wysunąć dwa wnioski. Pierwszy, że użytkownicy nie są przyzwyczajeni do żadnej witryny pokazującej szachy oraz to, że są dość elastyczni i korzystają z więcej jak jednego sposobu na oglądanie partii.\\\\
+Kolejne pytanie dotyczyło kafejek szachowych, na których polscy internauci rozgrywają swoje partie
+
+
+\includegraphics[width=400px,height=308px]{gdzie-graja.png}
+
+Widać, że Polacy wybierają polski serwer kurnik.pl. Wyprzedza on komercyjne serwisy Playchess czy ICC ale to w pewnym sensie nie dziwi - kurnik jest darmowy, zaś gra na dwóch wyżej wymienionych serwerach kosztuje około 100zł w skali roku. 
+
+
+\includegraphics[width=400px,height=308px]{chessbomb-co.png}
+
+
+
+
+\subsection{Kafejki szachowe}
+\indent  Od samego początku funkcjonowania Internetu ludzie uznali, że ciekawym sposobem na wykorzystanie tej technologii jest rozgrywanie partii szachowych na odległość. Już w latach 80-tych ubiegłego wieku powstały pierwsze technologie i protokoły pozwalające na rozgrywki poprzez sieć. Od początku obecnego wieku jest to rozrywka coraz popularniejsza i skupiająca ludzi z całego świata. Rozmaite kafejki internetowe oferują użytkownikom możliwość gry w szachy\footnote{A czasem także w gry podobne do szachów} zarówno z ludzkimi rywalami, jak i przeciwko komputerom szachowym. Użytkownicyposiadają do wyboru opcje wyszukiwania przeciwnika wg ustalonych przez siebie kryteriów. Preferencje graczy są różne - niektórzy chcą zagrać w ciągu godziny jedną partię, inni w tym czasie chcą ich skończyć kilkanaście. Cechą wspólną dla każdego użytkownika jest jednak praktyczne podejście do gry - muszą mieć możliwość sprawnego rozgrywania partii szachowej, podczas której rzadko przęłączają się między oknami przeglądarki czy też odchodzą od komputera. \\
+\indent Badania dotyczące kafejek szachowych przeprowadziłem na podstawie najpopularniejszego w Polsce serwisu na platformie kurnik.pl. Mimo iż profesjonalni szachiści omijają ten serwis z daleka, tysiące mniej zaawansowanych graczy spędza na nim godziny swojego czasu. W ramach badań przeprowadziłem ankietę, w której wzięło udział kilkudziesięciu zawodników korzystających kafejki. Pierwszym wnioskiem z wyników ankiet jest fakt, iż szachiści niezbyt przejmują się szatą graficzną interfejsu. Dochodzi tutaj do paradoksu, że szachiści korzystający z tej aplikacji w dużych ilościach uznają ją za estetyczną, natomiast każda osoba z zewnątrz świata szachowego wyraźnie krytykowała wygląd.  Jest to dość ważna oberwacja, gdyż można z niej wyciągnąć wnioski przy projektowaniu grafiki serwisu. Nie oznacza to, że sprawę wyglądu można całkowicie pominąć, jednak nie należy kłaść na nią najwyższego priorytetu. Ważną kwestią, o która anietowani zostali zapytani, był sposób oznaczenia ostatniego posunięcia. Większość osób uznała, że sposób w jaki na kafejce kurnik jest zadowalający, jednak istnieje także spora liczba osób, które nie było zadowolone z prezentowanego rozwiązania. Inne serwisy rozwiązują ten problem w rozmaite sposóby. Na serwisie ICC korzystającym z programu BlitzIn ostatnie posunięcie oznaczone jest czerwonymi obwódkami wokół dwóch pól\footnote{Startowym i końcowym polem figury która wykonała ostatnie posunięcie}. Podobny system jest używany w serwisie Chessbomb, o którym będę pisał w dalszym rozdziale. On także używa obwódek wokół pól, jedynie zaznacza je kolorem niebieskim. Kafejka Kurnik funkcjonuje w podobny sposób, jednak zamiast obwódek zmienia kolor całego pola na nieco ciemniejszy. Zupełnie inną filozofie prezentuje serwis PlayChess, który ostatnie posunięcie zaznacza za pomocą kolorowej strzałki prowadzącej od pola początkowego do końcowego.\\ 
+Kwestia zapisu partii nie jest aż tak istotna, jak mogłoby się to wstępnie wydawać. Użytkownicy po skończonej partii rzadko zastanawiają się, gdzie popełnili błąd, częściej zaś siadają od razu do następnej rozgrywki. Wśród ponad sześćdziesięciu uczestników ankiety tylko jedna osoba zwróciła uwagę na to, że w podstawowym wyglądzie okna nie ma zapisu. Pozostałe kafejki udostępniają zapis w podstawowym widoku, jednak najwyraźniej rozwiązanie przyjęte w kurniku spotyka się z aprobatą graczy.\\
+Jako główną zaletę kafejki kurnik przedstawiana często była duża liczba osób dostępna do rozgrywki. Wynika z tego, że wskazanym jest, aby użytkownicy także mieli kontakt z innymi osobami korzystającymi ze strony. W przypadku kafejek szachowych, gdzie główną ideą jest rozgrywanie partii z innymi użytkownikami jest to bardziej oczywiste niż na pozostałych srwisach, jednak kontakt z innymi szachistami wydaje się wskazany dla każdej witryny internetowej.  \\
+\indent Wgląd do świata kafejek szachowych jest istotny, nawet jeśli nie są one podobne do aplikacji służących do oglądania partii na żywo. Mają inne cele, inne priorytety i inne sposoby przedstawiania rozgrywki. Kafejka musi zapewnić użytkownikowi wygodę w znalezieniu dopasowanego przeciwnika, musi działać w czasie rzeczywistym i dostarczać bardziej zabawę niż edukację. W kafejce szachowej dużo ważniejsze jest przedstawienie czasu i ostatniego posunięcia, mniej ważny jest zaś dostęp do zapisu posunięć. Mimo to sposoby oznaczania szachowni i figur są wspólne dla obu zagadnień i dlatego wiedza z rozwiązań występujących w kafejkach szachowych można wykorzystać podczas tworzenia innych serwisów.
+
+
+%%%%%%%%%%%%
+\subsection{Programy szachowo-bazodanowe}
+
+Profesjonalni szachiści bardzo często korzystają z programów pomagających im zarówno w treningu, jak i wyszukiwaniu informacji o przeciwnikach. Jest to bardzo dobra grupa użytkowników do badań, gdyż najczęściej używają oni wybranych produktów w dłuższym okresie trwania swojej sportowej kariery. Ostatecznie przekłada się to na tysiące godzin spędzonych nad aplikacją, której zalety i wady poznają od podszewki. W przypadku tych programów sprawa się ma podobnie jak z kafejkami szachowymi - realizują one inne cele niż aplikacje służące relacji na żywo, jednak część rozwiązań może być wykrozystana także w przeglądarce partii. Najważniejszą cechą tych programów jest wspieranie wyszukiwania partii po kluczowych danych (czyli czynność zupełnie niespotykaną zarówno w kafejkach szachowych, jak i w programach do przeglądania partii). Dodatkowo konieczną funkcją jest zaimplementowanie interfejsu do obsługi silników szachowych\footnote{Każdy szachista ma swój ulubiony silnik. Niektórzy używają różnych programów do oceny innych aspektów gry}. \\
+\indent Obliczenia przeprowadzanie przez silniki szachowe są bardzo kosztowne dla zasobów komputera - zarówno pod względem zużycia procesora, jak i pamięci. Z tego powodu każdy program szachowy włącza silnik dopiero na wyraźne żądanie użytkownika. Doświadczony szachista najlepiej wie, w którym momencie partii należy włączyć program analizujący.\footnote{W naszej aplikacji nie będziemy mieli takiego luksusu - wszystko będzie się odbywało automatycznie} Programy po włączeniu pokazują kilka najlepszych według nich opcji dla danej pozycji\footnote{Czasem zdarza się tak, że kilka ruchów jest równorzędnie dobrych. W innych przypadkach może się okazać, że różne posunięcia mogą doprowadzić do tej samej pozycji, a co za tym idzie oba warianty będą jednakowo ocenione} posortowanych względem oceny końcowej wyliczonej algorytmem MIN-MAX. Parametry uruchomienia silnika mogą podlegać modyfikacjom. Można modyfikować wielkość tablicy haszującej\footnote{Aczkolwiek jest to bardzo nieefektywny sposób. Wg Vasika Rajlicha, twórcy programu Rybka, podwojenie wielkości tablicy haszującej powoduje wzrost siły gry na poziomie 5 punktów ELO(obecnie komputery osiągają ranking rzędu 3200)}, można systemowo przydzielić procesowi wyższy priorytet. Wiadome jest, że z czasem to drzewo będzie miało tak wiele liści, iż później obliczenie każdego nowego półposunięcia będzie trwało mnóstwo czasu. Istnieją jednak sytuacje, gdy warto pozostawić dane obliczenia nawet na kilka-kilkanaście godzin. Drużyny narodowe niektórych krajów, aby móc wzmocnić siłę obliczeń zainwestowały w kilkunastordzeniowe komputery przenośne, tylko po to, aby uzyskać przewagę nad konkurentami.\footnote{Jeszcze dalej posunął się Bułgar, Veselin Topałow. Przygotowując się do meczu o Mistrzostwo Świata korzystał z najszybszego komputera w swoim kraju udostępnionego przez sofijski bank}\\
+
+\begin{figure}
+\includegraphics[scale=3]{Rybka2.jpg}
+\caption{Interfejs graficzny dla silnika Rybka4}
+\end{figure}
+
+\indent W przypadku programów szachowych kluczowe znaczenie ma zapis partii. Jako że służą one do nauki, przebieg dotychczasowych ruchów jest niemal zawsze kluczowy dla edukacji. Przy przeglądaniu rozgrywki obok szachownicy zawsze wyraźnie widać zapis dotychczasowych ruchów. Więcej, zazwyczaj jest on tak ułożony, by nie trzeba było przewijać aby zobaczyć całą partię. Jest on zwyczajowo interaktywny - kliknięcie kursorem na posunięcie powinno automatycznie przenieść ekran partii do momentu, w którym ruch został wykonany.
+
+%%%%%%%%%%%%
+\subsection{Chessbomb - wady i zalety serwisu}
+\begin{figure}
+\includegraphics[scale=0.45]{chessbomb2.jpg}
+\caption{Serwis ChessBomb - widok na szachownicę}
+\end{figure}
+
+Serwis Chessbomb powstał i został udostępniony użytkownikom na początku 2009 roku. Służy on do przeglądania on-line partii szachowych {\bf wraz z wbudowanym modułem oceniającym za pomocą silnika szachowego aktualną pozycję.} Owa funkcjonalność jest nowością - wcześniejsze przeglądarki on-line nie oferowały natychmiastowej analizy pozycji, co zmuszało użytkowników do korzystania ze swoich lokalnie zainstalowanych programów. Trzeba od razu podkreślić, że wcześniejsze rozwiązanie posiadało jedną przewagę nad sposobem udostępnionym przez ChessBomb. Użytkownik posiada możliwość poświęcenia na wyliczenie oceny dla danej pozycję całą moc swojego procesora i tyle czasu, ile on uzna za konieczne. Dlatego analizy dokonywane lokalnie są nie tylko wiarygodniejsze, ale także czasem udowadniają, że ocena po stronie serwera była błędna. Jeśli tworzymy aplikację, która ocenia pozycję po stronie serwera musimy się z tym pogodzić - nasze analizy i tak będą statystycznie dużo lepsze niż ,,ludzkie przemyślenia". Choć w czysto teoretycznym sensie nie będą one idealne, w praktyce mają duże zastosowanie. Jakie są zatem zalety uruchamiania silnika szachowego po stronie serwera?
+\begin{itemize}
+\item Obliczenia dostępne są zazwyczaj szybciej, niż w przypadku samodzielnego obsługiwania programu grającego (zwłaszcza jeśli śledzi się więcej jak jedną partię). Wypatrywanie nowych posunięć, wprowadzanie nowych posunięć, włączanie i wyłączenia silnika - każda z tych operacji jest nie tylko irytująca dla użytkownika, ale także i czasochłonna.
+\item Dużo łatwiej jest zarządzać obserwowaniem analiz, nie potrzeba przęłączać okienek systemowych - wszystko mamy pod jednym widokiem
+\item Unika się błędów związanych ze złym wprowadzeniem posunięć (każdy krok pomiędzy wykonaniem posunięcia przez szachistę a wyświetleniem być może na drugim krańcu świata analizy tej pozycji jest zautomatyzowany)
+\item Można korzystać z analiz, nawet jeśli nie posiada się programu grającego\footnote{Silniki szachowe są bardzo często bezpłatne. Inaczej jest z programami implementującymi interfejs do tych silników}
+\end{itemize} 
+Jako pierwsze rozwiązanie tego typu ChessBomb nie jest pozbawiony wad, jednak testy przeprowadzone z użytkownikami wykazały, iż większą część czynności wykonuje się na nim w sposób intuicyjny i nie przysparzający problemów. Serwis posiada dość niewielką liczbę funkcjonalności, jednak te, które są dostarczane, są relatywnie łatwe w użyciu nawet dla niedoświadczonego użytkownika. Takie wnioski wyniknęły zarówno z internetowych ankiet, jak i bezpośrednich testów z użytkownikami.\\
+Wygląd interfejsu programu ChessBomb często uznawany jest za nieciekawy, tym bardziej że twórcy nie udostępnili żadnego sposobu jego zmiany. Za bardzo wygodny w użytkowaniu uznany jest system zakładek, za pomocą których można bez najmniejszych problemów przełączać się między oknami poszczególnych partii. 
+\begin{figure}
+\includegraphics[scale=0.5]{chessbomb1.jpg}
+\caption{Serwis ChessBomb - widok na listę partii}
+\end{figure}
+
+\subsection{Cechy wspólne dotychczasowych rozwiązań oraz ich ocena}
+Choć każdy z przedstawionych dotychczas programów zajmował się szachami, to każdy z nich skupiał się na innym aspekcie rozgrywki. Wyniknęło z tego, że rozwiązania te nie mają wielu wspólnych elementów
+\begin{enumerate}
+
+\item{\bf Obsługa i generowanie plików PGN}
+Zdecydowana większość programów szachowych potrafi zarządzać plikami PGN. Choć programy bazodanowe najczęściej operują na swoich własnych strukturach, to zawsze dodatkowo obsługują format PGN. Jeszcze częściej zjawisko to widać w przypadku przeglądarek graficznych plików - w większości przypadków PGN to jedyny obsługiwany format plików. W przypadku kafejek szachowych sytuacja jest odwrotna - lepsze serwisy generują pliki PGN na podstawie rozegranych partii. 
+
+
+\item  {\bf Umieszczanie szachownicy w środku ekranu}
+Niezależnie od rozmaitych celów aplikacji, szachownica przedstawiająca rozgrywkę zawsze pokazuje się w centurm ekranu. Czy jest to kafejka szachowa, czy jest to baza partii czy witryna do oglądania szachów na żywo - szachownica zajmuje zawsze centralną pozycję na stronie. Dodatkowo warto zauważyć, że w przypadku gdy sama wielkość szachownicy nie jest modyfikowalna, to szachownica zajmuje między $\frac{1}{3}$ a $\frac{2}{3}$ szerokości okna (chyba że ekran jest wyjątkowo nieproporcjonalny - trzeba pamiętać, że szachownica zawsze jest kwadratem)
+
+ \item {\bf Wyświetlanie białych figur w kolorze białym oraz czarnych w pozostałych kolorach}
+Choć istnieje wiele interfejsów graficznych przedstawiających partię szachową, kolory wybierane do oznaczania figur w każdym rozwiązaniu są standardowe. Białe figury najczęściej przedstawiane są w różnych odcieniach bieli, dla czarnych figur jest zaś większa dowolność. Mogą być to klasycznie czarne, mogą być ciemnobrązowe, ale zdarzają się także ciemnoniebiskie i ciemnozielone. 
+
+\item{\bf Przemieszczanie figur z użyciem klawiatury}
+W dzisiejszych czasach coraz bardziej odchodzi się od korzystania z klawiatury w celach nawigacji. Programy szachowe stanowią jednak wyjątek. Standardem jest, że można przeglądać posunięcia korzystając z klawiaturowych strzałek. Jest to podyktowane wygodą - kiedy partia szachowa składa się kilkudziesięciu półruchów nikomu nie chce się tyle razy naciskać na ikonkę przewijania. Klawisz strzałki zaś można przytrzymać, co wyraźnie oszczędza czas użytkownika.
+
+\item {\bf Przedstawianie czasu}
+Podobnie sprawa się ma z przedstawianiem czasu. To dotyczy zarowno transmisji na żywo (gdzie podaje się czas, jaki pozostał zawodnikom), jak i partii rozgrywanych między internautami na kafejkach szachowych (gdzie pokazywany jest czas użytkowników). Wszędzie korzysta się ze starndardu pokazywania, jak wiele czasu zostało zawodnikom. Jest to naturalne podejście (znów - takie samo jest w przypadku fizycznych zegarów szachowych) i każdy interfejs realizuje go w podobny sposób\footnote{Nigdy nie podaje się czasu zużytego, gdyż w przypadku zakończenia partii nie ma on wpływu na żaden aspekt wyniku}. W tym przypadku można rozróżnić transmisje i grę na kafejkach, gdyż w transmisjach samo opóźnienie może być kilkudziesięciosekundowe\footnote{Z powodów podanych w rozdziale dotyczących szachownic elektronicznych}, w kafejkach internetowych zaś nawet półsekundowe opóźnienie może być kluczowe\footnote{Wiele osób, mnie włączywszy, grywa partie, w których na całość przeznaczona jest zaledwie jedna minuta}. Dlatego też w kafejkach często podaje się czas z dokładnością do dziesiątnych części sekundy, zaś przy transmisjach dokładność tego stopnia jest absolutnie niepotrzebna. 
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Projektowanie własnego interfejsu}
+Nadszedł czas, aby przejść od etapu oceniania gotowych rozwiązań do zaproponowania własnych. Moim założeniem jest, iż nie będę starał się wymyślić czegoś absolutnie nowatorskiego, a postaram się ulepszyć rozwiązania stosowane w serwisie ChessBomb. Zamierzam korzystać, podobnie jak ów serwis, z systemu zakładek reprezentujących turniej albo konkretną partię. W odróżnieniu od stosowanych w ChessBombie rozwiązań pozwolę użytkownikom na otworzenie kilku partii w jednej łączonej zakładce. {Do uzupełnienia w zależności od tego, jak się uda} 
+
+\subsection{Rodzaje użytkowników}
+Nie sposób myśleć o programie jako o stuprocentowo automatycznej witrynie. Niektóre czynności z konieczności będą musiały być wykonywane przez administratora strony. Oczywiście należy dążyć do zminimalizowania nakładu pracy ludzkiej poprzez maksymalne ułatwienie tych czynności, jednak najprostsze operacje będą musiały być wykonywane przez administratora storny. Ogólnie planuję podzielić użytkowników na następujące kategorie:
+\begin{itemize}
+\item Administratorzy strony
+\item Moderatorzy treści 
+\item Zarejestrowani użytkownicy strony
+\item Niezarejestrowani użytkownicy strony
+\end{itemize}
+Jest to dość typowy podział wśród witryn internetowych i będzie miał zastosowanie także przy moim projekcie. Zadanie administratora będą w zasadzie jedno - dodawanie turniejów. Aby móc to uczynicz będzie udostępnione dla niego specjalne okno, w którym definiować będzie się wszystkie dane dotyczące danych zawodów. Oczywiście administrator będzie miał wszystkie uprawnienia użytkowników pozostałych kategorii. \\
+Moderator strony będzie miał możliwość zarządzania użytkownikami witryny - będzie mógł on usuwać ich wpisy w oknie rozmów, będzie mógł także blokować czy też kasować konto użytkownika. Nie będą oni mieć dostępu do żadnych kluczowych dla wyświetlania witryny funkcji, będą jednak pełnić ważną rolę w momencie rozwinięcia systemu komentowania na bieżąco trwających partii. \\
+Zarejestrowany użytkownik strony będzie miał możliwość korzystania z głównych funkcji strony - oglądania i komentowania partii. Odróżnia się go od niezalogowanego użytkownika, który nie ma możlwości wypowiadania się na stronie. Zalogowany użytkownik będzie także posiadał opcje edycji swoich danych osobowych, a także wysyłania wiadomości do innych użytkowników. Poprzez specjalny panel będzie mógł także skontaktować się z administratorami i moderatorami strony.
+
+
+
+
+\subsection{Przypadki i scenariusze użycia oraz papierowy interfejs}
+\subsubsection{Scenariusze użycia}
+Scenariusze użycia są przydatnymi narzędziami podczas projektowania interfejsóW. Pomagają one wyobrazić sobie kontekst, w jakim będzie używana aplikacja. Dzięki temu można lepiej zrealizować funkcje, tak aby przykładowym użytkownikom dobrze się z nich korzystało.\\
+Przykladowe scenariusze użycia\\
+
+{\Large Scenariusz \#1}\\
+	John Doe siedzi w swoim pokoju o godzinie 8:30 rano w niedzielę. Normalnie jeszcze by spał, ale jest relacja z Bardzo Ważnych Zawodów. Uruchomił stronę www, która to uruchomiła witrynę, na której prowadzona jest relacja na żywo. Na stronie głównej zauważył informację, że tego dnia nie będzie komentarza ludzkiego, jedynie automatyczny. John Doe uruchamia witrynę, która wyświetla mu listę wszystkich turniejów dostarczanych przez stronę internetową. Lista jest posortowana chronologicznie, więc wybiera z niej Bardzo Ważne Zawody. Pokazuje mu się lista aktualnie granych partii. Lista jest posortowana względem szachownic, jednak John wybiera opcję zmiany na sortowanie alfabetyczne. Wybiera z listy partię swojego ulubieńca, Seana Smitha, który gra z Andriejem Kałmukowem. W wyniku wybrania otwiera się nowa zakładka z partię Smith-Kałmukow. John Doe widzi, iż zostało wykonanych już 15 posunięć i białe zużyły 20 minut, czarne zaś 10. Z przebiegu partii wybiera pierwsze posunięcie i wybierając opcję pokaż następny ruch przechodzi do końca partii. Widzi ocenę pozycji po najlepszym ruchu Smitha i dwukrotnie klikając w wariant wyświetla go w postaci graficznej.
+\\
+
+{\Large Scenariusz \#2}\\
+	Michael Collins siada wieczorem do komputera, aby zobaczyć wyniki z dzisiejszej rundy Bardzo Ważnego Turnieju. Uruchamia stronę internetową, po czym wchodzi do opcji logowania. Wpisuje swoje dane i bezproblemowo loguje się na serwer. Witryna wyświetla mu listę turniejów, po czy Michael wybiera Bardzo Ważny Turniej. Wyświetliła mu się lista partii z wpisanymi do niej wynikami. Michael otwiera zakładki z partiami z sześciu pierwszych szachownic i przegląda każdą z nich osobno. Po przejrzeniu partii zamyka zakładkę. Po przejrzeniu wszystkich partii pozostaje w zakładce turnieju i w „shoutboxie” pisze komentarz na temat rundy.  Po wykonaniu tej czynności wylogowuje się i zamyka przeglądarkę. 
+\\
+
+{\Large Scenariusz \#3}\\
+	Jack Wilshere przychodzi do komputera około godziny 12. Nie włącza niczego, gdyż zostawił przeglądarkę włączoną poprzedniej nocy. Widzi, że może kliknąć na pole oznaczające nową rundę i wyświetli mu się lista partii. Niektóre partie się zakończyły i są wpisane ich wyniki. Wchodzi na partię z pierwszej szachownicy i widzi, że poza posunięciami jest w zapisie partii komentarz słowny. Jack odchodzi od komputera i wraca po kwadransie z gorącą kawą. Widzi natychmiast, że zostało zagranych kilka ruchów, bo mimo iż nie dotknął ani myszki, ani klawiatury, pozycja się zmieniła. Po kolejnych pięciu minutach widzi wpisany wynik partii – zakończyła się remisem.  
+\\
+
+\subsubsection{Przypadki użycia}
+Przypadki użycia ukazują interakcję między użytkownikiem a systemem, pokazując ściężki za pomocą których użytkownik może osiągnąć wyznaczone cele i sposób, w jaki system realizuje wszystkie kroki pośrednie. Są one szczególnie przydatne podczas implementacji i późniejszej ewaluacji interfejsu - można porównać przypadki użycia z fantycznym sposobem dochodzenia do celów w naszym programie. 
+
+\subsubsection{Papierowy prototyp}
+Papierowy prototyp, jak sama nazwa wskazuje, jest szablonem wyglądu interfejsu stworzonym za pomocą przyrządów biurowych. Mimo iż wydaje się to nieco nieprofesjonalnym podejściem, pozwala on na szybkie i mało kosztowne przetestowanie użyteczności interfejsu. Tworząc taki schemat twórca zupełnie odcina się od sposobu w jaki tworzy interfejs i skupia się na samych funkcjonalnościach. W wyniku temu można szybko znaleźć największe problemy dotyczące użyteczności programu. \\ 
+Papierowy prototyp pokazuje wszystkie najważniejsze elementy interfejsu, pozwalając testowanej osobie zobaczyć, jaki układ informacji będzie prezentowany na stronie. Uczestnicy testów dostali listę zadań do wykonania, podczas gdy obserwoałem sposób i mierzyłem czas jaki zajmuje im dojście do określonego celu.
+
+\begin{figure}
+\includegraphics[scale=1.8]{prot-pap1.jpg} 
+\caption{Papierowy prototyp interfejsu}
+\end{figure}
+
+
+Lista i kolejność zadań była następująca:
+\begin{enumerate}
+\item Zalogować się na stronie, a  później się wylogować.  
+\item Zalgować się na stronie, znaleźć listę turniejów, wybrać z niej najstarszy turniej i napisać komentarz na chatroomie.
+\item Pozostając w tym turnieju znaleźć partię z pierwszej rundy graną na pierwszej szachownicy
+\item Przewinąć partię do początku, a następnie ruch po ruchu ją przejrzeć
+\end{enumerate}
+Uczestnicy testów byli zachęcani do wygłaszania swoich uwag i propozycji, a każde badanie było nagrywane, by można było odtworzyć przebieg badania. Nie było także ustalonego limitu czasu na wykonanie danej czynności. Jako grupę testową użyłem szachistów w wieku 15-40 lat - docelową grupę użytkowników programu. Byli wśród nich zarówno doświadczeni użytkownicy interfejsów szachowych, jak iniedoświadczeni szachiści
+\subsubsection{Wnioski z testów na papierowym prototypie oraz ich wpływ na kształt interfejsu}
+
+\subsection{Wygląd interfejsu}
+Papierowy prototyp nie testował ustaleń dotyczących niektórych aspektów grafiki przyszłej aplikacji. Powód tego jest prosty - kolory ze skali RGB czasem nie tak łatwo reprezentować za pomocą fizycznych przyrządów. I choć najlepiej pozwolić użytkownikom na wybór preferencji graficznych, trzeba wybrać kolory choćby dla dobra pierwszego wrażenia przyszłego uzytkownika.
+\subsection{Dobór kolorów interfejsu}
+\subsection{Rodzaje figur i szachownic}
+
+
+%%%%%%%%%%%%%%%%%%%%
+
+\section{Impentacja programu}
+\subsection{Technologia}
+Program zdecydowałem się pisać w coraz modniejszej w ostatnich latach technologii Ruby on Rails. Choć do korzystania w pełni z możliwości udostępnianych przez biblioteki musiałem także korzystać z języków Java i JavaScript oraz ze znaczników HTML, to rdzeń aplikacji jest napisany w obiektowym języku Ruby.\\
+O wyborze technologii, w której implementowałem aplikację zadecydowały dwie rzeczy. Pierwszy argument był programistyczny: Ruby on Rails jest technologią zwinną(agile) wspierającą wzorzec MVC, który bardzo dobrze pracuje w przypadku serwisów webowych. Drugi argument był zupełnie inny: chciałem poprzez pisanie pracy magisterskiej nauczyć się nowej technologii. Wcześniej nie miałem do czynienia ani z językiem Ruby, ani z frameworkiem Rails. 
+
+\subsubsection{Ruby on Rails}
+{ \it “Ruby on Rails jest przełomem w dziedzinie programowania aplikacji internetowych.
+Potężne aplikacje, których tworzenie do tej pory zabierało tygodnie czy miesiące,
+są teraz tworzone dosłownie w kilka dni.” }
+-Tim O'Reilly, Założyciel O'Reilly Media\footnote {O'Reilly Media to uznana amerykańska kompania medialna} \\\\
+
+
+
+O produkcie często najlepiej świadczy renoma ich klientów. Duże międzynarodowe firmy nie korzystają ze złych rozwiązań ani w biznesie, ani w procesie tworzenia aplikacji. O sile frameworka Ruby on Rails świadczą między innymi tak potężne serwisy internetowe jak Twitter czy Gruopon. Język Ruby powstał w roku 1995, stworzony przez Yukihiro "Matza" Matsumoto. Jest w pełni obiektowym i typowanym dynamicznie językiem bazującym na wielu językach, takich jak CLU, Eiffel, Lisp, Perl, Python czy Smalltalk  Ruby cechuje się dużą zwięzłością kodu, przy posiadaniu wciąż czytelnej składni. Co ciekawe, w Ruby można modyfikować każdą klasę, włączywszy w to nawet klasę string.  Jedną z głównych zalet języka jest jednak framework Ruby on Rails, który jest świetnym narzędziem do tworzenia aplikacji webowych\\
+Ruby on Rails powstał jako niezależny projekt stworzony głównie przez duńskiego programistę Davida Heinemeiera Hanssona. Ruby on Rails jest narzędziem do szybkiego tworzenia aplikacji webowych {\bf opartych na architekturze Model-View-Controller} przy zachowaniu zasady DRY\footnote {Don't Repeat Yourself - unikaj powtarzania kodu} oraz reguły Convention over Configuration\footnote {Minimalna początkowa konfiguracja zastąpiona gotowymi wzorcami}. Jedną z większych zalet Ruby on Rails jest fakt, że posiada bardzo użyteczny moduł ActiveRecord oparty na ORM\footnote {Object-Relational mapping}, który pozwala na tworzenie modeli w architekturze MVC niezależnych od faktycznej bazy danych. Kolejna zaletą zaletą tego frameworku jest dostępność świeżo rozwijanych i użytecznych bibliotek. Jest też, co warto podkreślić, bardzo prosta w nauce - sam nie znałem tej technologii w momencie rozpoczęcia pisania pracy magisterskiej. 
+
+\subsubsection{JRuby on Rails}
+Choć Ruby jest już bardzo rozwiniętym językiem, czasami przydaje się jednak możliwość wykorzystania kodu napisanego w innych jężykach programowania. Takim rozwiązaniem jest JRuby, który pozwala na uruchomienie kodu Ruby na JVM (wirtualna maszyna Javy) oraz na korzystanie z klas napisanych w Javie. Podobnie jest samo Ruby on Rails został on stworzony przez grupę programistów, którzy chcieli stworzyć jeszcze bardziej użyteczne narzędzie do tworzenia stron webowych. Dzięki bibliotekom JRuby można umieszczać strony napisane we frameworku Rails na urządzeniach przenośnych. Problemem z JRuby jest jedynie lekkie opóźnienie do klasycznego Ruby, najnowsze funkcje z frameworka Rails nie zawsze od razu działają pod JRuby.
+
+
+\subsubsection{Dodatkowe biblioteki}
+W programie wykorzystywałem gotowe biblioteki. Główną z nich jest {\bf Chesspresso}\footnote{http://www.chesspresso.org/}, bardzo obszerna biblioteka napisana w Javie na licencji LGPL, służąca do parsowania i interpretowania plików szachowych o rozszerzeniu pgn, a także interpretowania i tworzenia notacji FEN. Implementuje ona większość przydatnych funkcji potrzebnych do zarządzania partiami szachowymi, jej jedynym mankamentem jest nieistniejąca dokumentacja, która wymaga od programisty przynajmniej niewielkiego zagłębienia się w kod biblioteki. \\
+Kolejną biblioteką jest nieznacznie zmodyfikowana na potrzeby pracy JavaScriptowa {\bf jChess}\footnote{https://github.com/bmarini/jchess} oprta na znanej bibliotece jQuery, która wizualnie prezentuje partie szachową a także umożliwia nawigację po niej - wykonywanie posunięc zarówno do przodu, jak i do tyłu. Jest to funkcjonalność, która jest także zawarta w Chesspresso, jednak z uwagi na funkcjonowanie tej biblioteki w środowisku Javy problemem byłoby włączenie chesspressowej przeglądarki graficznej do webowej zawartości serwisu. \\ 
+Kolejną biblioteką jest {\bf paperclip}\footnote{https://github.com/thoughtbot/paperclip} - plugin napisany w Rubym służący do wygodnego importowania plików na serwer, który można łatwo zintegrować z wymienionym przed chwilą jQuery.
+
+\subsubsection{Programowanie zwinne}
+We wstępie do rozdziału wprowadziłem termin {\bf programowanie zwinne}(Agile software development). Co kryje się pod tym terminem? Pod nazwą "metodyki zwinne" kryje się grupa metodyk opartych na programowaniu iteracyjnym. Różni się ona od standardowych metod tworzenia oprogramowania dużo mniejszą formalnością i większą reakcją na potrzeby użytkownika. Jej zaletami są szybkość tworzenia działającego kodu i szybka reakcja na następujące zmiany, jej słabością jest jednak niemożność w zastosowaniu w przypadku dużych projektów programistycznych, gdzie kontkat między poszczególnymi programistami jest utrudniony a brak dokumentacji technicznej jest już realnym problemem. \\
+"Rails skupia się na ludziach i interakcjach między nimi. Nie znajdziesz tu rozbudowanych pakietów narzędziowych, skomplikowanej konfiguracji, złożonych procesów. Są tylko małe grupki programistów, ich ulubione edytory, trochę kodu w Rubym. Rezultatem jest większa czytelność relacji; wyniki pracy programistów są natychmiast widoczne dla klienta. {\bf Istotą tego pomysłu jest interaktywność}"\cite{1}\\
+Programowanie zwinne szczególnie nadaje się w przypadku stron internetowych, gdzie od samego początku pracy można współpracować z klientem, który bez posiadania specjalistycznej wiedzy może wyrazić swoją opinię na temat wyniku prac. Można wtedy także co każdą iterację wprowadzać modyfikacje do przyszłego planu tworzenia aplikacji, uwzględniając zarówno aspekty, które wyszły na jaw w trakcie dotychczasowego pisania kodu, jak i zdanie i opinie klienta aplikacji. Taka metodyka jest też bardzo dobra dla współpracy z klientem pod względem psychologicznym - regularnie możliwość do wzglądy w coraz bardziej {\bf działający} produkt daje mu poczucie pewności co do przyszłości aplikacji.\\
+W Ruby on Rails na każdym kroku natykamy się na elementy zwinne. Tabele bazy danych są tworzone za pomocą migracji, za ich pomocą także można je prosto modyfikować. W ten sposób zamiast jednego wielkiego pliku z definicjami dziesiątek tabeli mamy kilkadziesiąt plików, dzięki którym możemy prześledzić wstecz historię rozrastania się bazy. Implikuje to w oczywisty sposób fakt, że można tworzyć jedynie niezbędne w danej chwili tabele, zaś późniejsze struktury i ich powiązania można zostawić na moment, w którym rzeczywiście będą potrzebne. Konwencje nazewnicze frameworka także wspierają projektowanie zwinne, gdyż w możliwie dużym stopniu niektóre funkje i komendy przypominają język naturalny, co ułatwia zrozumienie kod bez konieczności przeglądania dokumentacji. 
+
+
+\subsection{Struktura programu}
+Ruby on Rails odgórnie narzuca architekturę MVC i choć oczywiście istnieją sposoby, aby korzystać z innych architektur, całe wsparcie frameworka najskuteczniej działa dla tego właśnie schematu. Ruby on Rails domyślnie interpretuje, że dla każdego modelu istnieje jeden kontroler, natomiast widoki są ściśle powiązane z metodami kontrolera dzieląc takie same nazwy. Pliki modeli i kontrolerów są pisane w Ruby, natomiast pliki widoków w specjalnych plikach html.erb, które są połączeniem pliku html z kodem Ruby umieszcanym między odpowiednimi znacznikami. Przy żądaniu wyświetlenia pliku html najpierw uruchamiany jest kontroler, który komunikując się z modelem zwraca do widoku potrzebne wartości.  
+
+
+\subsubsection{Funkcjonalności}
+Jak zdecydowana większość programów sieciowych głównym odbiorcą aplikacji będzie zwyczajny użytkownik, wydzielona część z nich będzie mogła jednak wykonywać nieznacznie więcej czynności. Uprawnienia w aplikacji działają hierarchicznie, czyli administrator może zrobić wszystko to samo co zwyczajny użytkownik, ale będzie miał dodatkowe funkcje dostępne
+
+{\bf Użytkownik }
+\begin{enumerate}
+\item Założenie konta
+\item Zalogowanie się na konto
+\item Wylogowywanie się z konta
+\item Edycja danych konta
+\item Wysyłanie i odbieranie prywatnych wiadomości od innych użytkowników
+\item Komentowanie artykułów
+\item Usuwanie własnych komentarzy
+\item Przeglądanie listy turniejów, rund, partii
+\item Przeglądanie partii zawodników
+\item Dodawanie partii do listy obserwowanych oraz usuwanie z tej listy
+\item Przeglądanie pojedynczej partii w oknie graficznym
+\item Przeglądanie zapisu partii i nawigacja za jego pomocą do odpowiednich miejsc w rozgrywce
+\item Przeglądanie odpowiednich wariantów dla obecnej pozycji
+\item Dodawanie wiadomości dotyczących turniejów
+\end{enumerate}
+
+{\bf Moderator }
+\begin{enumerate}
+\item Dodawanie nowych partii, rund i turniejów
+\item Usuwanie komentarzy innych użytkowników
+\item Dodawania i usuwanie informacji z panelu komentatorskiego turnieju
+\item Dodawanie i usuwanie artykułów
+\end{enumerate}
+
+{\bf Administrator }
+\begin{enumerate}
+\item Usuwanie innych użytkowników
+\item Zmiana uprawnień innych użytkowników
+
+\end{enumerate}
+
+\subsubsection{Struktura bazy danych}
+Podstawowymi tabelamki, w których będzie przechowywana największa liczba informacji będą te zawierające dane dotyczące różnych turniejów. Wyróżniam wśród nich czteryy najważniejsze tabele - Turniej, Runda, Partia i Pozycja, gdzie na każdym kroku nie tylko występuje relacja "jeden do wielu", ale także te proporcje będą w miare stałe. Stosunki między liczbą poszczególnych krotek można oszacować następującą równością Turniej = 9* Runda = $10*9=90$ Partia = $10*9*40=3600$ Pozycja. Ogólny schemat bazy danych przedstawia następujący schemat. Większość pozostałych tabel służy do zarządzania użytkownikami, ich statusem, wysłanymi wiadomościami, komentarzami oraz innymi funkcjonalnościami dostępnymi dla użytkownika.
+
+%\begin{figure}
+%\includegraphics{}
+%\end{figure}
+
+\begin{figure}
+\includegraphics{zpawn.png}
+\caption{Wyglad po pierwszej iteracji}
+\end{figure}
+
+\subsection{Pierwsza iteracja}
+W ramach pierwszej iteracji zostały zaimplementowane bazowe klasy dla całej aplikacji - moduł opisujący użytkownika oraz wspierający funkcję uwierzytelniania na stronie wraz z obsługą sesji a także grupa modułów opisujących partię szachową (klasy Tournament, Round, Game, Position, Player). Najważniejszą funkcjonalnością, która została dodana w tej iteracji był komponent wyświetlający partię szachową w formie graficznej, lecz równie ważne było zaprogramowanie niewidocznych dla użytkownika funkcji parsujących pliki z partiami (w formacie .pgn) i dodającym informacje do bazy danych. Metody przekształcające plik tekstowy w hierarchiczną strukturę bazy danych zostały stworzone przy pomocy biblioteki Chesspresso. Udostępnia ona funkcję, które wyciągają z pliku zarówno informacje opisowe partii, jak i odczytujące i sprawdzające poprawność posunięć. Biblioteka ta, mimo wszystkich swoich zalet, miała także jedną wadę - jako iż została napisana w Javie, nie było łatwego sposobu umieszczenia domyślnej przeglądarki chespresso do kodu html. Chcąc uniknąć umieszczania apletów javy zdecydowałem się na wprowadzenie kolejnej bblioteki - jChess. Przeglądarka graficzna partii po pierwszej iteracji była niemal identyczna jak domyślna szachownica stworzona przez komponent jChess. Wyświetlała ona partie, pozwalając za pomocą buttonów przesuwać partię do przodu i do tyłu. Zaimplementowane zostały możlwości wyświetlania informacji o turniejach, wynikach końcowych oraz rezultatach w poszczególnych rundach. Powstały także strony umożliwiające podgląd wyników poszczególnych zawodników.\\
+Jako dodatek do pierwszej iteracji zostały dodane klasy i funkcji pozwalajace użytkownikom na wysyłanie miedzy sobą wiadomości prywatnych,  pisanie artykułów oraz dodawnie do nich komentarzy. Powstały też okna, w których użytkownicy mogą wyświetlać na żywo swoje opinie dotyczące całych turniejów, ale i poszczególnych partii.
+
+
+\subsection{Ewalucja z użytkownikami po pierwszej iteracji}
+Po zakończeniu pierwszej iteracji nastąpiła faza ewaluacji ówczesnego stanu aplikacji. Badania przeprowadzałem głównie na szachistach, jednak brała w nich udział także osoba bez doświadczenia z korzystania z programów szachowych. Stosowałem zasadę, iż błędy były naprawiane w czasie między badaniami (o ile arbitralnie uznałem, że uwaga jest zasadna). Dzięki tej zasadzie pozostałe osoby odkrywały nowe błędy, których naprawienie ulepszało jakość program. W wyniku badań zostało zauważonych kilkanaście błędów oraz zasugerowanych kilka alternatywnych rozwiązań. Najważniejsze z sugestii dotyczyły:
+\begin{itemize}
+\item Korzystanie ze strzałek na klawiaturze w celu przesuwania figur
+\item W oknie pokazywania partii szachowej brakowało linków do turniejów, do którgo należała partia i do rundy, w której była grana. 
+\item Umieszczenie w zazwyczaj pustym miejscu na prawym panelu informacji o najnowszych artykułach
+\item Ułatwienie użytkownikowi dostępu do szybkich linków przenoszących ich między powiązanymi stronami
+\item Utworzenie stron, na których użytkownik może znaleźć albo szachistów, albo innych użytkowników
+\item W liście rund i turniejów wyróżnienie aktualnie przeglądanych
+\item Wyświetlanie niektórych elementów interfejsu (głównie linków i napisów). Szczególnie często uwaga zwracana była na konktrast między kolorem napisów a kolorem tła.
+\item Błędy w działaniu strony: nie działające funkcje, błędnie wyświetlane dane. 
+\end{itemize}
+Na podstawie wyników ewaluacji z użytkownikami powstała lista elementów, które koniecznie trzeba naprawić, a także lista zmian, których wprowadzenie było opcjonalne. Wnioski z pierwszej listy zostały w pełni wykorzystane i błędy na niej zawarte zostały usunięte z aplikacji. W przypadku drugiej listy zostały wprowadzone wszystkie poprawki spełniające dwie cechy: brak kolizji z moją wizją programu oraz możliwość wprowadzenia bez gruntownego modyfikowania struktury programu.
+
+\subsection{Druga iteracja}
+Po wprowadzeniu zmian, które wyniknęły z ewaluacji z użytkownikiem nastąpił etap planowania kolejnego etapu pracy. Podstawową funkcją, jaka została zaplanowa na ten etap pracy było podłączenie działającego silnika szachowego do wygenerowania analiz pozycji. Sam silnik nie został samodzielnie zaimplementowany - wykorzystałem dostępny na licencji freeware o nazwie XXX.\footnote{Informacje o silniku YYY} Wyniki tych analiz miały się ukazywać przy przeglądaniu partii i dynamicznie zmieniać treść w zależności od wykonywanych posunięć. Dodatkową funkcjonalnością, na której rozwinięcie się zdecydowałem było ułatwienie umieszczania okien pozwalających na pokazywanie transmisji partii z zewnętrznych źródeł danych. Z dodatkowych opcji uwzględniona została opcja dodawania komentarzy do poszczególnych pozycji partii. 
+
+\subsection{Ewalucja po drugiej iteracji}
+
+\subsection{Fragmenty najciekawsze algorytmicznie}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+\section{Podsumowanie}
+
+\section{Bibligrafia}
+\begin{thebibliography}{1}
+	\addcontentsline{toc}{chapter}{Bibliografia}
+	\bibitem[1]{1} Dave Thomas, \textit{Agile. Programowanie w Rails.}, Wydawnictwo Helion 2008, Tłumaczenie: Krzysztof Szafranek
+	\bibitem[2]{2} Claude E. Shannon \textit{Programming a Computer for Playing Chess1}, Philosophical Magazine, 1950
+	\bibitem[3]{3} John Tromp \textit{Number of chess diagrams and positions}, John's Chess Playground, http://homepages.cwi.nl/~tromp/,  2010
+	\bibitem[4]{4} prof.  Andrzej Kisielewicz \textit{Sztuczna inteligencja i logika}, Wydawnictwo Naukowo-Techniczne,  2011
+\end{thebibliography}
+
+
+\end{document}
