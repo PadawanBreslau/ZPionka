@@ -9,6 +9,7 @@ module PgnHelper
   include_class ('chesspresso.game.Game') {|package,name| "J" + name}
   include_class ('java.io.File') {|package,name| "J" + name}
   include_class 'chesspresso.game.view.GameBrowser'
+  include_class 'chesspresso.engines.ChXBoardEngine'
   include_class 'javax.swing.JButton'
   include_class 'javax.swing.JPanel'
   include_class 'javax.swing.JFrame'
@@ -57,6 +58,34 @@ def insert_game_file_into_database game, id
 			fen = FEN.get_fen(position)
   			move_string = move.to_string
   			
+  		
+  	@engine = ChXBoardEngine.new "vendor/jazz/jazz-wb-444-32-ja.exe","vendor/jazz" 
+  	@engine.init
+  	@engine.send_message "xboard"
+  	  	@myresult1 = @engine.wait_for_answer
+  	#@engine.send_message "depth 10"
+  	@engine.send_message "setboard " + fen
+  	@engine.send_message "post"
+  	@engine.send_message "analyze"
+  	@quality = 3
+  		#[1..@quality].each do	
+  			@myresult1 = @engine.wait_for_answer 1000,6
+  	  		@myresult2 = @engine.wait_for_answer 1000,6
+  	  		@myresult3 = @engine.wait_for_answer 1000,6
+  	  		@myresult1 = @engine.wait_for_answer 1000,6
+  	  		@myresult2 = @engine.wait_for_answer 1000,6
+  	  		@myresult3 = @engine.wait_for_answer 1000,6
+  		 #end
+  		 
+  		 @myresult1 = parse_engine_output @myresult1,3;
+  		 @myresult2 = parse_engine_output @myresult2,2;
+  		 @myresult3 = parse_engine_output @myresult3,1;
+
+
+  	#@engine.send_message "stop"
+    @engine.quit
+  			
+  			
   			if move_number == move_number.floor
   				white_move = true
   			else
@@ -64,6 +93,10 @@ def insert_game_file_into_database game, id
   			end
   								
   			pos = Position.new
+  			pos.var1 = @myresult3
+  			pos.var2 = @myresult2
+  			pos.var3 = @myresult1
+  			
   			pos.fen = fen
   			pos.move = move_string
   			pos.white_on_move = white_move
@@ -76,6 +109,20 @@ def insert_game_file_into_database game, id
   			
 		end
 end
+
+
+def parse_engine_output output, number
+	
+	output_table = output.split ' '
+	new_output = ""
+		
+	for i in [4..output_table.size] do 
+		new_output = new_output + ", " +  output_table[i].to_s + ", "
+	end
+	
+	new_output + "Eval: " + (output_table[0]*0.01).to_s
+end 	
+
 
 def create_game game, round_id
    

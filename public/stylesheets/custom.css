@@ -1,5 +1,5 @@
 .container {
-width: 75%;
+width: 80%;
 word-wrap: break-word;
 background-color:#353d40;
 }
@@ -119,7 +119,7 @@ DIV#left_panel{
 	display:inline-block;
 	
 	margin-top: 1px;
-	width: 16% ;
+	width: 18% ;
 	height: 100% ;
 }
 
@@ -145,15 +145,20 @@ DIV#chat_panel{
 
 DIV#display_chat_panel
 {
+	border: 2px;
 	display:block;
-	#padding-right:1px;
-	#padding-left:1px;
+	padding-right:1px;
+	padding-left:5px;
 	padding-top:5px;
 	background-color:#353d40;
-	width: 100% ;
+	width: 95% ;
 	height: 80% ;
 	min-height: 250px;
+	max-height: 300px;
 	overflow:auto;
+	
+	#border-left: #454d50 5px solid;
+
 }
 
 DIV#add_chat_panel
@@ -170,7 +175,7 @@ DIV#board_panel
 	padding-right:1px;
 	padding-left:1px;
 	background-color:#353d40;
-	width: 55% ;
+	width: 52% ;
 	height: 100% ;
 }
 
@@ -241,6 +246,8 @@ DIV#right_info_panel{
 
 DIV#zpawn_display
 {
+	padding-right:3px;
+	padding-left:3px;
 height: 80% ;
 min-height: 320px;
 color: #fff

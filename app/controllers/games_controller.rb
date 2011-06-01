@@ -92,18 +92,28 @@ class GamesController < ApplicationController
     
     
  	
-    #@position = @positions.first.id
-  	
-  	
- 	#cookies[:position] = @position
+   @position = @positions.first.id
+   cookies[:position] = @position
   	
   	
 
-  #	@engine = ChXBoardEngine.new "vendor/jazz/jazz-wb-444-32-ja.exe","vendor/jazz" 
-  #	@engine.init
-  #	@engine.send_message "setboard "+@positions.first.fen
-  #	@engine.send_message "analyze"
-  # @engine.quit
+  	#@engine = ChXBoardEngine.new "vendor/jazz/jazz-wb-444-32-ja.exe","vendor/jazz" 
+  	#@engine.init
+  	#@engine.send_message "xboard"
+  	#  	@myresult1 = @engine.wait_for_answer
+  	#@engine.send_message "depth 10"
+  	#@engine.send_message "setboard "+@positions.first.fen
+  	#@engine.send_message "post"
+  	#@engine.send_message "analyze"
+  	 # 	@myresult2 = @engine.wait_for_answer 1000,6
+  	 #	@myresult3 = @engine.wait_for_answer 1000,6
+  	 #  @myresult4 = @engine.wait_for_answer 1000,6
+  	 #	@myresult5 = @engine.wait_for_answer 1000,6
+  	 #	@myresult6 = @engine.wait_for_answer 1000,6
+
+
+  	#@engine.send_message "stop"
+    #@engine.quit
   	
   end
   

@@ -39,10 +39,12 @@
 <tr>
 <td>
 	<span class="h3_stripe">Observed games</span><br/>
-<% @games.each do |game| %>
-<%= link_to prepare_game_string(game), game %>
-<%= link_to @eye,  :controller => "tournaments", :action => "remove_from_observed_games", :id => game.id , :confirm => "Are you sure you want to remove game from yourlist?" %>	<br/>
+	<table>
+<% @games.each do |game| %><tr><td width="85%">
+<%= link_to prepare_game_string(game), game %></td><td>
+<%= link_to "Delete",  :controller => "tournaments", :action => "remove_from_observed_games", :id => game.id , :confirm => "Are you sure you want to remove game from yourlist?" %>	</td></tr>
 <% end %>
+	</table>
 <hr/>
 <%= link_to "Show observed games in java window", :controller => :games, :action => "show_games_in_java_window"  %>
 
