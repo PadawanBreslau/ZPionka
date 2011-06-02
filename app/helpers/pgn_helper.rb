@@ -58,11 +58,16 @@ def insert_game_file_into_database game, id
 			fen = FEN.get_fen(position)
   			move_string = move.to_string
   			
+  			if move_number == move_number.floor
+  				white_move = true
+  			else
+  				white_move = false
+  			end
+  			
   		
   	@engine = ChXBoardEngine.new "vendor/jazz/jazz-wb-444-32-ja.exe","vendor/jazz" 
   	@engine.init
   	@engine.send_message "xboard"
-  	  	@myresult1 = @engine.wait_for_answer
   	#@engine.send_message "depth 10"
   	@engine.send_message "setboard " + fen
   	@engine.send_message "post"
@@ -77,20 +82,16 @@ def insert_game_file_into_database game, id
   	  		@myresult3 = @engine.wait_for_answer 1000,6
   		 #end
   		 
-  		 @myresult1 = parse_engine_output @myresult1,3;
-  		 @myresult2 = parse_engine_output @myresult2,2;
-  		 @myresult3 = parse_engine_output @myresult3,1;
+  		 @myresult1 = parse_engine_output @myresult1,3, move_number.floor, white_move
+  		 @myresult2 = parse_engine_output @myresult2,2, move_number.floor, white_move
+  		 @myresult3 = parse_engine_output @myresult3,1, move_number.floor, white_move
 
 
-  	#@engine.send_message "stop"
+
     @engine.quit
   			
   			
-  			if move_number == move_number.floor
-  				white_move = true
-  			else
-  				white_move = false
-  			end
+
   								
   			pos = Position.new
   			pos.var1 = @myresult3
@@ -108,19 +109,34 @@ def insert_game_file_into_database game, id
   			move_number += 0.5
   			
 		end
+		
+		#@engine.quit
 end
 
 
-def parse_engine_output output, number
+def parse_engine_output output, number, move_number, white_move
 	
 	output_table = output.split ' '
-	new_output = ""
-		
-	for i in [4..output_table.size] do 
-		new_output = new_output + ", " +  output_table[i].to_s + ", "
+	
+	if white_move
+		new_output = ""
+	else
+		new_output = move_number.to_s + "."
+		move_number+=1
 	end
 	
-	new_output + "Eval: " + (output_table[0]*0.01).to_s
+		
+	for i in 4..output_table.size do 
+		if white_move && i%2 == 0 || !white_move && i%2 == 1
+			new_output = new_output + " " + move_number.to_s + "." + output_table[i].to_s + " " 
+			move_number+=1
+		else			
+			new_output = new_output + output_table[i].to_s + " "
+		end	
+		
+	end
+	
+	new_output + "Eval: " + ((output_table[1].to_f)/100).to_s
 end 	
 
 

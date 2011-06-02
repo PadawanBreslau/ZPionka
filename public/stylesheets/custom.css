@@ -430,6 +430,13 @@ span.h2_stripe{
 	
 }
 
+span.variants{
+	color: #fff;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	font-family: "Georgia";
+}
+
 span.user_link a{
 	color: #fff;
 	font-family: "Georgia";
