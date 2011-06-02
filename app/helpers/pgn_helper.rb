@@ -121,7 +121,7 @@ def parse_engine_output output, number, move_number, white_move
 	if white_move
 		new_output = ""
 	else
-		new_output = move_number.to_s + "."
+		new_output = move_number.to_s + "..."
 		move_number+=1
 	end
 	
