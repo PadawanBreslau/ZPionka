@@ -3,7 +3,7 @@ class TournamentsController < ApplicationController
 
   def index
      @title = "Tournament list" 
-     @tournaments = Tournament.paginate(:page => params[:page])
+     @tournaments = Tournament.all(:limit => 6)
    #  @pgn = PGNReader.new 'public/pgn/partie.pgn'
   end
 	

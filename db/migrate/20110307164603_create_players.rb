@@ -3,7 +3,7 @@ class CreatePlayers < ActiveRecord::Migration
     create_table :players do |t|
       t.string :name
       t.string :surname
-      t.integer :rating
+      t.integer :rating, :default => 1000
       t.string :country
 
       t.timestamps

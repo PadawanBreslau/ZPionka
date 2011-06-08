@@ -168,6 +168,7 @@ if (typeof console == "undefined") { var console = { log: function() {} } }
           var new_cookie_value = parseInt(ReadCookie('position'))+1;   
           createCookie('position',new_cookie_value,1); 
           $('#vars').load('variations #vars' , { 'id': 1 });
+          //$('#vars').load('variations.html.erb' , { 'id': 1 });
           $('#movecomments').load('movecomments #movecomments' , { 'id': 1 })
          //alert(document.cookie) ;   
         }

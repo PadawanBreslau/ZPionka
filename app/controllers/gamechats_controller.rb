@@ -2,6 +2,8 @@ class GamechatsController < ApplicationController
   def new
   	@title = "Add new gamechat"
   	@gamechat = Gamechat.new
+  	
+  	#redirect_to Game.find(@gamechat.game_id)
   end
 
   def create
@@ -9,8 +11,7 @@ class GamechatsController < ApplicationController
   if @gamechat.save
     redirect_to :back
   else
-    @title = "Add new gamechat"
-    render 'new'
+  	redirect_to :back
   end
   end
 
@@ -29,7 +30,7 @@ class GamechatsController < ApplicationController
   @gamechat = Gamechat.find(params[:id])
   if @gamechat.update_attributes(params[:gamechat])
     flash[:success] = "Gamechat succesfully updated."
-    redirect_to Gamen.find(@gamechat.game_id)
+    redirect_to Game.find(@gamechat.game_id)
   else
     @title = "Edit gamechat"
     render 'edit'

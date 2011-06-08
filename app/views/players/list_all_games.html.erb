@@ -11,7 +11,7 @@
 <td width="30%"><%= player(game,"white") %></td>
 <td width="30%"><%= player(game,"black") %></td>
 <td width="10%"><%= make_result(game.result) %></td>
-<td width="10%"></td>
+<td width="10%"><%= game.positions.size/2 + ((2-game.result.to_i)/2) %></td>
 <td width="10%"><%= link_to @goto ,game %> </td>
 
 	<td width="10%">					
@@ -33,7 +33,7 @@
 <td width="30%"><%= player(game,"white") %></td>
 <td width="30%"><%= player(game,"black") %></td>
 <td width="10%"><%= make_result(game.result) %></td>
-<td width="10%"></td>
+<td width="10%"><%= game.positions.size/2 + ((2-game.result.to_i)/2) %></td>
 <td width="10%"><%= link_to @goto ,game %> </td>
 
 	<td width="10%">					

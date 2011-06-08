@@ -1,6 +1,6 @@
 class Player < ActiveRecord::Base
 	
-	default_scope :order => "rating DESC"
+	default_scope :order => "surname ASC"
 	
 	validates :name, :presence => true
 	validates :surname, :presence => true

@@ -3,11 +3,21 @@
 	<span class="tournament_stripe">	
 		<% @tournament_stripe = tournament.name + " | " + tournament.start_date.strftime("%d.%m.%y") + "-" + tournament.finish_date.strftime("%d.%m.%y") %> 
 		<%= link_to @tournament_stripe , tournament  %></span> 
+		
+		&nbsp&nbsp 
+		
+		<% if !signed_in? %>
 		<%= link_to "[+]", :controller => "tournaments", :action => "add_to_observed_and_redirect", :id =>   
 tournament.id %>
+<% end %> 
 		<% if signed_in? %>
-			<%= link_to "[-]", :controller => "tournaments", :action => "remove_from_observed_and_redirect", :id =>   
+			<% if Observedtournament.all(:conditions => {:user_id => current_user.id, :tournament_id => tournament.id }).empty? %>
+				<%= link_to "[+]", :controller => "tournaments", :action => "add_to_observed_and_redirect", :id =>   
 tournament.id %>
+			<% else %>
+				<%= link_to "[-]", :controller => "tournaments", :action => "remove_from_observed_and_redirect", :id =>   
+tournament.id %>
+			<% end %>
 		<% end %>
 		<br/>
 	<% if  !tournament_not_observed(tournament.id) || (!signed_in? && cookies.signed[:watched_tournament] == tournament.id.to_s) %> 
@@ -36,18 +46,24 @@ tournament.id, :round_id => round.id %>
 			<% @games = get_all_games(tournament.id, current_user.id) %>
 		<% end%>
 			<% unless @games.nil? %>		
+				<table>
 				<% @games.each do |game| %>
 					<span class="game_stripe">
-						<%= link_to prepare_game_string(game), game %> &nbsp&nbsp&nbsp
+						<tr><td width="85%"><%= link_to prepare_game_string(game), game %> </td>
 						
 						<% if signed_in? && already_observed(game)%>
+						<td>
 						<%= link_to @eye,  :controller => "tournaments", :action => "remove_from_observed_games", :id => game.id , :confirm => "Are you sure you want to remove game from yourlist?" %>
+						</td>
 						<% elsif signed_in? && !already_observed(game) %>
+						<td>
 						<%= link_to @closed_eye,  :controller => "tournaments", :action => "add_to_observed_games", :id => game.id, :confirm => "Are you sure you want to observe this game?" %>
+						</td>
 						<% end %>
 					</span>					
-					<br/>
-				<% end %>		
+				</tr>	
+				<% end %>
+				</table>		
 			<% end %>
 	</td>	
 </tr></table>

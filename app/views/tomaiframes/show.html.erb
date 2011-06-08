@@ -1,7 +1,7 @@
 <span class="h2_stripe"><%= @iframe.tournament_name %> &nbsp>>&nbsp </span>
 
 <% if @tournament.nil? %>
-	<%= @tournament_link %>
+	<%= @tournament_link.html_safe %>
 <% else %>
 	<%= link_to @tournament_link.html_safe, @tournament %>
 <% end %>
@@ -10,12 +10,9 @@
 <br/>
 <div id="iframe">
 
-<span class="h3_stripe">	
-
-</span>
-
-
+	
 <%=  @iframe_string.html_safe 	%>
+
 
 <br/>
 

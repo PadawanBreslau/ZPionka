@@ -39,9 +39,9 @@
 <% @chat = Gamechat.find_all_by_game_id(id_name) %>
 
 <% unless @chat.empty? %>
-	<span class="h3_stripe">Game chat</span><br/>
+	
 <% end %>
-
+<span class="h3_stripe">Game chat</span><br/>
 
 <% @chat.each do |chat| %>
 

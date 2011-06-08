@@ -156,8 +156,9 @@ end
   	@observes = Observe.find_all_by_user_id(current_user)
   	
   	
-    if @observes.size < 4 
+    if @observes.empty? || @observes.size < 4 
   		redirect_to_back root_path
+  		return
   	end
   	
   	@windows = [0,1,2,3]

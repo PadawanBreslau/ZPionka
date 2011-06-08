@@ -1,0 +1,10 @@
+<div id="vars">
+<% position = Position.find(cookies['position']) %>
+
+<table class="variation">
+	<tr><span class="h5_stripe">Computer analysis suported by Jazz Chess Engine</span></tr>
+	<tr height="75%"><td width="8%"><span class="variants">1.&nbsp<span/> </td><td width="92%"><span class="variants"><%= position.var1 %><span/></tr>
+	<tr height="75%"><td width="8%"><span class="variants">2.&nbsp<span/></td><td width="92%"><span class="variants"><%= position.var2 %><span/></tr>
+	<tr height="75%"><td width="8%"><span class="variants">3&nbsp<span/></td><td width="92%"><span class="variants"><%= position.var3 %><span/></tr>
+</table>
+  </div>

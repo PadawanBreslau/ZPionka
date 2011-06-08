@@ -33,9 +33,10 @@ class MovecommentsController < ApplicationController
   def update
 
   @movecomment = Movecomment.find(params[:id])
+  @game_id = Position.find(cookies['position']).game
   if @movecomment.update_attributes(params[:movecomment])
     flash[:success] = "Movecomment succesfully updated."
-    redirect_to_back root_path
+    redirect_to Game.find(@game_id)
   else
     @title = "Edit movecomment"
     render 'edit'
@@ -59,6 +60,8 @@ class MovecommentsController < ApplicationController
     	@user_id = current_user.id 
 	end
 	@position_id = cookies['position']
+	
+	
   end
 
 end

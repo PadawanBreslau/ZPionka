@@ -48,7 +48,7 @@ jQuery(document).ready(function() {
    else if(event.keyCode==37) chess.transitionBackward();
    else if(event.keyCode==40) chess.transitionToStart(); //key down
    else if(event.keyCode==38) chess.transitionToFinish(); // key up
-   else if(event.keyCode==70) chess.flipBoard();
+   //else if(event.keyCode==70) chess.flipBoard();
 
   });
   

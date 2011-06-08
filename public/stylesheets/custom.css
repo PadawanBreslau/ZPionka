@@ -59,6 +59,22 @@ DIV#pgn-jchess
 display:none;
 }
 
+DIV#game_movement{
+    display:block;
+	margin-top: 5px;
+	margin-bottom: 5px;
+    margin-left: 30% ;
+
+}
+
+DIV#moves_right_panel{
+
+    min-height: 200px;
+	max-height: 400px;
+	overflow:auto;
+	
+}
+
 DIV#top_panel{
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -145,7 +161,7 @@ DIV#chat_panel{
 
 DIV#display_chat_panel
 {
-	border: 2px;
+	#border: 2px;
 	display:block;
 	padding-right:1px;
 	padding-left:5px;
@@ -374,8 +390,9 @@ span.info_title{
 }
 
 span.move_number{
-	font-weight: bold;
-	color: #000;
+	#font-weight: bold;
+	color: #989;
+	font-size: 75% ;
 }
 
 span.game_stripe a{
@@ -404,6 +421,19 @@ span.chat_stripe{
 	padding-left:7px;
 	padding-right:7px;
 	color: #fff;
+	
+}
+
+
+span.h5_stripe{
+    padding-left: 20px;
+	font-size:80% ;
+	color: #fff;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	padding-left: 2px;
+	font-family: "Georgia";
+	font-variant: small-caps;
 	
 }
 

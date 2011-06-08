@@ -3,10 +3,47 @@
 <%= will_paginate @players %>
 
 <table>
+	<tr><td width="15%">Surname</td><td width="15%">Name</td><td width="10%">Rating</td><td width="10%">Games white</td><td width="10%">Games black</td><td width="10%">Wins</td><td width="10%">Draws</td><td width="10%">Losts</td></tr>
 	<% @players.each do |player| %>
+	
+	<% @tournaments = find_tournament_with_player(player,10000) %>
+  	<% @games_white = @tournaments[0] %>
+  	<% @games_black = @tournaments[1] %>
+  	
+  	<% @wins = 0  %>
+  	<% @draws = 0  %>
+  	<% @losts = 0  %>
+  	
+  	<% @games_white.each do |game| %>
+  		<% if game.result == "1" %>
+  			<%	@draws += 1 %>
+  		<% elsif game.result == "2" %>
+  			 <% @losts += 1  %>
+  		<% elsif game.result == "0" %>
+  			<% @wins += 1  %>	
+  		<% end %>
+  	<% end %>
+  	
+   <% @games_black.each do |game| %>
+  		<% if game.result == "1" %>
+  			<%	@draws += 1 %>
+  		<% elsif game.result == "0" %>
+  			 <% @losts += 1  %>
+  		<% elsif game.result == "2" %>
+	  		<% @wins += 1  %>	
+	  	<% end %>
+  	<% end %>
+
 	<tr>
-		<% @player_strng = player.name.to_s + "," + player.surname %>
-		<td><%= link_to @player_strng, player %></td>
+		
+		<td width="15%"><%= link_to player.surname.to_s, player %></td>
+		<td width="15%"><%= link_to player.name.to_s, player %></td>
+		<td width="10%"><%= player.rating %> </td>
+		<td width="10%"><%= @games_white.size %></td>
+		<td width="10%"><%= @games_black.size %></td>
+		<td width="10%"><%= @wins %></td>
+		<td width="10%"><%= @draws %></td>
+		<td width="10%"><%= @losts %></td>
 	
 	
 		</tr>

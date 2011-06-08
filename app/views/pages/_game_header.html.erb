@@ -1,0 +1,53 @@
+
+
+<% @game = Game.find(params[:id]) %>
+<% @round = @game.round %>
+<% @player_white = Player.find(@game.player1_id) %>
+<% @player_black = Player.find(@game.player2_id) %>
+<% if @game.result == "0" %>
+	<% @result = "1-0" %>
+<% elsif @game.result == "1" %>
+	<% @result = "1/2" %>
+<% elsif @game.result == "2" %>
+	<% @result = "0-1" %>
+<% end %>
+
+<table class="game_header_table">
+<tr>
+	<td width=70%>
+		<span class="h3_stripe"><%= @player_white.surname + ", " + @player_white.name %> </span>
+	</td><td width=15%>
+		<span class="h3_stripe"><%= @player_white.rating %></span>
+	</td><td width=15%>
+		<span class="h3_stripe"><%= @player_white.country %></span>
+	</td>
+</tr>	
+
+<tr>
+	<td width=70%>
+		<span class="h3_stripe"><%= @player_black.surname + ", " + @player_black.name %> </span>
+	</td><td width=15%>
+		<span class="h3_stripe"><%= @player_black.rating %></span>
+	</td><td width=15%>
+		<span class="h3_stripe"><%= @player_black.country %></span>
+	</td>	
+</tr>	
+
+<tr>
+	<td width=70%> <span class="h3_stripe"><%= @round.round_date %></span>
+	</td>
+
+	<td width=15%>
+		<span class="h3_stripe"><%= "R. " + @round.round_number.to_s %></span>	
+	</td>
+	
+	<td width=15%>
+		<span class="h3_stripe"></span>
+	</td>
+
+</tr>	
+	
+	
+
+
+</table>	

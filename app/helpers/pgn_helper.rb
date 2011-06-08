@@ -49,6 +49,10 @@ def insert_game_file_into_database game, id
    		game.goto_start
 	    move_number = 1.0 
 	    saved_game = create_game(game,id)
+	    
+     
+
+  	#@engine.send_message "depth 10"
 	
 		while game.has_next_move && !saved_game.nil? do
 					
@@ -64,32 +68,28 @@ def insert_game_file_into_database game, id
   				white_move = false
   			end
   			
-  		
-  	@engine = ChXBoardEngine.new "vendor/jazz/jazz-wb-444-32-ja.exe","vendor/jazz" 
+    @engine = ChXBoardEngine.new "vendor/jazz/jazz-wb-444-32-ja.exe","vendor/jazz" 
   	@engine.init
   	@engine.send_message "xboard"
-  	#@engine.send_message "depth 10"
   	@engine.send_message "setboard " + fen
   	@engine.send_message "post"
   	@engine.send_message "analyze"
-  	@quality = 3
-  		#[1..@quality].each do	
-  			@myresult1 = @engine.wait_for_answer 1000,6
-  	  		@myresult2 = @engine.wait_for_answer 1000,6
-  	  		@myresult3 = @engine.wait_for_answer 1000,6
-  	  		@myresult1 = @engine.wait_for_answer 1000,6
-  	  		@myresult2 = @engine.wait_for_answer 1000,6
-  	  		@myresult3 = @engine.wait_for_answer 1000,6
-  		 #end
+  	
+ 
+  		@myresult1 = @engine.wait_for_answer 1000,6
+  	  	@myresult2 = @engine.wait_for_answer 1000,6
+  	  	@myresult3 = @engine.wait_for_answer 1000,6
+  	  	@myresult1 = @engine.wait_for_answer 1000,6
+  	  	@myresult2 = @engine.wait_for_answer 1000,6
+  	  	@myresult3 = @engine.wait_for_answer 1000,6
+  		
   		 
   		 @myresult1 = parse_engine_output @myresult1,3, move_number.floor, white_move
   		 @myresult2 = parse_engine_output @myresult2,2, move_number.floor, white_move
   		 @myresult3 = parse_engine_output @myresult3,1, move_number.floor, white_move
 
-
-
-    @engine.quit
-  			
+    
+  		@engine.quit
   			
 
   								
@@ -110,7 +110,7 @@ def insert_game_file_into_database game, id
   			
 		end
 		
-		#@engine.quit
+		
 end
 
 

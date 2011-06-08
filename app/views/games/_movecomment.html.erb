@@ -8,7 +8,7 @@
 <% if signed_in? %>
 <% form_for @movecomment do |f| %>
 <table><tr>
-<td><%= f.text_field :content %></td><td><%= f.submit "Save comment" %></td>
+<td><%= f.text_field :content, :size => 52 %></td><td><%= f.submit "Save position comment" %></td>
 </tr></table>
 
   <%= f.hidden_field :position_id, :value => cookies['position'] %>

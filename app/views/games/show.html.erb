@@ -4,21 +4,7 @@ startCookieValue();
 </script>
 
 	
-<h3 id="game_header_name">
-	<%= link_to @ggame.get_white.to_s + " (" + @ggame.get_white_elo_str.to_s + ") ", @player_white %>-
-	<%= link_to @ggame.get_black.to_s + " (" +  @ggame.get_black_elo_str.to_s + ") ", @player_black  %>
-	<%= @ggame.get_result_str.to_s %></h3>
 
-  <div id="board3"></div>
-  <p id="board-annot">
-  </p>
-  <div id="pgn-jchess">   
-	<%= @pgn_string %> </div>
-
-  </p>
-  
-
-  
   <%= link_to "Back to round", @game.round %>|  <%= link_to "Back to tournament", @game.round.tournament %> &nbsp&nbsp&nbsp&nbsp&nbsp
   
   <% unless @game == @prevgame %>
@@ -33,6 +19,24 @@ startCookieValue();
   <% else %>
   	<%= link_to "Next round game >>", @nextroundgame %>
   <% end %>
+  <br/>  <br/>  
+
+  <div id="board3"></div>
+  <p id="board-annot">
+  </p>
+  <div id="pgn-jchess">   
+	<%= @pgn_string %> </div>
+
+  </p>
+  
+  <div id="game_movement">
+    <a id="board-start" href="#"><%= image_tag("pictograms/start-arrow.gif", :alt => "Start", :class => "round") %> </a>
+    <a id="board-back" href="#"><%= image_tag("pictograms/back-arrow.gif", :alt => "Back", :class => "round") %></a>
+    <a id="board-next" href="#"><%= image_tag("pictograms/next-arrow.gif", :alt => "Next", :class => "round") %></a>
+    <a id="board-finish" href="#"><%= image_tag("pictograms/finish-arrow.gif", :alt => "Finish", :class => "round") %> </a>
+  </div>
+  
+
   
 </div>
 

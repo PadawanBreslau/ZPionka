@@ -45,7 +45,13 @@ class PlayersController < ApplicationController
 
   def index
   	
-  	@players = Player.paginate(:page => params[:page], :per_page => 12)
+  	@players = Player.paginate(:page => params[:page], :per_page => 15)
+  	
+  	
+  	@title = "List of all players"
+  	
+
+  	
   end
   
 

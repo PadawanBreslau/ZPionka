@@ -9,7 +9,10 @@
 <% @delete_icon = image_tag("pictograms/delete_icon.gif", :alt => "-", :class => "round") %>
 
 
+
 <% if controller_name == "games" && !@positions.nil? %>
+	<%= render :partial => "pages/game_header", :locals => {:game_id => @positions.first.game.id} %>
+	<div id="moves_right_panel">
 	<% @positions.each do |position| %>
 
 	<% half_move = position.move_number*2 %>
@@ -22,18 +25,13 @@
 <% end %>
 
 <% @ggame = Game.find(@positions.first.game_id) %>
-<strong><%= make_result @ggame.result %></strong>
+<br/><span class="h2_stripe"><%= make_result @ggame.result %></span>
 
-<br/><br/><br/>
+<br/>
+</div>
 
-  <div id="game_movement">
-    <a id="board-start" href="#"><%= image_tag("pictograms/start-arrow.png", :alt => "Start", :class => "round") %> </a>
-    <a id="board-back" href="#"><%= image_tag("pictograms/back-arrow.gif", :alt => "Back", :class => "round") %></a>
-    <a id="board-next" href="#"><%= image_tag("pictograms/next-arrow.gif", :alt => "Next", :class => "round") %></a>
-    <a id="board-finish" href="#"><%= image_tag("pictograms/finish-arrow.png", :alt => "Finish", :class => "round") %> </a>
-  </div>
   
-<%= render :partial => "variations" %>
+<%= render :partial => "pages/variations" %>
 
 
 
@@ -64,7 +62,7 @@
 <% elsif controller_name != "games" %>		
 	
 	<div id="right_info_panel">
-	<h3> Newest info</h3>
+	<span class ="h2_stripe"> Newest articles</span><br/>
 
 	<% @infos = Info.find(:all, :limit => 5) %>
 	<% @infos.each do |info| %>
