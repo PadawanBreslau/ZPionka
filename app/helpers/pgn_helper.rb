@@ -53,8 +53,10 @@ def insert_game_file_into_database game, id
      
 
   	#@engine.send_message "depth 10"
-	
-		while game.has_next_move && !saved_game.nil? do
+		
+  	
+  	
+		while game.has_next_move && !saved_game.nil?  do
 					
 			position = game.get_position
 			move = game.get_next_move
@@ -75,21 +77,25 @@ def insert_game_file_into_database game, id
   	@engine.send_message "post"
   	@engine.send_message "analyze"
   	
- 
-  		@myresult1 = @engine.wait_for_answer 1000,6
-  	  	@myresult2 = @engine.wait_for_answer 1000,6
-  	  	@myresult3 = @engine.wait_for_answer 1000,6
-  	  	@myresult1 = @engine.wait_for_answer 1000,6
-  	  	@myresult2 = @engine.wait_for_answer 1000,6
-  	  	@myresult3 = @engine.wait_for_answer 1000,6
+  	i = 0;
+  	quality = 4;
+  	
+ 		while i < quality do
+  			@myresult1 = @engine.wait_for_answer 1000,6
+  	 	 	@myresult2 = @engine.wait_for_answer 1000,6
+  	  		@myresult3 = @engine.wait_for_answer 1000,6
+  	  		i = i+1
+  	  	end 
   		
+  	  	
+  	  	
   		 
   		 @myresult1 = parse_engine_output @myresult1,3, move_number.floor, white_move
   		 @myresult2 = parse_engine_output @myresult2,2, move_number.floor, white_move
   		 @myresult3 = parse_engine_output @myresult3,1, move_number.floor, white_move
 
     
-  		@engine.quit
+  		
   			
 
   								
@@ -108,8 +114,63 @@ def insert_game_file_into_database game, id
   			game.go_forward
   			move_number += 0.5
   			
+  			@engine.quit
+  			
+  			position = game.get_position
+  			last_fen = FEN.get_fen(position)
+  			
 		end
 		
+		
+		# LAST MOVE #     
+		
+	@engine = ChXBoardEngine.new "vendor/jazz/jazz-wb-444-32-ja.exe","vendor/jazz" 
+  	@engine.init
+  	@engine.send_message "xboard"
+  	@engine.send_message "setboard " + last_fen
+  	@engine.send_message "post"
+  	@engine.send_message "analyze"
+		
+		if move_number == move_number.floor
+  				white_move = true
+  			else
+  				white_move = false
+  			end
+		
+		 i = 0;
+  	     quality = 3;
+  	
+ 		while i < quality do
+  			@myresult1 = @engine.wait_for_answer 1000,6
+  	 	 	@myresult2 = @engine.wait_for_answer 1000,6
+  	  		@myresult3 = @engine.wait_for_answer 1000,6
+  	  		i = i+1
+  	  	end 
+  		
+  	  	
+  	  	
+  		 
+  		 @myresult1 = parse_engine_output @myresult1,3, move_number.floor, white_move
+  		 @myresult2 = parse_engine_output @myresult2,2, move_number.floor, white_move
+  		 @myresult3 = parse_engine_output @myresult3,1, move_number.floor, white_move
+		
+		
+		@engine.quit
+		
+		
+		  	pos = Position.new
+  			pos.var1 = @myresult3
+  			pos.var2 = @myresult2
+  			pos.var3 = @myresult1
+  			
+  			pos.fen = fen
+  			pos.move = '-'
+  			pos.white_on_move = white_move
+  			pos.move_number = move_number.floor
+  			pos.game_id = saved_game.id
+  			
+  			pos.save!
+  		
 		
 end
 

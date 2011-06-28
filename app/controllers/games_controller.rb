@@ -87,11 +87,7 @@ class GamesController < ApplicationController
     
     cookies['position'] = cookies['position_start']
     
-    
-   
-    
-    
- 	
+	
    @position = @positions.first.id
    cookies[:position] = @position
   	

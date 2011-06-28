@@ -1,9 +1,7 @@
 <div id="wrapper">
 <script>
-startCookieValue();
+	startCookieValue();
 </script>
-
-	
 
   <%= link_to "Back to round", @game.round %>|  <%= link_to "Back to tournament", @game.round.tournament %> &nbsp&nbsp&nbsp&nbsp&nbsp
   
@@ -30,14 +28,11 @@ startCookieValue();
   </p>
   
   <div id="game_movement">
-    <a id="board-start" href="#"><%= image_tag("pictograms/start-arrow.gif", :alt => "Start", :class => "round") %> </a>
-    <a id="board-back" href="#"><%= image_tag("pictograms/back-arrow.gif", :alt => "Back", :class => "round") %></a>
-    <a id="board-next" href="#"><%= image_tag("pictograms/next-arrow.gif", :alt => "Next", :class => "round") %></a>
-    <a id="board-finish" href="#"><%= image_tag("pictograms/finish-arrow.gif", :alt => "Finish", :class => "round") %> </a>
+    <a id="board-start" href="#"><%= image_tag("pictograms/start-arrow2.png", :alt => "Start", :class => "round") %> </a>
+    <a id="board-back" href="#"><%= image_tag("pictograms/back-arrow.png", :alt => "Back", :class => "round") %></a>
+    <a id="board-next" href="#"><%= image_tag("pictograms/next-arrow.png", :alt => "Next", :class => "round") %></a>
+    <a id="board-finish" href="#"><%= image_tag("pictograms/finish-arrow2.png", :alt => "Finish", :class => "round") %> </a>
   </div>
-  
-
-  
 </div>
 
 <div id="moves">
@@ -58,14 +53,4 @@ startCookieValue();
 
 </div>	
 <%= render :partial => "movecomment" %> 
-
-
-					
-					
-
-
-
-
-
-
 

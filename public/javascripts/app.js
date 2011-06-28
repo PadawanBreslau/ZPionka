@@ -33,6 +33,11 @@ function createCookie(name, value, expiredays) {
   document.cookie = name + "=" + value + "; expires=" +todayDate.toGMTString() + ";"
 }
 
+function reloadDivs(){	  
+  	  $('#vars').load('variations #vars' , { 'id': 1 });
+      $('#movecomments').load('movecomments #movecomments' , { 'id': 1 });
+  }
+
 
 jQuery(document).ready(function() {
   // Uncomment one at a time to see the examples

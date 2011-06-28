@@ -14,6 +14,4 @@ class Game < ActiveRecord::Base
 	has_many :users, :through => :observes
 	
 	
-
-
 end
